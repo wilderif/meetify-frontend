@@ -5,7 +5,7 @@ import ChatsPage from "./pages/ChatsPage/ChatsPage";
 import MyInfoPage from "./pages/MyInfoPage/MyInfoPage";
 import MyInfoEditPage from "./pages/MyInfoPage/MyInfoEditPage";
 import MyLikePage from "./pages/MyLikePage/MyLikePage";
-import MyPostPage from "./pages/MyPostPage/MyPostPage";
+import MyPostsPage from "./pages/MyPostPage/MyPostsPage";
 import PostPage from "./pages/PostPage/PostPage";
 import CreateLayout from "./pages/PostCreatePage/CreateLayout";
 import CreateMeetPage from "./pages/PostCreatePage/CreateMeetPage";
@@ -25,13 +25,16 @@ const routes = createBrowserRouter([
     children: [
       { index: true, element: <MainPage /> }, // 메인 페이지
 
-      // 마이페이지 및 수정 페이지
+      // 마이페이지
       {
         path: "my-info",
         element: <MyInfoPage />,
-        children: [
-          { path: "edit", element: <MyInfoEditPage /> }, // 마이페이지 수정
-        ],
+      },
+
+      // 수정 페이지
+      {
+        path: "my-info/edit",
+        element: <MyInfoEditPage />,
       },
 
       // 관심글 페이지
@@ -42,13 +45,13 @@ const routes = createBrowserRouter([
 
       // 작성글 페이지
       {
-        path: "my-post",
-        element: <MyPostPage />,
+        path: "my-posts",
+        element: <MyPostsPage />,
       },
 
       // 포스트 관련 라우트
       {
-        path: "post",
+        path: "post/:postId",
         element: <PostPage />,
       },
 
@@ -64,20 +67,23 @@ const routes = createBrowserRouter([
       },
 
       // 포스트 업데이트 관련 라우트
+      // 업데이트할 때 id를 어떻게 사용해야하는지 애매해서 상훈님 구현하시면서 수정하시면 되겠습니다.
+      // post/udate/:postId로 수정한 뒤 컴포넌트 내부에서 type에 따라 UI가 달라지셔도 될 것 같습니다.
       {
         path: "post/update",
         element: <UpdateLayout />,
         children: [
-          { path: "meet", element: <UpdateMeetPage /> },
-          { path: "project", element: <UpdateProjectPage /> },
-          { path: "study", element: <UpdateStudyPage /> },
+          { path: "meet/:postId", element: <UpdateMeetPage /> },
+          { path: "project/:postId", element: <UpdateProjectPage /> },
+          { path: "study/:postId", element: <UpdateStudyPage /> },
         ],
       },
 
-      // 채팅 페이지
+      // 채팅 페이지 // 채팅 부분은 어떻게 구현될지 몰라서 우선 이렇게 남겼습니다.
       {
-        path: "chat",
+        path: "chats",
         element: <ChatsPage />,
+        children: [{ path: ":chatId", element: <ChatsPage /> }],
       },
     ],
   },
