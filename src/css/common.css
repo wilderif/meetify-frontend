@@ -1,15 +1,21 @@
-/* Font sizes */
+/* Font */
 :root {
   --font-size-head-large: 35px;
   --font-size-head-medium: 25px;
   --font-size-head-small: 20px;
   --font-size-body-medium: 16px;
   --font-size-body-small: 12px;
+
+  --font-weight-light: 300;
+  --font-weight-regular: 500;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 800;
 }
 
 /* Colors */
 :root {
-  --primary-color-org: #ff6a3d;
+  --primary-color-org: #ffa63d;
   --primary-color-org-light: #ffefdb;
 
   --font-color-dark: #2d2d2d;
