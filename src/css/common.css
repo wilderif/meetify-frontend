@@ -9,25 +9,25 @@
 
 /* Colors */
 :root {
-  --primary-color-org: #FF6A3D;
-  --primary-color-org-light: #FFEFDB;
+  --primary-color-org: #ff6a3d;
+  --primary-color-org-light: #ffefdb;
 
-  --font-color-dark: #2D2D2D;
-  --font-color-light: #5D5D5D;
+  --font-color-dark: #2d2d2d;
+  --font-color-light: #5d5d5d;
 
-  --color-white: #FFFFFF;
-  --color-gray-light: #F7F5F4;
-  --color-gray-white: #F5F6F8;
+  --color-white: #ffffff;
+  --color-gray-light: #f7f5f4;
+  --color-gray-white: #f5f6f8;
 
-  --bg-gray-light: #DCDCDC;
-  --bg-coral-light: #FFC2AF;
-  --bg-green-light: #D5EADD;
+  --bg-gray-light: #dcdcdc;
+  --bg-coral-light: #ffc2af;
+  --bg-green-light: #d5eadd;
 
   --mask-color-20: rgba(0, 0, 0, 0.2);
 
   /* Gradient */
-  --primary-color-gra-start: #FF7831;
-  --primary-color-gra-end: #FFDC78;
+  --primary-color-gra-start: #ff7831;
+  --primary-color-gra-end: #ffdc78;
 }
 
 body {
