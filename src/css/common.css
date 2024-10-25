@@ -1,0 +1,36 @@
+/* Font sizes */
+:root {
+  --font-size-head-large: 35px;
+  --font-size-head-medium: 25px;
+  --font-size-head-small: 20px;
+  --font-size-body-medium: 16px;
+  --font-size-body-small: 12px;
+}
+
+/* Colors */
+:root {
+  --primary-color-org: #FF6A3D;
+  --primary-color-org-light: #FFEFDB;
+
+  --font-color-dark: #2D2D2D;
+  --font-color-light: #5D5D5D;
+
+  --color-white: #FFFFFF;
+  --color-gray-light: #F7F5F4;
+  --color-gray-white: #F5F6F8;
+
+  --bg-gray-light: #DCDCDC;
+  --bg-coral-light: #FFC2AF;
+  --bg-green-light: #D5EADD;
+
+  --mask-color-20: rgba(0, 0, 0, 0.2);
+
+  /* Gradient */
+  --primary-color-gra-start: #FF7831;
+  --primary-color-gra-end: #FFDC78;
+}
+
+body {
+  font-size: var(--font-size-medium);
+  color: var(--font-color-dark);
+}
