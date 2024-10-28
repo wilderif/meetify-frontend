@@ -6,14 +6,14 @@ import ContactIcon from "../../../common/icon/ContactIcon/ContactIcon";
 const meta = {
   title: "Layout/header/notificationIconContainer/NotificationIconContainer",
   component: NotificationIconContainer,
+  tags: ["autodocs"],
   argTypes: {
-    icon: {},
     notificationCount: {
       control: "number",
     },
   },
   args: {
-    notificationCount: 1,
+    notificationCount: 0,
   },
 } satisfies Meta<typeof NotificationIconContainer>;
 
@@ -23,12 +23,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Chat: Story = {
   args: {
-    icon: <ContactIcon />,
+    children: <ContactIcon />,
   },
 };
 
 export const Notification: Story = {
   args: {
-    icon: <NotificationIcon />,
+    children: <NotificationIcon />,
   },
 };
