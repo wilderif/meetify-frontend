@@ -84,3 +84,11 @@ export const WithShareIcon: Story = {
     icon: <ShareIcon />,
   },
 };
+
+export const WriteButton: Story = {
+  args: {
+    buttonType: "fill",
+    buttonSize: "medium",
+    label: "작성하기",
+  },
+};
