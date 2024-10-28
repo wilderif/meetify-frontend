@@ -24,7 +24,7 @@ const CustomSelect: React.FC<SelectProps> = ({
       <Label>{label}</Label>
       <StyledSelect>
         <Select
-          classNamePrefix="react-select"
+          classNamePrefix="react--select"
           options={options}
           onChange={(selectedOption) => {
             onChange(selectedOption as SelectOption);

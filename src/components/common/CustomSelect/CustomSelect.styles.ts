@@ -15,7 +15,7 @@ export const Label = styled.p`
 `;
 
 export const StyledSelect = styled.div`
-  .react-select__control {
+  .react--select__control {
     width: 100%;
     height: 62px;
     color: var(--primary-color-org);
@@ -27,7 +27,7 @@ export const StyledSelect = styled.div`
     font-family: 'DM Sans', sans-serif;
   }
 
-  .react-select__indicator-separator {
+  .react--select__indicator-separator {
     display: none;
   }
 `;
