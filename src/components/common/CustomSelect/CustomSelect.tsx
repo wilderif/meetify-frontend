@@ -3,11 +3,22 @@ import { SelectOption } from '../../../types/types';
 import { SelectWrapper, Label, StyledSelect } from './CustomSelect.styles';
 
 interface SelectProps {
+  /** 라벨 */
   label: string;
+
+  /** 선택 옵션 목록 */
   options: SelectOption[];
+
+  /** 플레이스홀더 */
   placeholder?: string;
+
+  /** 값 변경 시 호출되는 함수 */
   onChange: (value: SelectOption) => void;
+
+  /** 선택된 값 */
   value?: SelectOption;
+
+  /** 다중 선택 여부 */
   isMulti?: boolean;
 }
 

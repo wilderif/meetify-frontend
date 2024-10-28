@@ -16,12 +16,6 @@ const meta: Meta<typeof CustomSelect> = {
   title: 'Common/select/CustomSelect',
   component: CustomSelect,
   tags: ['autodocs'],
-  argTypes: {
-    label: { control: 'text' },
-    placeholder: { control: 'text' },
-    isMulti: { control: 'boolean' },
-    options: { control: false },
-  },
 
   decorators: [
     (Story, context) => {
