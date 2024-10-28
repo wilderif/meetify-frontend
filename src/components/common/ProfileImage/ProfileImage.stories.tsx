@@ -13,7 +13,7 @@ const meta = {
   argTypes: {
     usageType: {
       control: "select",
-      options: ["header", "userInformation", "post"],
+      options: ["header", "userInformation", "post", "card"],
       description: "프로필 이미지의 사용 용도를 설정합니다.",
     },
     src: {
@@ -48,5 +48,11 @@ export const UserInformation: Story = {
 export const Post: Story = {
   args: {
     usageType: "post",
+  },
+};
+
+export const Card: Story = {
+  args: {
+    usageType: "card",
   },
 };

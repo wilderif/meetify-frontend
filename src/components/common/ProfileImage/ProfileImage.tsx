@@ -4,7 +4,7 @@ import { StyledProfileImage } from "./ProfileImage.styled";
 interface ProfileImageProps {
   src: string;
   alt?: string;
-  usageType: "header" | "userInformation" | "post";
+  usageType: "header" | "userInformation" | "post" | "card";
 }
 
 const ProfileImage: React.FC<ProfileImageProps> = ({
