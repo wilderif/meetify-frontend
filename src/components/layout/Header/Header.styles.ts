@@ -11,4 +11,12 @@ export const HeaderContainer = styled.header`
 
 export const LogoContainer = styled.div``;
 
-export const NavContainer = styled.nav``;
+export const NavContainer = styled.nav`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  & > *:last-child {
+    margin-left: 1rem;
+  }
+`;
