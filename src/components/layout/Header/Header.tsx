@@ -70,7 +70,9 @@ const Header = () => {
           </Link>
         </NavContainer>
       ) : (
-        // 우선 Button 컴포넌트를 사용하고, 텍스트 색상, 버튼 height 같은 디테일한 css는 후반부에 수정하겠습니다.
+        /**
+         * TODO: 우선 Button 컴포넌트를 사용하고, 텍스트 색상, 버튼 height 같은 디테일한 css는 후반부에 수정
+         */
         <Button
           buttonType="outline"
           buttonSize="small"

@@ -1,10 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import ProfileImage from "./ProfileImage";
 
-// 원형 이미지 확인용
-// import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
-// 네모 이미지 확인용
-import DummyProfileImage2 from "../../../assets/interests/typescript.svg";
+import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 
 const meta = {
   title: "Common/profileImage/ProfileImage",
@@ -24,7 +21,7 @@ const meta = {
     },
   },
   args: {
-    src: DummyProfileImage2,
+    src: DummyProfileImage,
     alt: "profile image",
   },
 } satisfies Meta<typeof ProfileImage>;
