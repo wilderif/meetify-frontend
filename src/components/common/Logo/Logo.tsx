@@ -1,9 +1,5 @@
 const Logo = () => {
-  return (
-    <h1>
-      <img src="./Meetify-Logo.svg" alt="Meetify Logo" />
-    </h1>
-  );
+  return <img src="./Meetify-Logo.svg" alt="Meetify Logo" />;
 };
 
 export default Logo;
