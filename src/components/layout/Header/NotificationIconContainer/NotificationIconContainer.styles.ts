@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 interface NotificationIconContainerProps {
   children: React.ReactNode;
-  notificationCount: number;
+  $notificationCount: number;
 }
 
-export const IconContainer = styled.div`
+export const IconContainer = styled.button`
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -15,14 +15,22 @@ export const IconContainer = styled.div`
   background-color: var(--bg-gray-light);
   border-radius: 50%;
   font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+
+  &:hover {
+    background-color: gray;
+    color: var(--bg-gray-light);
+  }
 `;
 
 export const Badge = styled.span<NotificationIconContainerProps>`
   position: absolute;
   top: -3px;
   right: -3px;
-  display: ${({ notificationCount }) =>
-    notificationCount > 0 ? "flex" : "none"};
+  display: ${({ $notificationCount }) =>
+    $notificationCount > 0 ? "flex" : "none"};
   align-items: center;
   justify-content: center;
   width: 20px;

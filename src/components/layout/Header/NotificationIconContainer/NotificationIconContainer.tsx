@@ -4,16 +4,18 @@ import { IconContainer, Badge } from "./NotificationIconContainer.styles";
 interface NotificationIconContainerProps {
   children: React.ReactNode;
   notificationCount: number;
+  onClick?: () => void;
 }
 
 const NotificationIconContainer: React.FC<NotificationIconContainerProps> = ({
   children,
   notificationCount = 0,
+  onClick,
 }) => {
   return (
-    <IconContainer>
+    <IconContainer onClick={onClick}>
       {children}
-      <Badge notificationCount={notificationCount}>{notificationCount}</Badge>
+      <Badge $notificationCount={notificationCount}>{notificationCount}</Badge>
     </IconContainer>
   );
 };

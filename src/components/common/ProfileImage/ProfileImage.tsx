@@ -12,7 +12,7 @@ const ProfileImage: React.FC<ProfileImageProps> = ({
   alt = "profile image",
   usageType,
 }) => {
-  return <StyledProfileImage src={src} alt={alt} usageType={usageType} />;
+  return <StyledProfileImage src={src} alt={alt} $usageType={usageType} />;
 };
 
 export default ProfileImage;

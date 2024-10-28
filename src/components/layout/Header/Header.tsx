@@ -8,6 +8,7 @@ import ContactIcon from "../../common/icon/ContactIcon/ContactIcon";
 
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import Button from "../../common/button/Button";
+import { useNavigate, Link } from "react-router-dom";
 
 /**
  * 로그인 안 되 었을 때
@@ -23,24 +24,57 @@ const Header = () => {
   // 로그인 상태, notificationCount 등은 전역 상태 관리를 통해 관리할 예정
   const isLogin = true;
 
+  // navigate 방식 Link 방식 다시 확인
+  // const navigate = useNavigate();
+
+  const handleLogin = () => {
+    // 로그인 모달 띄우기
+  };
+
+  // const handleChat = () => {
+  //   navigate("/chats");
+  // };
+
+  const handleNotification = () => {
+    // 알림 모달 띄우기
+  };
+
+  // const handleMyPage = () => {
+  //   navigate("/my-info");
+  // };
+
   return (
     <HeaderContainer>
       <LogoContainer>
-        <Logo />
+        <Link to="/">
+          <Logo />
+        </Link>
       </LogoContainer>
       {isLogin ? (
         <NavContainer>
-          <NotificationIconContainer notificationCount={1}>
-            <ContactIcon />
-          </NotificationIconContainer>
-          <NotificationIconContainer notificationCount={1}>
+          <Link to="/chats">
+            <NotificationIconContainer notificationCount={1}>
+              <ContactIcon />
+            </NotificationIconContainer>
+          </Link>
+          <NotificationIconContainer
+            notificationCount={1}
+            onClick={handleNotification}
+          >
             <NotificationIcon />
           </NotificationIconContainer>
-          <ProfileImage src={DummyProfileImage} usageType="header" />
+          <Link to="/my-info">
+            <ProfileImage src={DummyProfileImage} usageType="header" />
+          </Link>
         </NavContainer>
       ) : (
         // 우선 Button 컴포넌트를 사용하고, 텍스트 색상, 버튼 height 같은 디테일한 css는 후반부에 수정하겠습니다.
-        <Button buttonType="outline" buttonSize="small" label="로그인" />
+        <Button
+          buttonType="outline"
+          buttonSize="small"
+          label="로그인"
+          onClick={handleLogin}
+        />
       )}
     </HeaderContainer>
   );
