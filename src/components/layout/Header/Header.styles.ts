@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
+// 메인 페이지 배너 생각해서 background-color: transparent;로 설정
 export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 120px;
-  background-color: yellow;
+  background-color: transparent;
   padding: 0 3rem;
 `;
 

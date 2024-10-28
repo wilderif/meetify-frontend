@@ -8,7 +8,7 @@ import ContactIcon from "../../common/icon/ContactIcon/ContactIcon";
 
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import Button from "../../common/button/Button";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 /**
  * 로그인 안 되 었을 때
@@ -47,7 +47,9 @@ const Header = () => {
     <HeaderContainer>
       <LogoContainer>
         <Link to="/">
-          <Logo />
+          <h1>
+            <Logo />
+          </h1>
         </Link>
       </LogoContainer>
       {isLogin ? (

@@ -15,6 +15,9 @@ const meta = {
   args: {
     notificationCount: 0,
   },
+  // parameters: {
+  //   pseudo: { hover: true },
+  // },
 } satisfies Meta<typeof NotificationIconContainer>;
 
 export default meta;

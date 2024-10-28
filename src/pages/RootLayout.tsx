@@ -3,10 +3,14 @@ import Header from "../components/layout/Header/Header";
 
 const RootLayout = () => {
   return (
-    <div>
-      <Header></Header>
-      <Outlet />
-    </div>
+    <>
+      <header>
+        <Header />
+      </header>
+      <main>
+        <Outlet />
+      </main>
+    </>
   );
 };
 
