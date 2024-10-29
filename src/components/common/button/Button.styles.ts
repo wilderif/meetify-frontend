@@ -17,11 +17,17 @@ export const StyledButton = styled.button<StyledButtonProps>`
           background-color: var(--primary-color-org);
           color: var(--color-white);
           border: none;
+          &:hover {
+            opacity: 0.8;
+          }
         `
       : css`
           background-color: var(--color-white);
           color: var(--primary-color-org);
           border: 1px solid var(--primary-color-org);
+          &:hover {
+            opacity: 0.8;
+          }
         `}
 
   ${({ buttonSize }) =>
