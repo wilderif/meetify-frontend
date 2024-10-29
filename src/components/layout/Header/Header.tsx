@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { HeaderContainer, NavContainer, LogoContainer } from "./Header.styles";
 
 import Logo from "../../common/Logo/Logo";
@@ -5,12 +7,10 @@ import NotificationIconContainer from "./NotificationIconContainer/NotificationI
 import ProfileImage from "../../common/ProfileImage/ProfileImage";
 import NotificationIcon from "../../common/icon/NotificationIcon/NotificationIcon";
 import ContactIcon from "../../common/icon/ContactIcon/ContactIcon";
+import Button from "../../common/button/Button";
+import ProfileDropdown from "../../features/profileDropdown/ProfileDropdown";
 
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
-import Button from "../../common/button/Button";
-import { Link } from "react-router-dom";
-import ProfileDropdown from "../../features/profileDropdown/ProfileDropdown";
-import { useState } from "react";
 
 /**
  * 로그인 안 되 었을 때
@@ -95,6 +95,9 @@ const Header = () => {
           />
         )}
       </HeaderContainer>
+      {/**
+       * TODO: dropdown 외부 클릭 시 dropdown 닫히는 기능 추가 고려
+       */}
       <ProfileDropdown
         isVisible={isDropdownVisible}
         closeDropdown={closeDropdown}

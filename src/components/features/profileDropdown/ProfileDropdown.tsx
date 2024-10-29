@@ -1,11 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import {
   DropdownContainer,
   Divider,
   ProfileContainer,
   ProfileImageContainer,
 } from "./ProfileDropdown.styled";
-import MenuItem from "./MenuItem/MenuItem";
 
+import MenuItem from "./MenuItem/MenuItem";
 import ProfileImage from "../../common/ProfileImage/ProfileImage";
 import MyPageIcon from "../../common/icon/MyPageIcon/MyPageIcon";
 import EmptyHeartIcon from "../../common/icon/EmptyHeartIcon/EmptyHeartIcon";
@@ -13,7 +14,6 @@ import MyPostIcon from "../../common/icon/MyPostIcon/MyPostIcon";
 import LogoutIcon from "../../common/icon/LogoutIcon/LogoutIcon";
 
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
-import { useNavigate } from "react-router-dom";
 
 interface DropdownProps {
   isVisible: boolean;
@@ -44,6 +44,7 @@ const ProfileDropdown: React.FC<DropdownProps> = ({
   const handleClickSignOut = () => {
     // 로그아웃 처리 훅 혜수님 작업 완료되면 연결
     closeDropdown();
+    // 로그아웃 후 메인 페이지로 이동
     navigate("/");
   };
 
