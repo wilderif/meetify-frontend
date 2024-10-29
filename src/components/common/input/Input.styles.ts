@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const InputWrapper = styled.div`
-  width: 600px;
   max-width: 100%;
   margin-bottom: 30px;
   font-family: 'DM Sans', sans-serif;
