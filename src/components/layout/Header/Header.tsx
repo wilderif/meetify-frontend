@@ -9,6 +9,8 @@ import ContactIcon from "../../common/icon/ContactIcon/ContactIcon";
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import Button from "../../common/button/Button";
 import { Link } from "react-router-dom";
+import ProfileDropdown from "../../features/profileDropdown/ProfileDropdown";
+import { useState } from "react";
 
 /**
  * 로그인 안 되 었을 때
@@ -21,6 +23,13 @@ import { Link } from "react-router-dom";
  */
 
 const Header = () => {
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+  const toggleDropdown = () => {
+    console.log("toggleDropdown", isDropdownVisible);
+    setIsDropdownVisible((prev) => !prev);
+  };
+
   // 로그인 상태, notificationCount 등은 전역 상태 관리를 통해 관리할 예정
   const isLogin = true;
 
@@ -44,44 +53,53 @@ const Header = () => {
   // };
 
   return (
-    <HeaderContainer>
-      <LogoContainer>
-        <Link to="/">
-          <h1>
-            <Logo />
-          </h1>
-        </Link>
-      </LogoContainer>
-      {isLogin ? (
-        <NavContainer>
-          <Link to="/chats">
-            <NotificationIconContainer notificationCount={1}>
-              <ContactIcon />
+    <>
+      <HeaderContainer>
+        <LogoContainer>
+          <Link to="/">
+            <h1>
+              <Logo />
+            </h1>
+          </Link>
+        </LogoContainer>
+        {isLogin ? (
+          <NavContainer>
+            <Link to="/chats">
+              <NotificationIconContainer notificationCount={1}>
+                <ContactIcon />
+              </NotificationIconContainer>
+            </Link>
+            <NotificationIconContainer
+              notificationCount={1}
+              onClick={handleNotification}
+            >
+              <NotificationIcon />
             </NotificationIconContainer>
-          </Link>
-          <NotificationIconContainer
-            notificationCount={1}
-            onClick={handleNotification}
-          >
-            <NotificationIcon />
-          </NotificationIconContainer>
-          <Link to="/my-info">
-            <ProfileImage src={DummyProfileImage} usageType="header" />
-          </Link>
-        </NavContainer>
-      ) : (
-        /**
-         * TODO: 우선 Button 컴포넌트를 사용하고, 텍스트 색상, 버튼 height 같은 디테일한 css는 후반부에 수정
-         */
-        <Button
-          buttonType="outline"
-          buttonSize="small"
-          label="로그인"
-          onClick={handleLogin}
-        />
-      )}
-    </HeaderContainer>
+            <button onClick={toggleDropdown}>
+              <ProfileImage src={DummyProfileImage} usageType="header" />
+            </button>
+          </NavContainer>
+        ) : (
+          /**
+           * TODO: 우선 Button 컴포넌트를 사용하고, 텍스트 색상, 버튼 height 같은 디테일한 css는 후반부에 수정
+           */
+          <Button
+            buttonType="outline"
+            buttonSize="small"
+            label="로그인"
+            onClick={handleLogin}
+          />
+        )}
+      </HeaderContainer>
+      <ProfileDropdown isVisible={isDropdownVisible} />
+    </>
   );
 };
 
 export default Header;
+
+// const [isVisible, setIsVisible] = useState(false);
+
+// const toggleDropdown = () => {
+//   setIsVisible((prev) => !prev);
+// };
