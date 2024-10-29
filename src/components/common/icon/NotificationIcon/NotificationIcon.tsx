@@ -1,7 +1,7 @@
-import { IoIosNotifications } from "react-icons/io";
+import { IoIosNotificationsOutline } from "react-icons/io";
 
 const NotificationIcon = () => {
-  return <IoIosNotifications />;
+  return <IoIosNotificationsOutline />;
 };
 
 export default NotificationIcon;
