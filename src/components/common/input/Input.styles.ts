@@ -28,4 +28,9 @@ export const StyledInput = styled.input`
   &::placeholder {
     color: var(--bg-gray-light);
   }
+
+  &:focus {
+    border: 2px solid var(--primary-color-org);
+    outline: none;
+  }
 `;
