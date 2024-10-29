@@ -12,9 +12,10 @@ import { StyledButton } from "../../common/button/Button.styles";
 
 interface LoginModalProps {
   onClose: () => void;
+  onToggleView: () => void; // 모달 전환 함수
 }
 
-const LoginModal = ({ onClose }: LoginModalProps) => {
+const LoginModal = ({ onClose, onToggleView }: LoginModalProps) => {
   return (
     <Overlay>
       <StyledLoginModal>
@@ -28,7 +29,11 @@ const LoginModal = ({ onClose }: LoginModalProps) => {
           <StyledButton buttonType="fill" buttonSize="large">
             로그인
           </StyledButton>
-          <StyledButton buttonType="outline" buttonSize="large">
+          <StyledButton
+            buttonType="outline"
+            buttonSize="large"
+            onClick={onToggleView}
+          >
             회원가입
           </StyledButton>
         </ButtonContainer>

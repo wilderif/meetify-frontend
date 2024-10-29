@@ -13,9 +13,10 @@ import Input from "../login/Input";
 
 interface RegisterModalProps {
   onClose: () => void;
+  onToggleView: () => void; // 모달 전환 함수
 }
 
-const RegisterModal = ({ onClose }: RegisterModalProps) => {
+const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
   return (
     <Overlay>
       <StyledRegisterModal>
@@ -36,7 +37,8 @@ const RegisterModal = ({ onClose }: RegisterModalProps) => {
             회원가입
           </StyledButton>
           <LoginText>
-            이미 계정이 있으신가요? <BoldText>로그인</BoldText>
+            이미 계정이 있으신가요?{" "}
+            <BoldText onClick={onToggleView}>로그인</BoldText>
           </LoginText>
         </ButtonContainer>
       </StyledRegisterModal>

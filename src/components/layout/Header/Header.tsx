@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { HeaderContainer, NavContainer, LogoContainer } from "./Header.styles";
 
 import Logo from "../../common/Logo/Logo";
@@ -10,6 +11,9 @@ import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image
 import Button from "../../common/button/Button";
 import { Link } from "react-router-dom";
 
+import LoginModal from "../../features/login/LoginModal";
+import RegisterModal from "../../features/register/RegisterModal";
+
 /**
  * 로그인 안 되 었을 때
  * 로그인 버튼 onClick 시 로그인 모달 띄우기
@@ -21,14 +25,25 @@ import { Link } from "react-router-dom";
  */
 
 const Header = () => {
-  // 로그인 상태, notificationCount 등은 전역 상태 관리를 통해 관리할 예정
-  const isLogin = true;
+  const [isLogin, setIsLogin] = useState(false); // 로그인 상태
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열림/닫힘 상태
+  const [isLoginView, setIsLoginView] = useState(true); // 로그인/회원가입 모달 전환 상태
 
   // navigate 방식 Link 방식 다시 확인
   // const navigate = useNavigate();
 
   const handleLogin = () => {
     // 로그인 모달 띄우기
+    setIsModalOpen(true);
+    setIsLoginView(true); // 로그인 모달로 설정
+  };
+
+  const handleCloseLoginModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const toggleModalView = () => {
+    setIsLoginView(!isLoginView); // 로그인/회원가입 모달 전환
   };
 
   // const handleChat = () => {
@@ -80,6 +95,18 @@ const Header = () => {
           onClick={handleLogin}
         />
       )}
+      {isModalOpen &&
+        (isLoginView ? (
+          <LoginModal
+            onClose={handleCloseLoginModal}
+            onToggleView={toggleModalView} // 모달 전환 함수 전달
+          />
+        ) : (
+          <RegisterModal
+            onClose={handleCloseLoginModal}
+            onToggleView={toggleModalView} // 모달 전환 함수 전달
+          />
+        ))}
     </HeaderContainer>
   );
 };

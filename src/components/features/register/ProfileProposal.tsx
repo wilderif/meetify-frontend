@@ -9,11 +9,11 @@ import {
 } from "../login/LoginModal.styles";
 import { StyledButton } from "../../common/button/Button.styles";
 
-interface RegisterModalProps {
+interface ProposalModalProps {
   onClose: () => void;
 }
 
-const RegisterModal = ({ onClose }: RegisterModalProps) => {
+const ProfileProposal = ({ onClose }: ProposalModalProps) => {
   return (
     <Overlay>
       <StyledLoginModal>
@@ -33,4 +33,4 @@ const RegisterModal = ({ onClose }: RegisterModalProps) => {
   );
 };
 
-export default RegisterModal;
+export default ProfileProposal;
