@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import PositionTag from "./PositionTag";
 
 const meta = {
-  title: "Common/card/elements/PositionTag",
+  title: "Common/Card/elements/PositionTagContainer/PositionTag",
   component: PositionTag,
   tags: ["autodocs"],
   parameters: {

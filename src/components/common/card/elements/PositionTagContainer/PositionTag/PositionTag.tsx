@@ -1,5 +1,5 @@
 import { StyledPositionTag } from "./PositionTag.styles";
-import Position from "./../../../../../constants/Position";
+import Position from "../../../../../../constants/Position";
 
 interface PositionTagProps {
   /** 모집포지션 */
