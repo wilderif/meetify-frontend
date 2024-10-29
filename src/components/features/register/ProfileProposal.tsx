@@ -4,10 +4,9 @@ import {
   CloseButton,
   ButtonContainer,
   LoginText,
-  BoldText,
+  ProPosalText,
 } from "../login/LoginModal.styles";
 import { StyledButton } from "../../common/button/Button.styles";
-import Input from "../login/Input";
 
 interface RegisterModalProps {
   onClose: () => void;
@@ -18,17 +17,14 @@ const RegisterModal = ({ onClose }: RegisterModalProps) => {
     <StyledLoginModal>
       <CloseButton onClick={onClose} />
       <Title>Meetify</Title>
-      <Input type="email" placeholder="이메일" />
-      <Input type="text" placeholder="닉네임" />
-      <Input type="password" placeholder="비밀번호" iconType="password" />
-      <Input type="password" placeholder="비밀번호 확인" iconType="password" />
+      <ProPosalText>
+        업무 분야와 경력에 맞춰 <br />딱 맞는 정보를 찾고 싶다면?
+      </ProPosalText>
       <ButtonContainer>
         <StyledButton buttonType="fill" buttonSize="large">
-          회원가입
+          내 프로필 작성하기
         </StyledButton>
-        <LoginText>
-          이미 계정이 있으신가요? <BoldText>로그인</BoldText>
-        </LoginText>
+        <LoginText>다음에 작성할래요</LoginText>
       </ButtonContainer>
     </StyledLoginModal>
   );

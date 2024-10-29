@@ -5,7 +5,11 @@ interface CloseIconProps {
 }
 
 const CloseIcon = ({ onClick }: CloseIconProps) => {
-  return <IoClose onClick={onClick} />;
+  return (
+    <button onClick={onClick}>
+      <IoClose />
+    </button>
+  );
 };
 
 export default CloseIcon;

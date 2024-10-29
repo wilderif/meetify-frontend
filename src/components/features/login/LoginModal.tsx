@@ -1,7 +1,7 @@
 import {
   StyledLoginModal,
   Title,
-  CloseIcon,
+  CloseButton,
   ButtonContainer,
 } from "./LoginModal.styles";
 import Input from "./Input";
@@ -15,7 +15,7 @@ interface LoginModalProps {
 const LoginModal = ({ onClose }: LoginModalProps) => {
   return (
     <StyledLoginModal>
-      <CloseIcon onClick={onClose} />
+      <CloseButton onClick={onClose} />
       <Title>Meetify</Title>
       <Input type="email" placeholder="이메일" />
       <Input type="password" placeholder="비밀번호" iconType="password" />

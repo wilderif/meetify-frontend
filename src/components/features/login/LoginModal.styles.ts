@@ -29,7 +29,7 @@ export const Title = styled.h2`
   text-align: center;
 `;
 
-export const CloseIcon = styled(IoClose)`
+export const CloseButton = styled(IoClose)`
   position: absolute;
   top: 60px;
   right: 60px;
@@ -100,4 +100,12 @@ export const BoldText = styled.span`
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
+`;
+
+export const ProPosalText = styled.span`
+  color: var(--font-color-dark);
+  font-size: 20px;
+  text-align: center;
+  margin: 20px;
+  line-height: 2;
 `;
