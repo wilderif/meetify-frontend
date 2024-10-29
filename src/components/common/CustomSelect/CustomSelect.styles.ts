@@ -1,5 +1,4 @@
-// src/components/common/CustomSelect/CustomSelect.styled.ts
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const SelectWrapper = styled.div`
   width: 600px;
@@ -14,10 +13,10 @@ export const Label = styled.p`
   font-family: inherit;
 `;
 
-export const StyledSelect = styled.div`
+// default: 글 작성 Select, rounded: 카테고리 Select
+export const StyledSelect = styled.div<{ variant: 'default' | 'rounded' }>`
   .react--select__control {
-    width: 100%;
-    height: 62px;
+    height: 60px;
     color: var(--primary-color-org);
     border-radius: 10px;
     box-sizing: border-box;
@@ -25,6 +24,21 @@ export const StyledSelect = styled.div`
     font-size: var(--font-size-head-small);
     font-weight: var(--font-weight-semi-bold);
     font-family: 'DM Sans', sans-serif;
+    align-items: center;
+    display: flex;
+
+    ${({ variant }) =>
+      variant === 'rounded'
+        ? css`
+            height: 50px;
+            min-width: 120px;
+            max-width: 160px;
+            border-radius: 30px;
+            font-weight: var(--font-weight-semi-bold);
+          `
+        : css`
+            width: 100%; /* default일 때는 가로를 100%로 고정 */
+          `}
   }
 
   .react--select__indicator-separator {

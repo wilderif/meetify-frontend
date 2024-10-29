@@ -1,4 +1,3 @@
-// src/components/CustomSelect/CustomSelect.stories.tsx
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import CustomSelect from './CustomSelect';
@@ -96,5 +95,31 @@ export const 참여가능시간: Story = {
     placeholder: '주 5시간 미만 / 주 5시간 이상...',
     options: availabletime,
     isMulti: false,
+  },
+};
+
+export const 카테고리기술스택: Story = {
+  args: {
+    label: '',
+    placeholder: '기술 스택',
+    options: interests,
+    isMulti: false,
+    variant: 'rounded',
+  },
+};
+export const 카테고리포지션: Story = {
+  args: {
+    label: '',
+    placeholder: '포지션',
+    options: position,
+    variant: 'rounded',
+  },
+};
+export const 카테고리진행방식: Story = {
+  args: {
+    label: '',
+    placeholder: '진행 방식',
+    options: participationmethod,
+    variant: 'rounded',
   },
 };
