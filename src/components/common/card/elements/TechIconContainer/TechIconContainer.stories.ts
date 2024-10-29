@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import TechIconContainer from "./TechIconContainer";
 
 const meta = {
-  title: "Common/card/elements/TechIconContainer/TechIconContainer",
+  title: "Common/card/elements/TechIconContainer",
   component: TechIconContainer,
   tags: ["autodocs"],
   parameters: {

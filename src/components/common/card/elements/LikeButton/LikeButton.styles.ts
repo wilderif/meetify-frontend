@@ -8,6 +8,8 @@ export const StyledLikeButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  right: 0;
 `;
 
 export const IconWrapper = styled.span`
