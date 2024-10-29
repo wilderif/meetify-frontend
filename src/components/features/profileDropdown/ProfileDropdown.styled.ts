@@ -20,3 +20,18 @@ export const Divider = styled.div`
   background-color: #cecece;
   margin: 0.5rem 0;
 `;
+
+export const ProfileContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  font-size: var(--font-size-head-small);
+  color: var(--font-color-dark);
+`;
+
+export const ProfileImageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+  margin-left: 4px;
+`;

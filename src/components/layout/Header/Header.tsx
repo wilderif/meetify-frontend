@@ -30,6 +30,10 @@ const Header = () => {
     setIsDropdownVisible((prev) => !prev);
   };
 
+  const closeDropdown = () => {
+    setIsDropdownVisible(false);
+  };
+
   // 로그인 상태, notificationCount 등은 전역 상태 관리를 통해 관리할 예정
   const isLogin = true;
 
@@ -91,15 +95,12 @@ const Header = () => {
           />
         )}
       </HeaderContainer>
-      <ProfileDropdown isVisible={isDropdownVisible} />
+      <ProfileDropdown
+        isVisible={isDropdownVisible}
+        closeDropdown={closeDropdown}
+      />
     </>
   );
 };
 
 export default Header;
-
-// const [isVisible, setIsVisible] = useState(false);
-
-// const toggleDropdown = () => {
-//   setIsVisible((prev) => !prev);
-// };
