@@ -145,9 +145,3 @@ body {
   font-size: var(--font-size-body-medium);
   line-height: 1.5;
 }
-
-button {
-  cursor: pointer;
-  background-color: transparent;
-  display: inline-block;
-}
