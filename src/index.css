@@ -86,7 +86,6 @@ summary,
 time,
 mark,
 audio,
-button,
 video {
   margin: 0;
   padding: 0;
@@ -145,6 +144,7 @@ body {
   font-size: var(--font-size-body-medium);
   line-height: 1.5;
 }
+
 * {
   box-sizing: border-box;
 }
