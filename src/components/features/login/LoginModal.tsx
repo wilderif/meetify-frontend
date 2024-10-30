@@ -18,7 +18,11 @@ interface LoginModalProps {
   onLoginSuccess: () => void; // 로그인 성공 시 호출할 함수
 }
 
-const LoginModal = ({ onClose, onToggleView }: LoginModalProps) => {
+const LoginModal = ({
+  onClose,
+  onToggleView,
+  onLoginSuccess,
+}: LoginModalProps) => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const { validation, validateForm, handleFieldChange } = useValidation();
   const login = useAuthStore((state) => state.login); // 상태 업데이트 함수 가져오기
@@ -33,6 +37,7 @@ const LoginModal = ({ onClose, onToggleView }: LoginModalProps) => {
     if (validateForm(formData)) {
       console.log("로그인 성공");
       login(formData.email, formData.password); // 로그인 메서드 호출
+      onLoginSuccess(); // 로그인 성공 시 호출하여 isLogin 상태 업데이트
       onClose(); // 로그인 성공 후 모달 닫기
     } else {
       alert("입력한 정보가 유효하지 않습니다.");

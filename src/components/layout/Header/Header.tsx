@@ -44,6 +44,11 @@ const Header = () => {
     setIsLoginView(!isLoginView); // 로그인/회원가입 모달 전환
   };
 
+  const handleLoginSuccess = () => {
+    setIsLogin(true); // 로그인 상태를 true로 업데이트
+    setIsModalOpen(false); // 모달 닫기
+  };
+
   const toggleDropdown = () => {
     console.log("toggleDropdown", isDropdownVisible);
     setIsDropdownVisible((prev) => !prev);
@@ -113,6 +118,7 @@ const Header = () => {
             <LoginModal
               onClose={handleCloseLoginModal}
               onToggleView={toggleModalView} // 모달 전환 함수 전달
+              onLoginSuccess={handleLoginSuccess} // 로그인 성공 시 처리 함수 전달
             />
           ) : (
             <RegisterModal
