@@ -68,12 +68,13 @@ export const InputWrapper = styled.div`
   }
 `;
 
-export const Input = styled.input<{ hasIcon?: boolean }>`
+export const Input = styled.input<{ hasIcon?: boolean; isError?: boolean }>`
   display: block;
   padding: 10px 20px;
   padding-right: ${({ hasIcon }) => (hasIcon ? "40px" : "20px")};
   color: var(--font-color-dark);
-  border: 1px solid var(--bg-gray-light);
+  border: 1px solid
+    ${({ isError }) => (isError ? "red" : "var(--bg-gray-light)")};
   border-radius: 30px;
   width: 100%;
   height: 44px;
@@ -86,17 +87,18 @@ export const Input = styled.input<{ hasIcon?: boolean }>`
   }
 `;
 
-export const ErrorMessage = styled.span`
+export const ErrorMessage = styled.p`
   color: red;
   font-size: 12px;
   margin-top: 5px;
+  padding-left: 10px;
 `;
 
 export const IconWrapper = styled.span`
   position: absolute;
   top: 50%;
   right: 10px;
-  transform: translateY(-50%);
+  transform: translateY(-50%); /* isError일때 아이콘 처리 실패 */
   display: flex;
   align-items: center;
   justify-content: center;

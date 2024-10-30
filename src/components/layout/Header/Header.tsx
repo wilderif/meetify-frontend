@@ -11,7 +11,6 @@ import Button from "../../common/button/Button";
 import ProfileDropdown from "../../features/profileDropdown/ProfileDropdown";
 
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
-
 import LoginModal from "../../features/login/LoginModal";
 import RegisterModal from "../../features/register/RegisterModal";
 
@@ -31,21 +30,6 @@ const Header = () => {
   const [isLoginView, setIsLoginView] = useState(true); // 로그인/회원가입 모달 전환 상태
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
-  const toggleDropdown = () => {
-    console.log("toggleDropdown", isDropdownVisible);
-    setIsDropdownVisible((prev) => !prev);
-  };
-
-  const closeDropdown = () => {
-    setIsDropdownVisible(false);
-  };
-
-  // 로그인 상태, notificationCount 등은 전역 상태 관리를 통해 관리할 예정
-  const isLogin = true;
-
-  // navigate 방식 Link 방식 다시 확인
-  // const navigate = useNavigate();
-
   const handleLogin = () => {
     // 로그인 모달 띄우기
     setIsModalOpen(true);
@@ -59,6 +43,20 @@ const Header = () => {
   const toggleModalView = () => {
     setIsLoginView(!isLoginView); // 로그인/회원가입 모달 전환
   };
+
+  const toggleDropdown = () => {
+    console.log("toggleDropdown", isDropdownVisible);
+    setIsDropdownVisible((prev) => !prev);
+  };
+
+  const closeDropdown = () => {
+    setIsDropdownVisible(false);
+  };
+
+  // 로그인 상태, notificationCount 등은 전역 상태 관리를 통해 관리할 예정
+
+  // navigate 방식 Link 방식 다시 확인
+  // const navigate = useNavigate();
 
   // const handleChat = () => {
   //   navigate("/chats");
@@ -95,41 +93,6 @@ const Header = () => {
             >
               <NotificationIcon />
             </NotificationIconContainer>
-          </Link>
-          <NotificationIconContainer
-            notificationCount={1}
-            onClick={handleNotification}
-          >
-            <NotificationIcon />
-          </NotificationIconContainer>
-          <Link to="/my-info">
-            <ProfileImage src={DummyProfileImage} usageType="header" />
-          </Link>
-        </NavContainer>
-      ) : (
-        /**
-         * TODO: 우선 Button 컴포넌트를 사용하고, 텍스트 색상, 버튼 height 같은 디테일한 css는 후반부에 수정
-         */
-        <Button
-          buttonType="outline"
-          buttonSize="small"
-          label="로그인"
-          onClick={handleLogin}
-        />
-      )}
-      {isModalOpen &&
-        (isLoginView ? (
-          <LoginModal
-            onClose={handleCloseLoginModal}
-            onToggleView={toggleModalView} // 모달 전환 함수 전달
-          />
-        ) : (
-          <RegisterModal
-            onClose={handleCloseLoginModal}
-            onToggleView={toggleModalView} // 모달 전환 함수 전달
-          />
-        ))}
-    </HeaderContainer>
             <button onClick={toggleDropdown}>
               <ProfileImage src={DummyProfileImage} usageType="header" />
             </button>
@@ -145,6 +108,18 @@ const Header = () => {
             onClick={handleLogin}
           />
         )}
+        {isModalOpen &&
+          (isLoginView ? (
+            <LoginModal
+              onClose={handleCloseLoginModal}
+              onToggleView={toggleModalView} // 모달 전환 함수 전달
+            />
+          ) : (
+            <RegisterModal
+              onClose={handleCloseLoginModal}
+              onToggleView={toggleModalView} // 모달 전환 함수 전달
+            />
+          ))}
       </HeaderContainer>
       {/**
        * TODO: dropdown 외부 클릭 시 dropdown 닫히는 기능 추가 고려
