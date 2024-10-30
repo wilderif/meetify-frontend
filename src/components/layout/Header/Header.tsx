@@ -13,6 +13,7 @@ import ProfileDropdown from "../../features/profileDropdown/ProfileDropdown";
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import LoginModal from "../../features/login/LoginModal";
 import RegisterModal from "../../features/register/RegisterModal";
+import useAuthStore from "../../../store/useAuthStore";
 
 /**
  * 로그인 안 되 었을 때
@@ -25,7 +26,7 @@ import RegisterModal from "../../features/register/RegisterModal";
  */
 
 const Header = () => {
-  const [isLogin, setIsLogin] = useState(false); // 로그인 상태
+  const isLogin = useAuthStore((state) => state.isLogin);
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열림/닫힘 상태
   const [isLoginView, setIsLoginView] = useState(true); // 로그인/회원가입 모달 전환 상태
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -45,7 +46,6 @@ const Header = () => {
   };
 
   const handleLoginSuccess = () => {
-    setIsLogin(true); // 로그인 상태를 true로 업데이트
     setIsModalOpen(false); // 모달 닫기
   };
 
