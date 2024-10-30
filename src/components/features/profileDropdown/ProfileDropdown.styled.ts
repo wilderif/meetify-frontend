@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const DropdownContainer = styled.div<{ isVisible: boolean }>`
-  display: ${({ isVisible }) => (isVisible ? "block" : "none")};
+export const DropdownContainer = styled.div<{ $isVisible: boolean }>`
+  display: ${({ $isVisible }) => ($isVisible ? "block" : "none")};
   position: absolute;
   z-index: 10;
   top: 90px;
