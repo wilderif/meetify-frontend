@@ -10,6 +10,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
   border-radius: 30px;
   padding: 12px 0;
   font-weight: var(--font-weight-semi-bold);
+  user-select: none;
 
   ${({ buttonType }) =>
     buttonType === "fill"
@@ -33,16 +34,16 @@ export const StyledButton = styled.button<StyledButtonProps>`
   ${({ buttonSize }) =>
     buttonSize === "small"
       ? css`
-          width: 100px;
+          width: var(--button-width-small);
           font-size: var(--font-size-body-small);
         `
       : buttonSize === "medium"
       ? css`
-          width: 150px;
+          width: var(--button-width-medium);
           font-size: var(--font-size-body-medium);
         `
       : css`
-          width: 300px;
+          width: var(--button-width-large);
           font-size: var(--font-size-body-medium);
         `}
 `;
