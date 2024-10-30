@@ -7,7 +7,7 @@ export const DropdownContainer = styled.div<{ isVisible: boolean }>`
   top: 90px;
   right: 50px;
   margin-top: 10px;
-  width: 300px;
+  width: 14rem;
   background-color: white;
   border-radius: 20px;
   box-shadow: 10px 20px 40px rgba(0, 0, 0, 0.15);

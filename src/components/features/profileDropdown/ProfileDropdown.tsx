@@ -20,6 +20,10 @@ interface DropdownProps {
   closeDropdown: () => void;
 }
 
+/**
+ * TODO: ProfileDropdown 노출 숨김 로직 조건에 따라 컴포넌트가 호출되도록 수정
+ * 현재는 isVisible 값에 따라 css로 노출 여부를 결정하고 있음
+ */
 const ProfileDropdown: React.FC<DropdownProps> = ({
   isVisible,
   closeDropdown,
