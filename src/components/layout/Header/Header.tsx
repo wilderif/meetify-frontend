@@ -11,6 +11,9 @@ import Button from "../../common/button/Button";
 import ProfileDropdown from "../../features/profileDropdown/ProfileDropdown";
 
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
+import LoginModal from "../../features/login/LoginModal";
+import RegisterModal from "../../features/register/RegisterModal";
+import useAuthStore from "../../../store/useAuthStore";
 
 /**
  * 로그인 안 되 었을 때
@@ -23,7 +26,28 @@ import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image
  */
 
 const Header = () => {
+  const isLogin = useAuthStore((state) => state.isLogin);
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열림/닫힘 상태
+  const [isLoginView, setIsLoginView] = useState(true); // 로그인/회원가입 모달 전환 상태
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+  const handleLogin = () => {
+    // 로그인 모달 띄우기
+    setIsModalOpen(true);
+    setIsLoginView(true); // 로그인 모달로 설정
+  };
+
+  const handleCloseLoginModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const toggleModalView = () => {
+    setIsLoginView(!isLoginView); // 로그인/회원가입 모달 전환
+  };
+
+  const handleLoginSuccess = () => {
+    setIsModalOpen(false); // 모달 닫기
+  };
 
   const toggleDropdown = () => {
     console.log("toggleDropdown", isDropdownVisible);
@@ -35,14 +59,9 @@ const Header = () => {
   };
 
   // 로그인 상태, notificationCount 등은 전역 상태 관리를 통해 관리할 예정
-  const isLogin = true;
 
   // navigate 방식 Link 방식 다시 확인
   // const navigate = useNavigate();
-
-  const handleLogin = () => {
-    // 로그인 모달 띄우기
-  };
 
   // const handleChat = () => {
   //   navigate("/chats");
@@ -94,6 +113,19 @@ const Header = () => {
             onClick={handleLogin}
           />
         )}
+        {isModalOpen &&
+          (isLoginView ? (
+            <LoginModal
+              onClose={handleCloseLoginModal}
+              onToggleView={toggleModalView} // 모달 전환 함수 전달
+              onLoginSuccess={handleLoginSuccess} // 로그인 성공 시 처리 함수 전달
+            />
+          ) : (
+            <RegisterModal
+              onClose={handleCloseLoginModal}
+              onToggleView={toggleModalView} // 모달 전환 함수 전달
+            />
+          ))}
       </HeaderContainer>
       {/**
        * TODO: dropdown 외부 클릭 시 dropdown 닫히는 기능 추가 고려
