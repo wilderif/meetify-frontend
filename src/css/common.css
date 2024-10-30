@@ -24,10 +24,14 @@
   --color-white: #ffffff;
   --color-gray-light: #f7f5f4;
   --color-gray-white: #f5f6f8;
+  --color-rose: #B06264;
+  --color-green: #0AA949;
+  --color-purple: #8C89FC;
 
   --bg-gray-light: #dcdcdc;
   --bg-coral-light: #ffc2af;
   --bg-green-light: #d5eadd;
+  --bg-purple-light: #F2F4FF;
 
   --mask-color-20: rgba(0, 0, 0, 0.2);
 
