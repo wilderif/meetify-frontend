@@ -8,6 +8,9 @@ export const HeaderContainer = styled.header`
   height: 120px;
   background-color: transparent;
   padding: 0 3rem;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
 `;
 
 export const LogoContainer = styled.div``;
