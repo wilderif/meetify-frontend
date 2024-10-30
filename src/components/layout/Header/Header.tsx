@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { HeaderContainer, NavContainer, LogoContainer } from "./Header.styles";
 
 import Logo from "../../common/Logo/Logo";
@@ -6,10 +7,10 @@ import NotificationIconContainer from "./NotificationIconContainer/NotificationI
 import ProfileImage from "../../common/ProfileImage/ProfileImage";
 import NotificationIcon from "../../common/icon/NotificationIcon/NotificationIcon";
 import ContactIcon from "../../common/icon/ContactIcon/ContactIcon";
+import Button from "../../common/button/Button";
+import ProfileDropdown from "../../features/profileDropdown/ProfileDropdown";
 
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
-import Button from "../../common/button/Button";
-import { Link } from "react-router-dom";
 
 import LoginModal from "../../features/login/LoginModal";
 import RegisterModal from "../../features/register/RegisterModal";
@@ -28,6 +29,19 @@ const Header = () => {
   const [isLogin, setIsLogin] = useState(false); // 로그인 상태
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열림/닫힘 상태
   const [isLoginView, setIsLoginView] = useState(true); // 로그인/회원가입 모달 전환 상태
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+  const toggleDropdown = () => {
+    console.log("toggleDropdown", isDropdownVisible);
+    setIsDropdownVisible((prev) => !prev);
+  };
+
+  const closeDropdown = () => {
+    setIsDropdownVisible(false);
+  };
+
+  // 로그인 상태, notificationCount 등은 전역 상태 관리를 통해 관리할 예정
+  const isLogin = true;
 
   // navigate 방식 Link 방식 다시 확인
   // const navigate = useNavigate();
@@ -59,19 +73,27 @@ const Header = () => {
   // };
 
   return (
-    <HeaderContainer>
-      <LogoContainer>
-        <Link to="/">
-          <h1>
-            <Logo />
-          </h1>
-        </Link>
-      </LogoContainer>
-      {isLogin ? (
-        <NavContainer>
-          <Link to="/chats">
-            <NotificationIconContainer notificationCount={1}>
-              <ContactIcon />
+    <>
+      <HeaderContainer>
+        <LogoContainer>
+          <Link to="/">
+            <h1>
+              <Logo />
+            </h1>
+          </Link>
+        </LogoContainer>
+        {isLogin ? (
+          <NavContainer>
+            <Link to="/chats">
+              <NotificationIconContainer notificationCount={1}>
+                <ContactIcon />
+              </NotificationIconContainer>
+            </Link>
+            <NotificationIconContainer
+              notificationCount={1}
+              onClick={handleNotification}
+            >
+              <NotificationIcon />
             </NotificationIconContainer>
           </Link>
           <NotificationIconContainer
@@ -108,6 +130,30 @@ const Header = () => {
           />
         ))}
     </HeaderContainer>
+            <button onClick={toggleDropdown}>
+              <ProfileImage src={DummyProfileImage} usageType="header" />
+            </button>
+          </NavContainer>
+        ) : (
+          /**
+           * TODO: 우선 Button 컴포넌트를 사용하고, 텍스트 색상, 버튼 height 같은 디테일한 css는 후반부에 수정
+           */
+          <Button
+            buttonType="outline"
+            buttonSize="small"
+            label="로그인"
+            onClick={handleLogin}
+          />
+        )}
+      </HeaderContainer>
+      {/**
+       * TODO: dropdown 외부 클릭 시 dropdown 닫히는 기능 추가 고려
+       */}
+      <ProfileDropdown
+        isVisible={isDropdownVisible}
+        closeDropdown={closeDropdown}
+      />
+    </>
   );
 };
 
