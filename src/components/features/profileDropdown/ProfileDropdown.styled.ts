@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const DropdownContainer = styled.div<{ isVisible: boolean }>`
-  display: ${({ isVisible }) => (isVisible ? "block" : "none")};
+export const DropdownContainer = styled.div<{ $isVisible: boolean }>`
+  display: ${({ $isVisible }) => ($isVisible ? "block" : "none")};
   position: absolute;
   z-index: 10;
   top: 90px;
   right: 50px;
   margin-top: 10px;
-  width: 300px;
+  width: 14rem;
   background-color: white;
   border-radius: 20px;
   box-shadow: 10px 20px 40px rgba(0, 0, 0, 0.15);
