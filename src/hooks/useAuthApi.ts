@@ -47,6 +47,8 @@ const useAuthApi = (): UseAuthApiReturn => {
       setIsLogin(true); // 로그인 성공 시 isLogin 상태 업데이트
       if (response.data.is_first_login) {
         setShowProfileProposal(true); // 첫 로그인 시 ProfileProposal 모달 표시
+      } else {
+        setShowProfileProposal(false); // 첫 로그인이 아닐 경우 모달 표시 안 함
       }
     } catch (error) {
       console.error("로그인 실패:", error);
