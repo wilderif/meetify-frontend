@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 
 interface StyledButtonProps {
-  buttonType: "fill" | "outline";
-  buttonSize: "small" | "medium" | "large";
+  $buttonType: "fill" | "outline";
+  $buttonSize: "small" | "medium" | "large";
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
@@ -11,8 +11,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
   padding: 12px 0;
   font-weight: var(--font-weight-semi-bold);
 
-  ${({ buttonType }) =>
-    buttonType === "fill"
+  ${({ $buttonType }) =>
+    $buttonType === "fill"
       ? css`
           background-color: var(--primary-color-org);
           color: var(--color-white);
@@ -30,13 +30,13 @@ export const StyledButton = styled.button<StyledButtonProps>`
           }
         `}
 
-  ${({ buttonSize }) =>
-    buttonSize === "small"
+  ${({ $buttonSize }) =>
+    $buttonSize === "small"
       ? css`
           width: 100px;
           font-size: var(--font-size-body-small);
         `
-      : buttonSize === "medium"
+      : $buttonSize === "medium"
       ? css`
           width: 150px;
           font-size: var(--font-size-body-medium);

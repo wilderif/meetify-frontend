@@ -21,14 +21,20 @@ import DummyProfileImage from "../../../assets/profile-image/dummy-profile-image
  * CustomSelect 컴포넌트의 width 값이 600px로 고정되어 있어,
  * 우선 MyInfoEditPageWrapper의 width 값을 600px로 설정하였습니다.
  *
+ * TODO:
  * placeholder
  * - 사용자 정보 유무에 따라 default 값과 db의 값 선택하여 설정
+ * - 전역 상태와 백앤드 로직 작업 후 수정
  *
  * Input, TextArea onChange 함수 작성해야 글이 적어짐
  * -> 공통적으로 사용할 함수 작성할 것
  *
  */
 const MyInfoEditPage = () => {
+  // const handleInputChange = (event) => {
+  //   console.log(event.target.value);
+  // };
+
   return (
     <MyInfoEditPageWrapper>
       <ProfileContainer>
