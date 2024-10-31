@@ -13,7 +13,7 @@ interface SelectProps {
   placeholder?: string;
 
   /** 값 변경 시 호출되는 함수 */
-  onChange: (value: SelectOption) => void;
+  onChange: (value: SelectOption | SelectOption[]) => void;
 
   /** 선택된 값 */
   value?: SelectOption | SelectOption[];
