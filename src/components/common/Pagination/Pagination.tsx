@@ -42,7 +42,7 @@ const Pagination: React.FC<PaginationProps> = ({
       {Array.from({ length: totalPages }, (_, index) => (
         <ButtonWrapper key={index + 1}>
           <PageButton
-            active={index + 1 === currentPage}
+            $active={index + 1 === currentPage}
             onClick={() => handlePageChange(index + 1)}
           >
             {index + 1}

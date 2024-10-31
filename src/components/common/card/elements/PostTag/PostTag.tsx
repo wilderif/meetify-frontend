@@ -8,7 +8,7 @@ interface PostTagProps {
 
 const PostTag = ({ postType }: PostTagProps) => {
   return (
-    <StyledPostTag postType={postType}>{PostType[postType]}</StyledPostTag>
+    <StyledPostTag $postType={postType}>{PostType[postType]}</StyledPostTag>
   );
 };
 

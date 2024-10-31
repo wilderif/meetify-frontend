@@ -10,7 +10,7 @@ const MainTabs = () => {
       {Object.entries(MainTabType).map(([tab, tabLabel]) => (
         <TabButton
           key={tab}
-          isActive={selectedTab === tab}
+          $isActive={selectedTab === tab}
           onClick={() => setSelectedTab(tab)}
         >
           {tabLabel}

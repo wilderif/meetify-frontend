@@ -13,9 +13,9 @@ export const ButtonWrapper = styled.div`
   margin: 0 5px;
 `;
 
-export const PageButton = styled.button<{ active?: boolean }>`
-  background-color: ${({ active }) =>
-    active ? "var(--primary-color-org-light)" : "var(--color-white)"};
+export const PageButton = styled.button<{ $active?: boolean }>`
+  background-color: ${({ $active }) =>
+    $active ? "var(--primary-color-org-light)" : "var(--color-white)"};
   color: var(--font-color-light);
   border: none;
   border-radius: 50%;

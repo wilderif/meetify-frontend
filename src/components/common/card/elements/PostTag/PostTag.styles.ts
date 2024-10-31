@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
-import PostType from "../../../../constants/PostType";
+import { PostType } from "../../../../../constants";
 
 interface StyledPostTagProps {
-  postType: keyof typeof PostType;
+  $postType: keyof typeof PostType;
 }
 
 export const StyledPostTag = styled.span<StyledPostTagProps>`
@@ -11,13 +11,13 @@ export const StyledPostTag = styled.span<StyledPostTagProps>`
   font-size: var(--font-size-body-small);
   font-weight: var(--font-weight-bold);
 
-  ${({ postType }) =>
-    postType === "PROJECT"
+  ${({ $postType }) =>
+    $postType === "PROJECT"
       ? css`
           background-color: var(--bg-gray-light);
           color: var(--font-color-light);
         `
-      : postType === "STUDY"
+      : $postType === "STUDY"
       ? css`
           background-color: var(--bg-coral-light);
           color: var(--color-rose);
