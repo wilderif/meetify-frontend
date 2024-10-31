@@ -38,7 +38,7 @@ const CustomSelect: React.FC<SelectProps> = ({
     <SelectWrapper>
       {/* 메인 카테고리에서 label 숨기기 */}
       {variant !== 'rounded' && <Label>{label}</Label>}{' '}
-      <StyledSelect variant={variant}>
+      <StyledSelect $variant={variant}>
         <Select
           classNamePrefix="react--select"
           options={options}
