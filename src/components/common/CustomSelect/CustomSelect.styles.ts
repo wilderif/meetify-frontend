@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
 export const SelectWrapper = styled.div`
-  width: 600px;
   margin-bottom: 30px;
   font-family: 'DM Sans', sans-serif;
 `;
@@ -14,34 +13,55 @@ export const Label = styled.p`
 `;
 
 // default: 글 작성 Select, rounded: 카테고리 Select
-export const StyledSelect = styled.div<{ variant: 'default' | 'rounded' }>`
+export const StyledSelect = styled.div<{ $variant: 'default' | 'rounded' }>`
   .react--select__control {
-    height: 60px;
+    min-height: auto;
+    width: 600px;
     color: var(--primary-color-org);
     border-radius: 10px;
-    box-sizing: border-box;
     padding: 0 3px;
     font-size: var(--font-size-head-small);
     font-weight: var(--font-weight-semi-bold);
-    font-family: 'DM Sans', sans-serif;
     align-items: center;
     display: flex;
 
-    ${({ variant }) =>
-      variant === 'rounded'
-        ? css`
-            height: 50px;
-            min-width: 120px;
-            max-width: 160px;
-            border-radius: 30px;
-            font-weight: var(--font-weight-semi-bold);
-          `
-        : css`
-            width: 100%; /* default일 때는 가로를 100%로 고정 */
-          `}
+    ${({ $variant }) =>
+      $variant === 'rounded' &&
+      css`
+        width: 240px;
+        height: 50px;
+        border-radius: 30px;
+      `}
+  }
+  .react--select__value-container {
+    display: flex;
+    flex-wrap: wrap; /* 선택 항목이 줄 바꿈되도록 설정 */
+    align-items: flex-center;
+    min-height: 60px;
+
+    ${({ $variant }) =>
+      $variant === 'rounded' &&
+      css`
+        min-height: 50px;
+        flex-wrap: nowrap; /* 줄바꿈을 없앰 */
+        overflow: hidden; /* 오버플로우 숨기기 */
+        text-overflow: ellipsis; /* 줄임표 표시 */
+        white-space: nowrap; /* 한 줄로 유지 */
+      `}
+  }
+  .react--select__menu {
+    width: ${({ $variant }) => ($variant === 'rounded' ? '240px' : '600px')};
   }
 
   .react--select__indicator-separator {
     display: none;
   }
+`;
+
+// CustomMultiValue의 스타일을 위한 컨테이너
+export const MultiValueContainer = styled.div`
+  display: flex;
+  align-items: center;
+  color: var(--primary-color-org);
+  font-weight: bold;
 `;
