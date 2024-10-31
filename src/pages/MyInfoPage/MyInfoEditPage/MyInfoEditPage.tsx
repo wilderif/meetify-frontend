@@ -29,25 +29,23 @@ import { SelectOption } from "../../../types/types";
  * - 사용자 정보 유무에 따라 default 값과 db의 값 선택하여 설정
  * - 전역 상태와 백앤드 로직 작업 후 수정
  *
- * Input, TextArea onChange 함수 작성해야 글이 적어짐
- * -> 공통적으로 사용할 함수 작성할 것
- *
  * 프로필 이미지 수정 기능, 수정 아이콘 추가
  *
+ * Dropdown 컴포넌트의 프로필 눌렀을 때 navigate edit page로 변경
  *
  */
 const MyInfoEditPage = () => {
   const [userInformation, setUserInformation] = useState({
     inputNickname: "",
-    selectPosition: "",
-    selectAffiliation: "",
+    selectPosition: {} as SelectOption,
+    selectAffiliation: {} as SelectOption,
     inputIntroduction: "",
-    selectInterests: [] as string[],
+    selectInterests: [] as SelectOption[],
   });
 
   const navigate = useNavigate();
 
-  console.log(userInformation);
+  // console.log(userInformation);
 
   /**
    * TODO:
@@ -101,10 +99,8 @@ const MyInfoEditPage = () => {
             ...prevState,
             [selectType]:
               selectType === "selectInterests"
-                ? (selectedOption as SelectOption[]).map(
-                    (option) => option.value
-                  )
-                : (selectedOption as SelectOption).value,
+                ? (selectedOption as SelectOption[]).map((option) => option)
+                : (selectedOption as SelectOption),
           };
         }
       });
@@ -133,7 +129,7 @@ const MyInfoEditPage = () => {
         options={PositionOptions}
         placeholder=""
         onChange={handleSelectChange("selectPosition")}
-        value={undefined}
+        value={userInformation.selectPosition}
         isMulti={false}
         variant="default"
       />
@@ -142,7 +138,7 @@ const MyInfoEditPage = () => {
         options={AffiliationOptions}
         placeholder=""
         onChange={handleSelectChange("selectAffiliation")}
-        value={undefined}
+        value={userInformation.selectAffiliation}
         isMulti={false}
         variant="default"
       />
@@ -157,7 +153,7 @@ const MyInfoEditPage = () => {
         options={InterestsOptions}
         placeholder=""
         onChange={handleSelectChange("selectInterests")}
-        value={undefined}
+        value={userInformation.selectInterests}
         isMulti={true}
         variant="default"
       />

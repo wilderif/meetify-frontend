@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const MyInfoEditPageWrapper = styled.div`
   margin: 4rem auto;
   width: 600px;
-  background-color: yellow;
 `;
 
 export const ProfileContainer = styled.div`

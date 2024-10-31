@@ -16,7 +16,7 @@ interface SelectProps {
   onChange: (value: SelectOption) => void;
 
   /** 선택된 값 */
-  value?: SelectOption;
+  value?: SelectOption | SelectOption[];
 
   /** 다중 선택 여부 */
   isMulti?: boolean;
