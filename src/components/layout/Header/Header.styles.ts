@@ -11,6 +11,11 @@ export const HeaderContainer = styled.header`
   position: fixed;
   width: 100%;
   z-index: 10;
+  transition: transform 0.3s ease;
+
+  &.hidden {
+    transform: translateY(-100%);
+  }
 `;
 
 export const LogoContainer = styled.div``;
