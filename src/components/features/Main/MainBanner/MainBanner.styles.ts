@@ -15,7 +15,6 @@ export const StyledBanner = styled.div`
   height: 450px;
   background-image: url("/src/assets/banner/Banner-Bg.svg");
   background-size: cover;
-  background-position: center;
 `;
 
 export const ContentWrapper = styled.div`
