@@ -13,6 +13,7 @@ import { StyledButton } from "../../common/button/Button.styles";
 import Input from "../login/Input";
 import { useValidation } from "../../../hooks/useValidation";
 import useAuthStore from "../../../store/useAuthStore";
+import useAuthApi from "../../../hooks/useAuthApi";
 
 interface RegisterModalProps {
   onClose: () => void;
@@ -26,9 +27,12 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const { validation, validateForm, handleFieldChange } = useValidation(true); // 회원가입 모드로 호출
-  const register = useAuthStore((state) => state.register); // 회원가입 메서드 가져오기
+  const { register } = useAuthApi(); // useAuthApi 훅 사용
+  const setEmailInStore = useAuthStore((state) => state.setEmail);
+  const setNicknameInStore = useAuthStore((state) => state.setNickname);
+  const setIsLogin = useAuthStore((state) => state.setIsLogin);
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const isValid = validateForm({
@@ -38,10 +42,19 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
     });
 
     if (isValid) {
-      // 회원가입 로직 처리
-      console.log("회원가입 처리:", { email, nickname, password });
-      register(email, nickname, password); // Zustand 스토어를 통해 회원가입 처리
-      onClose(); // 회원가입 후 모달 닫기
+      try {
+        await register(email, nickname, password); // 회원가입 메서드 호출
+        setEmailInStore(email);
+        setNicknameInStore(nickname);
+        setIsLogin(true);
+        onClose(); // 회원가입 후 모달 닫기
+        console.log("회원가입 성공");
+      } catch (error) {
+        console.error("회원가입 실패:", error);
+        alert("회원가입에 실패했습니다. 다시 시도해주세요.");
+      }
+    } else {
+      alert("입력한 정보가 유효하지 않습니다.");
     }
   };
 
