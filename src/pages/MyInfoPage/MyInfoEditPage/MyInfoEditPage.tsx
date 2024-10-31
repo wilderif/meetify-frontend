@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   ButtonContainer,
   MyInfoEditPageWrapper,
@@ -10,12 +11,14 @@ import TextArea from "../../../components/common/TextArea/TextArea";
 import Button from "../../../components/common/button/Button";
 
 import {
-  기술스택 as interests,
-  소속 as affiliation,
-  모집포지션 as position,
+  InterestsOptions,
+  AffiliationOptions,
+  PositionOptions,
 } from "../../../constants/options";
 
 import DummyProfileImage from "../../../assets/profile-image/dummy-profile-image.png";
+import { useNavigate } from "react-router-dom";
+import { SelectOption } from "../../../types/types";
 
 /**
  * CustomSelect 컴포넌트의 width 값이 600px로 고정되어 있어,
@@ -29,11 +32,84 @@ import DummyProfileImage from "../../../assets/profile-image/dummy-profile-image
  * Input, TextArea onChange 함수 작성해야 글이 적어짐
  * -> 공통적으로 사용할 함수 작성할 것
  *
+ * 프로필 이미지 수정 기능, 수정 아이콘 추가
+ *
+ *
  */
 const MyInfoEditPage = () => {
-  // const handleInputChange = (event) => {
-  //   console.log(event.target.value);
-  // };
+  const [userInformation, setUserInformation] = useState({
+    inputNickname: "",
+    selectPosition: "",
+    selectAffiliation: "",
+    inputIntroduction: "",
+    selectInterests: [] as string[],
+  });
+
+  const navigate = useNavigate();
+
+  console.log(userInformation);
+
+  /**
+   * TODO:
+   * useEffect 내부에서 초기에 사용자 정보를 불러오는 함수 호출
+   * db에 사용자 정보가 있다면 state에 저장
+   */
+  useEffect(() => {}, []);
+
+  /**
+   * TODO:
+   * 사용자 정보 삭제 훅이나 api 사용
+   * 로그인 전역 상태 초기화
+   * 메인 페이지로 이동
+   */
+  const handleDeleteUser = () => {
+    navigate("/");
+  };
+
+  /**
+   * TODO:
+   * state에 저장된 사용자 정보 백앤드로 전송 후 db에 저장
+   * 프로필 확인 기능 추가된다면 프로필 페이지로 이동
+   * 프로필 확인 기능 없다면 메인 페이지로 이동
+   */
+  const handleSaveProfile = () => {
+    navigate("/");
+  };
+
+  // 닉네임, 자기소개 input 값 변경 시 state에 저장
+  const handleInputChange = (
+    inputType: "inputNickname" | "inputIntroduction"
+  ) => {
+    return (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setUserInformation((prevState) => {
+        return {
+          ...prevState,
+          [inputType]: e.target.value,
+        };
+      });
+    };
+  };
+
+  // 직무, 소속, 관심분야 select 값 변경 시 state에 저장
+  const handleSelectChange = (
+    selectType: "selectPosition" | "selectAffiliation" | "selectInterests"
+  ) => {
+    return (selectedOption: SelectOption | SelectOption[]) => {
+      setUserInformation((prevState) => {
+        {
+          return {
+            ...prevState,
+            [selectType]:
+              selectType === "selectInterests"
+                ? (selectedOption as SelectOption[]).map(
+                    (option) => option.value
+                  )
+                : (selectedOption as SelectOption).value,
+          };
+        }
+      });
+    };
+  };
 
   return (
     <MyInfoEditPageWrapper>
@@ -43,34 +119,44 @@ const MyInfoEditPage = () => {
           alt="user profile image"
           usageType="userInformation"
         />
-        User Name 님 환영해요.
+        <div style={{ marginTop: "1rem" }}>User Name 님 환영해요.</div>
       </ProfileContainer>
-      <Input label="닉네임" placeholder="" value="" onChange={() => {}} />
+      <Input
+        label="닉네임"
+        placeholder=""
+        value={userInformation.inputNickname}
+        onChange={handleInputChange("inputNickname")}
+      />
 
       <CustomSelect
         label="직무"
-        options={position}
+        options={PositionOptions}
         placeholder=""
-        onChange={() => {}}
+        onChange={handleSelectChange("selectPosition")}
         value={undefined}
         isMulti={false}
         variant="default"
       />
       <CustomSelect
         label="소속"
-        options={affiliation}
+        options={AffiliationOptions}
         placeholder=""
-        onChange={() => {}}
+        onChange={handleSelectChange("selectAffiliation")}
         value={undefined}
         isMulti={false}
         variant="default"
       />
-      <TextArea label="자기소개" placeholder="" value="" onChange={() => {}} />
+      <TextArea
+        label="자기소개"
+        placeholder=""
+        value={userInformation.inputIntroduction}
+        onChange={handleInputChange("inputIntroduction")}
+      />
       <CustomSelect
         label="관심분야"
-        options={interests}
+        options={InterestsOptions}
         placeholder=""
-        onChange={() => {}}
+        onChange={handleSelectChange("selectInterests")}
         value={undefined}
         isMulti={true}
         variant="default"
@@ -80,13 +166,13 @@ const MyInfoEditPage = () => {
           label="회원 탈퇴"
           buttonType="outline"
           buttonSize="medium"
-          onClick={() => {}}
+          onClick={handleDeleteUser}
         />
         <Button
           label="프로필 저장"
           buttonType="fill"
           buttonSize="medium"
-          onClick={() => {}}
+          onClick={handleSaveProfile}
         />
       </ButtonContainer>
     </MyInfoEditPageWrapper>
