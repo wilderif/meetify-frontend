@@ -6,7 +6,7 @@ export const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0;
+  margin: 5rem;
 `;
 
 export const ButtonWrapper = styled.div`

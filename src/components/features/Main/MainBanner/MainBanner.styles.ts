@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const BannerContainer = styled.div`
   position: relative;
-  width: 100vw;
   height: auto;
 `;
 
@@ -11,7 +10,6 @@ export const StyledBanner = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 100vw;
   height: 450px;
   background-image: url("/src/assets/banner/Banner-Bg.svg");
   background-size: cover;
