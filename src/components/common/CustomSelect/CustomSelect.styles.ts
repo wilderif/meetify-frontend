@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 
 export const SelectWrapper = styled.div`
-  width: 600px;
   margin-bottom: 30px;
   font-family: "DM Sans", sans-serif;
 `;
@@ -26,19 +25,19 @@ export const StyledSelect = styled.div<{ $variant: "default" | "rounded" }>`
     font-family: "DM Sans", sans-serif;
     align-items: center;
     display: flex;
-    width: ${({ $variant }) => ($variant === "rounded" ? "160px" : "100%")};
+    width: 100%;
 
     ${({ $variant }) =>
       $variant === "rounded" &&
       css`
-        max-width: 240px;
+        width: 240px;
         height: 50px;
         border-radius: 30px;
       `}
   }
 
   .react--select__menu {
-    width: ${({ $variant }) => ($variant === "rounded" ? "160px" : "100%")};
+    width: ${({ $variant }) => ($variant === "rounded" ? "240px" : "100%")};
   }
 
   .react--select__indicator-separator {
