@@ -10,6 +10,7 @@ export const StyledLikeButton = styled.div`
   justify-content: center;
   position: absolute;
   right: 0;
+  cursor: pointer;
 `;
 
 export const IconWrapper = styled.span`

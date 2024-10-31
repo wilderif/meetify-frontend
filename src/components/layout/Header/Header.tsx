@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { HeaderContainer, NavContainer, LogoContainer } from "./Header.styles";
 
@@ -75,11 +75,34 @@ const Header = () => {
   //   navigate("/my-info");
   // };
 
+  // 스크롤 이동 시, 헤더 오픈/숨김 처리
+  const headerRef = useRef<HTMLElement | null>(null);
+  const lastScrollTop = useRef(0); // useRef로 상태 유지
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+
+      // 스크롤을 내리면 헤더를 숨기고, 올리면 다시 보이게
+      if (currentScroll > lastScrollTop.current && currentScroll > 100) {
+        headerRef.current?.classList.add("hidden");
+      } else {
+        headerRef.current?.classList.remove("hidden");
+      }
+
+      // 현재 스크롤 위치 저장
+      lastScrollTop.current = currentScroll;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
-      <HeaderContainer>
+      <HeaderContainer ref={headerRef}>
         <LogoContainer>
-          <Link to="/">
+          <Link to='/'>
             <h1>
               <Logo />
             </h1>
@@ -87,7 +110,7 @@ const Header = () => {
         </LogoContainer>
         {isLogin ? (
           <NavContainer>
-            <Link to="/chats">
+            <Link to='/chats'>
               <NotificationIconContainer notificationCount={1}>
                 <ContactIcon />
               </NotificationIconContainer>
@@ -99,7 +122,7 @@ const Header = () => {
               <NotificationIcon />
             </NotificationIconContainer>
             <button onClick={toggleDropdown}>
-              <ProfileImage src={DummyProfileImage} usageType="header" />
+              <ProfileImage src={DummyProfileImage} usageType='header' />
             </button>
           </NavContainer>
         ) : (
@@ -107,9 +130,9 @@ const Header = () => {
            * TODO: 우선 Button 컴포넌트를 사용하고, 텍스트 색상, 버튼 height 같은 디테일한 css는 후반부에 수정
            */
           <Button
-            buttonType="outline"
-            buttonSize="small"
-            label="로그인"
+            buttonType='outline'
+            buttonSize='small'
+            label='로그인'
             onClick={handleLogin}
           />
         )}
