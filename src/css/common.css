@@ -58,3 +58,12 @@ body {
   color: var(--font-color-dark);
   margin: 0 auto;
 }
+
+main {
+  /* 헤더 높이만큼 */
+  padding-top: 120px;
+}
+
+main.no-padding {
+  padding-top: 0;
+}
