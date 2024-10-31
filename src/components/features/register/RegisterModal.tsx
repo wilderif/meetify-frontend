@@ -30,7 +30,6 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
   const { register } = useAuthApi(); // useAuthApi 훅 사용
   const setEmailInStore = useAuthStore((state) => state.setEmail);
   const setNicknameInStore = useAuthStore((state) => state.setNickname);
-  const setIsLogin = useAuthStore((state) => state.setIsLogin);
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,7 +45,6 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
         await register(email, nickname, password); // 회원가입 메서드 호출
         setEmailInStore(email);
         setNicknameInStore(nickname);
-        setIsLogin(true);
         onClose(); // 회원가입 후 모달 닫기
         console.log("회원가입 성공");
       } catch (error) {

@@ -29,6 +29,9 @@ const useAuthApi = (): UseAuthApiReturn => {
 
   // Zustand 훅을 사용하여 isLogin 상태를 업데이트하는 메서드 가져오기
   const setIsLogin = useAuthStore((state) => state.setIsLogin);
+  const setShowProfileProposal = useAuthStore(
+    (state) => state.setShowProfileProposal
+  );
 
   const login = async (email: string, password: string) => {
     try {
@@ -42,9 +45,11 @@ const useAuthApi = (): UseAuthApiReturn => {
       );
       console.log("로그인 성공:", response.data);
       setIsLogin(true); // 로그인 성공 시 isLogin 상태 업데이트
+      if (response.data.is_first_login) {
+        setShowProfileProposal(true); // 첫 로그인 시 ProfileProposal 모달 표시
+      }
     } catch (error) {
       console.error("로그인 실패:", error);
-      // 로그인 실패 시 유효성 검사 상태 업데이트
       setValidation((prev) => ({
         ...prev,
         email: {
