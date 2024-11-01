@@ -6,7 +6,8 @@ export const InputContainer = styled.div`
   padding: 0 25px;
   height: 50px;
   width: 100%;
-  max-width: 400px;
+  min-width: 350px;
+  max-width: 500px;
   background-color: var(--color-gray-white);
   border-radius: 25px;
   font-size: var(--font-size-head-small);
@@ -17,7 +18,7 @@ export const StyledInput = styled.input`
   outline: none;
   background: transparent;
   width: 100%;
-  font-size: var(--font-size-head-small);
+  font-size: var(--font-size-body-medium);
   color: var(--font-color-dark);
   margin-left: 0.5rem;
 

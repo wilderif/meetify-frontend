@@ -4,8 +4,8 @@ export const StyledWriteButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 75px;
-  height: 75px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
   background-color: var(--primary-color-org);
   border: none;
