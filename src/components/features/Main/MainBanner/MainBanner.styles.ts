@@ -61,3 +61,9 @@ export const SubText = styled.p`
 export const HighlightedText = styled.span`
   color: var(--primary-color-org);
 `;
+
+export const WriteButtonWrapper = styled.div`
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+`;
