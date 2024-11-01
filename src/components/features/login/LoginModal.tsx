@@ -59,23 +59,23 @@ const LoginModal = ({
         <Title />
         <InputWrapper>
           <Input
-            type="email"
-            placeholder="이메일"
+            type='email'
+            placeholder='이메일'
             value={formData.email}
             onChange={handleChange}
-            name="email"
+            name='email'
             hasError={!validation.email.isValid}
             errorMessage={
               !validation.email.isValid ? validation.email.message : ""
             }
           />
           <Input
-            type="password"
-            placeholder="비밀번호"
-            iconType="password"
+            type='password'
+            placeholder='비밀번호'
+            iconType='password'
             value={formData.password}
             onChange={handleChange}
-            name="password"
+            name='password'
             hasError={!validation.password.isValid}
             errorMessage={
               !validation.password.isValid ? validation.password.message : ""
@@ -84,15 +84,15 @@ const LoginModal = ({
         </InputWrapper>
         <ButtonContainer>
           <StyledButton
-            buttonType="fill"
-            buttonSize="large"
+            $buttonType='fill'
+            $buttonSize='large'
             onClick={handleSubmit}
           >
             로그인
           </StyledButton>
           <StyledButton
-            buttonType="outline"
-            buttonSize="large"
+            $buttonType='outline'
+            $buttonSize='large'
             onClick={onToggleView}
           >
             회원가입
