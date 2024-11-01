@@ -11,7 +11,7 @@ interface ChatMsgProps {
   /** 해당 채팅을 읽었는지 구분 */
   isRead: boolean;
   /** 해당 메시지 보낸 시간 */
-  creadtedAt: Date;
+  creadtedAt: string;
 }
 const ChatMsg = ({
   msg,
@@ -22,7 +22,7 @@ const ChatMsg = ({
 }: ChatMsgProps) => {
   const msgClass = isMe ? "my" : "other";
   const textAlignClass = isMe ? "text--end" : "text--start";
-  const isReadClass = isRead ? "" : "not--read";
+  const isReadClass = isMe ? "" : isRead ? "" : "not--read";
 
   const time = convertDate2Time(creadtedAt);
 
