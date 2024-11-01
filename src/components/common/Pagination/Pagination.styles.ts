@@ -19,7 +19,7 @@ export const PageButton = styled.button<{ $active?: boolean }>`
   color: var(--font-color-light);
   border: none;
   border-radius: 50%;
-  padding: 5px 10px;
+  padding: 5px 15px;
   cursor: pointer;
   display: flex;
   align-items: center;

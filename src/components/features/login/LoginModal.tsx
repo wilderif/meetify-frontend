@@ -11,6 +11,7 @@ import Input from "./Input";
 import { StyledButton } from "../../common/button/Button.styles";
 import { useValidation } from "../../../hooks/useValidation";
 import useAuthStore from "../../../store/useAuthStore";
+import useAuthApi from "../../../hooks/useAuthApi";
 
 interface LoginModalProps {
   onClose: () => void;
@@ -25,7 +26,8 @@ const LoginModal = ({
 }: LoginModalProps) => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const { validation, validateForm, handleFieldChange } = useValidation();
-  const login = useAuthStore((state) => state.login); // 상태 업데이트 함수 가져오기
+  const { login } = useAuthApi(); // useAuthApi 훅 사용
+  const setEmailInStore = useAuthStore((state) => state.setEmail);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -33,12 +35,18 @@ const LoginModal = ({
     handleFieldChange(name, value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (validateForm(formData)) {
-      console.log("로그인 성공");
-      login(formData.email, formData.password); // 로그인 메서드 호출
-      onLoginSuccess(); // 로그인 성공 시 호출하여 isLogin 상태 업데이트
-      onClose(); // 로그인 성공 후 모달 닫기
+      try {
+        await login(formData.email, formData.password); // 로그인 메서드 호출
+        setEmailInStore(formData.email);
+        onLoginSuccess(); // 로그인 성공 시 호출하여 isLogin 상태 업데이트
+        onClose(); // 로그인 성공 후 모달 닫기
+        console.log("로그인 성공");
+      } catch (error) {
+        console.error("로그인 실패:", error);
+        alert("로그인에 실패했습니다. 다시 시도해주세요.");
+      }
     } else {
       alert("입력한 정보가 유효하지 않습니다.");
     }
@@ -51,23 +59,23 @@ const LoginModal = ({
         <Title />
         <InputWrapper>
           <Input
-            type="email"
-            placeholder="이메일"
+            type='email'
+            placeholder='이메일'
             value={formData.email}
             onChange={handleChange}
-            name="email"
+            name='email'
             hasError={!validation.email.isValid}
             errorMessage={
               !validation.email.isValid ? validation.email.message : ""
             }
           />
           <Input
-            type="password"
-            placeholder="비밀번호"
-            iconType="password"
+            type='password'
+            placeholder='비밀번호'
+            iconType='password'
             value={formData.password}
             onChange={handleChange}
-            name="password"
+            name='password'
             hasError={!validation.password.isValid}
             errorMessage={
               !validation.password.isValid ? validation.password.message : ""
@@ -76,15 +84,15 @@ const LoginModal = ({
         </InputWrapper>
         <ButtonContainer>
           <StyledButton
-            buttonType="fill"
-            buttonSize="large"
+            $buttonType='fill'
+            $buttonSize='large'
             onClick={handleSubmit}
           >
             로그인
           </StyledButton>
           <StyledButton
-            buttonType="outline"
-            buttonSize="large"
+            $buttonType='outline'
+            $buttonSize='large'
             onClick={onToggleView}
           >
             회원가입

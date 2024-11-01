@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledCard = styled.div`
   width: 100%;
   aspect-ratio: 1;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 30px;
   border: 1px solid var(--bg-gray-light);
   background-color: var(--color-white);
@@ -31,8 +31,8 @@ export const Title = styled.span`
   color: var(--font-color-dark);
   font-size: var(--font-size-head-small);
   font-weight: var(--font-weight-semi-bold);
-  line-height: 1.5;
-  height: calc(1.5em * 2);
+  line-height: 1.2;
+  height: calc(1.2em * 2);
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;

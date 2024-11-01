@@ -47,7 +47,7 @@
 
 /* Width */
 :root {
-  --max-width: 1600px;
+  --max-width: 1200px;
   --button-width-large: 300px;
   --button-width-medium: 150px;
   --button-width-small: 100px;
@@ -57,4 +57,13 @@ body {
   font-size: var(--font-size-medium);
   color: var(--font-color-dark);
   margin: 0 auto;
+}
+
+main {
+  /* 헤더 높이만큼 */
+  padding-top: 120px;
+}
+
+main.no-padding {
+  padding-top: 0;
 }

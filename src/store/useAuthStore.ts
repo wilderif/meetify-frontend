@@ -5,11 +5,14 @@ interface AuthState {
   email: string;
   nickname: string;
   isLogin: boolean;
+  showProfileProposal: boolean;
   validation: Record<string, { isValid: boolean; message: string }>;
 
   // Actions
-  login: (email: string, password: string) => void;
-  register: (email: string, nickname: string, password: string) => void;
+  setEmail: (email: string) => void;
+  setNickname: (nickname: string) => void;
+  setIsLogin: (isLogin: boolean) => void;
+  setShowProfileProposal: (show: boolean) => void;
   logout: () => void;
   setValidation: (
     validation: Record<string, { isValid: boolean; message: string }>
@@ -22,34 +25,20 @@ const useAuthStore = create<AuthState>()(
       email: "",
       nickname: "",
       isLogin: false,
+      showProfileProposal: false,
       validation: {
         email: { isValid: true, message: "" },
         password: { isValid: true, message: "" },
         nickname: { isValid: true, message: "" },
       },
 
-      login: (email: string, _password: string) =>
-        set((state) => ({
-          ...state,
-          email,
-          isLogin: true,
-        })),
-
-      register: (email: string, nickname: string, _password: string) =>
-        set((state) => ({
-          ...state,
-          email,
-          nickname,
-          isLogin: true,
-        })),
-
-      logout: () =>
-        set(() => ({
-          email: "",
-          nickname: "",
-          isLogin: false,
-        })),
-
+      setEmail: (email: string) => set((state) => ({ ...state, email })),
+      setNickname: (nickname: string) =>
+        set((state) => ({ ...state, nickname })),
+      setIsLogin: (isLogin: boolean) => set((state) => ({ ...state, isLogin })),
+      setShowProfileProposal: (show: boolean) =>
+        set((state) => ({ ...state, showProfileProposal: show })),
+      logout: () => set(() => ({ email: "", nickname: "", isLogin: false })),
       setValidation: (validation) => set(() => ({ validation })),
     }),
     {
@@ -58,6 +47,7 @@ const useAuthStore = create<AuthState>()(
         email: state.email,
         nickname: state.nickname,
         isLogin: state.isLogin,
+        showProfileProposal: state.showProfileProposal,
       }),
     }
   )

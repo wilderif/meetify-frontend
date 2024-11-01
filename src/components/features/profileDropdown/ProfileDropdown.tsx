@@ -14,6 +14,7 @@ import MyPostIcon from "../../common/icon/MyPostIcon/MyPostIcon";
 import LogoutIcon from "../../common/icon/LogoutIcon/LogoutIcon";
 
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
+import useAuthStore from "../../../store/useAuthStore";
 
 interface DropdownProps {
   isVisible: boolean;
@@ -29,6 +30,7 @@ const ProfileDropdown: React.FC<DropdownProps> = ({
   closeDropdown,
 }) => {
   const navigate = useNavigate();
+  const logout = useAuthStore((state) => state.logout);
 
   const handleClickMyPage = () => {
     closeDropdown();
@@ -47,6 +49,7 @@ const ProfileDropdown: React.FC<DropdownProps> = ({
 
   const handleClickSignOut = () => {
     // 로그아웃 처리 훅 혜수님 작업 완료되면 연결
+    logout();
     closeDropdown();
     // 로그아웃 후 메인 페이지로 이동
     navigate("/");

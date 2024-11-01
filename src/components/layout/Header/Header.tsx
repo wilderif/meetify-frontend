@@ -13,6 +13,7 @@ import ProfileDropdown from "../../features/profileDropdown/ProfileDropdown";
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import LoginModal from "../../features/login/LoginModal";
 import RegisterModal from "../../features/register/RegisterModal";
+import ProfileProposal from "../../features/register/ProfileProposal";
 import useAuthStore from "../../../store/useAuthStore";
 
 /**
@@ -27,6 +28,12 @@ import useAuthStore from "../../../store/useAuthStore";
 
 const Header = () => {
   const isLogin = useAuthStore((state) => state.isLogin);
+  const showProfileProposal = useAuthStore(
+    (state) => state.showProfileProposal
+  );
+  const setShowProfileProposal = useAuthStore(
+    (state) => state.setShowProfileProposal
+  );
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열림/닫힘 상태
   const [isLoginView, setIsLoginView] = useState(true); // 로그인/회원가입 모달 전환 상태
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -39,6 +46,10 @@ const Header = () => {
 
   const handleCloseLoginModal = () => {
     setIsModalOpen(false);
+  };
+
+  const handleCloseProfileProposal = () => {
+    setShowProfileProposal(false);
   };
 
   const toggleModalView = () => {
@@ -157,6 +168,9 @@ const Header = () => {
         isVisible={isDropdownVisible}
         closeDropdown={closeDropdown}
       />
+      {showProfileProposal && (
+        <ProfileProposal onClose={handleCloseProfileProposal} />
+      )}
     </>
   );
 };

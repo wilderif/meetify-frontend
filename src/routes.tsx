@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
 import MainPage from "./pages/MainPage/MainPage";
-import ChatsPage from "./pages/ChatsPage/ChatsPage";
 import MyInfoPage from "./pages/MyInfoPage/MyInfoPage/MyInfoPage";
 import MyInfoEditPage from "./pages/MyInfoPage/MyInfoEditPage/MyInfoEditPage";
 import MyLikePage from "./pages/MyLikePage/MyLikePage";
@@ -16,6 +15,7 @@ import UpdateMeetPage from "./pages/PostUpdatePage/UpdateMeetPage";
 import UpdateProjectPage from "./pages/PostUpdatePage/UpdateProjectPage";
 import UpdateStudyPage from "./pages/PostUpdatePage/UpdateStudyPage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage"; // 에러 페이지
+import ChatsPage from "./pages/ChatsPage/ChatsPage";
 
 const routes = createBrowserRouter([
   {
@@ -83,7 +83,7 @@ const routes = createBrowserRouter([
       {
         path: "chats",
         element: <ChatsPage />,
-        children: [{ path: ":chatId", element: <ChatsPage /> }],
+        children: [{ path: ":userId", element: <ChatsPage /> }],
       },
     ],
   },
