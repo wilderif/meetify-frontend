@@ -17,8 +17,8 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <StyledButton
-      buttonType={buttonType}
-      buttonSize={buttonSize}
+      $buttonType={buttonType}
+      $buttonSize={buttonSize}
       onClick={onClick}
     >
       {icon && <IconWrapper>{icon}</IconWrapper>}

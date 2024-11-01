@@ -24,10 +24,14 @@
   --color-white: #ffffff;
   --color-gray-light: #f7f5f4;
   --color-gray-white: #f5f6f8;
+  --color-rose: #B06264;
+  --color-green: #0AA949;
+  --color-purple: #8C89FC;
 
   --bg-gray-light: #dcdcdc;
   --bg-coral-light: #ffc2af;
   --bg-green-light: #d5eadd;
+  --bg-purple-light: #F2F4FF;
 
   --mask-color-20: rgba(0, 0, 0, 0.2);
 
@@ -41,7 +45,25 @@
   --primary-color-gra-end: #ffdc78;
 }
 
+/* Width */
+:root {
+  --max-width: 1200px;
+  --button-width-large: 300px;
+  --button-width-medium: 150px;
+  --button-width-small: 100px;
+}
+
 body {
   font-size: var(--font-size-medium);
   color: var(--font-color-dark);
+  margin: 0 auto;
+}
+
+main {
+  /* 헤더 높이만큼 */
+  padding-top: 120px;
+}
+
+main.no-padding {
+  padding-top: 0;
 }

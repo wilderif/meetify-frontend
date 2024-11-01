@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
 import MainPage from "./pages/MainPage/MainPage";
-import MyInfoPage from "./pages/MyInfoPage/MyInfoPage";
-import MyInfoEditPage from "./pages/MyInfoPage/MyInfoEditPage";
+import MyInfoPage from "./pages/MyInfoPage/MyInfoPage/MyInfoPage";
+import MyInfoEditPage from "./pages/MyInfoPage/MyInfoEditPage/MyInfoEditPage";
 import MyLikePage from "./pages/MyLikePage/MyLikePage";
 import MyPostsPage from "./pages/MyPostPage/MyPostsPage";
 import PostPage from "./pages/PostPage/PostPage";
