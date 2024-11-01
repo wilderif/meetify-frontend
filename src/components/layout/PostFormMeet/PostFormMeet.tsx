@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { validatePostFormMeet } from "../../../utils/postValidation";
 import Select from "../../common/CustomSelect/CustomSelect";
 import Title from "../../common/Title/Title";
 import Button from "../../common/button/Button";
@@ -51,7 +52,10 @@ const PostFormMeet: React.FC<PostFormProps> = ({ onSubmit }) => {
       position,
       availableTime,
     };
-    onSubmit(formData);
+    // 폼 검증 후 제출
+    if (validatePostFormMeet(formData)) {
+      onSubmit(formData);
+    }
   };
 
   // 취소 버튼 클릭 시 이전 페이지로 이동

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { validatePostForm } from "../../../utils/postValidation";
 import Select from "../../common/CustomSelect/CustomSelect";
 import Input from "../../common/input/Input";
 import TextEditor from "../../common/TextEditor/TextEditor";
@@ -55,7 +56,10 @@ const PostForm: React.FC<PostFormProps> = ({ title, onSubmit }) => {
       position,
       duration,
     };
-    onSubmit(formData);
+    // 폼 검증 후 제출
+    if (validatePostForm(formData)) {
+      onSubmit(formData);
+    }
   };
   // 취소 버튼 클릭 시 이전 페이지로 이동
   const handleCancel = () => {
