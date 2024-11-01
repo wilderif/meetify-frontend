@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { validatePostFormMeet } from "../../../utils/postValidation";
 import Select from "../../common/CustomSelect/CustomSelect";
 import Title from "../../common/Title/Title";
@@ -30,8 +29,7 @@ interface PostFormProps {
   onCancel: () => void;
 }
 
-const PostFormMeet: React.FC<PostFormProps> = ({ onSubmit }) => {
-  const navigate = useNavigate();
+const PostFormMeet: React.FC<PostFormProps> = ({ onSubmit, onCancel }) => {
   const [inputValue, setInputValue] = useState("");
   const [content, setContent] = useState<string>("");
 
@@ -56,11 +54,6 @@ const PostFormMeet: React.FC<PostFormProps> = ({ onSubmit }) => {
     if (validatePostFormMeet(formData)) {
       onSubmit(formData);
     }
-  };
-
-  // 취소 버튼 클릭 시 이전 페이지로 이동
-  const handleCancel = () => {
-    navigate(-1); // 이전 페이지로 이동
   };
 
   return (
@@ -139,7 +132,7 @@ const PostFormMeet: React.FC<PostFormProps> = ({ onSubmit }) => {
           buttonType="outline"
           buttonSize="medium"
           label="취소"
-          onClick={handleCancel}
+          onClick={onCancel}
         />
         <Button
           buttonType="fill"
