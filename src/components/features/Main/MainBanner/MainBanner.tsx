@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   BannerContainer,
   StyledBanner,
@@ -13,32 +12,18 @@ import {
 import BannerIcon from "../../../common/icon/BannerIcon/BannerIcon";
 import WriteModal from "../../../common/WriteModal/WriteModal";
 import LoginModal from "../../login/LoginModal";
-import useAuthStore from "../../../../store/useAuthStore";
+import useModal from "../../../../hooks/useModal";
 import { Button, WriteButton } from "../../../common";
 
 const MainBanner = () => {
-  const isLogin = useAuthStore((state) => state.isLogin);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLoginView, setIsLoginView] = useState(true);
-
-  const handleClick = () => {
-    if (isLogin) {
-      setIsModalOpen(true);
-    } else {
-      setIsModalOpen(true);
-    }
-  };
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const toggleModalView = () => {
-    setIsLoginView(!isLoginView);
-  };
-
-  const handleLoginSuccess = () => {
-    setIsModalOpen(false);
-  };
+  const {
+    isLogin,
+    isModalOpen,
+    handleClick,
+    handleCloseModal,
+    toggleModalView,
+    handleLoginSuccess,
+  } = useModal();
 
   return (
     <>
