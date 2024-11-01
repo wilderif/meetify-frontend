@@ -16,8 +16,8 @@ export interface PostMeetFormData {
   inputValue: string; // 제목
   content: string; // 내용
   participationMethod?: SelectOption | null; // 선호 진행 방식
-  Affiliation?: SelectOption | null; // 소속
+  affiliation?: SelectOption | null; // 소속
   interests?: SelectOption[]; // 관심 분야 (다중 선택)
   position?: SelectOption | null; // 직무
-  AvailableTime?: SelectOption | null; // 참여 가능 시간
+  availableTime?: SelectOption | null; // 참여 가능 시간
 }
