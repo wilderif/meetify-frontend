@@ -107,7 +107,7 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
             />
           </InputWrapper>
           <ButtonContainer>
-            <StyledButton buttonType="fill" buttonSize="large" type="submit">
+            <StyledButton $buttonType="fill" $buttonSize="large" type="submit">
               회원가입
             </StyledButton>
             <LoginText>

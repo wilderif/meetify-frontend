@@ -84,15 +84,15 @@ const LoginModal = ({
         </InputWrapper>
         <ButtonContainer>
           <StyledButton
-            buttonType="fill"
-            buttonSize="large"
+            $buttonType="fill"
+            $buttonSize="large"
             onClick={handleSubmit}
           >
             로그인
           </StyledButton>
           <StyledButton
-            buttonType="outline"
-            buttonSize="large"
+            $buttonType="outline"
+            $buttonSize="large"
             onClick={onToggleView}
           >
             회원가입
