@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Select from "../../common/CustomSelect/CustomSelect";
 import Title from "../../common/Title/Title";
 import Button from "../../common/button/Button";
@@ -13,7 +14,7 @@ import {
   AvailableTimeOptions,
 } from "../../../constants/options";
 import { FORM_TITLES, PLACEHOLDERS } from "../../../constants/PostForm";
-import { PostMeetFormData } from "../../../types/Post";
+import { PostFormMeetData } from "../../../types/Post";
 import {
   Section,
   Row,
@@ -24,11 +25,12 @@ import {
 
 interface PostFormProps {
   title: string;
-  onSubmit: (data: PostMeetFormData) => void;
+  onSubmit: (data: PostFormMeetData) => void;
   onCancel: () => void;
 }
 
-const PostFormMeet: React.FC<PostFormProps> = ({ onSubmit, onCancel }) => {
+const PostFormMeet: React.FC<PostFormProps> = ({ onSubmit }) => {
+  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState("");
   const [content, setContent] = useState<string>("");
 
@@ -40,7 +42,7 @@ const PostFormMeet: React.FC<PostFormProps> = ({ onSubmit, onCancel }) => {
   const [availableTime, setAvailableTime] = useState<SelectOption | null>(null);
 
   const handleSubmit = () => {
-    const formData: PostMeetFormData = {
+    const formData: PostFormMeetData = {
       inputValue,
       content,
       participationMethod,
@@ -50,6 +52,11 @@ const PostFormMeet: React.FC<PostFormProps> = ({ onSubmit, onCancel }) => {
       availableTime,
     };
     onSubmit(formData);
+  };
+
+  // 취소 버튼 클릭 시 이전 페이지로 이동
+  const handleCancel = () => {
+    navigate(-1); // 이전 페이지로 이동
   };
 
   return (
@@ -128,7 +135,7 @@ const PostFormMeet: React.FC<PostFormProps> = ({ onSubmit, onCancel }) => {
           buttonType="outline"
           buttonSize="medium"
           label="취소"
-          onClick={onCancel}
+          onClick={handleCancel}
         />
         <Button
           buttonType="fill"

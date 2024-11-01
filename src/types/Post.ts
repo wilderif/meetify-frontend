@@ -12,7 +12,7 @@ export interface PostFormData {
   duration?: SelectOption | null; // 진행 기간
 }
 
-export interface PostMeetFormData {
+export interface PostFormMeetData {
   inputValue: string; // 제목
   content: string; // 내용
   participationMethod?: SelectOption | null; // 선호 진행 방식

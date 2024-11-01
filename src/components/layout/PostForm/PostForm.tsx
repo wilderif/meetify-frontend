@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Select from "../../common/CustomSelect/CustomSelect";
 import Input from "../../common/input/Input";
 import TextEditor from "../../common/TextEditor/TextEditor";
@@ -30,7 +31,8 @@ interface PostFormProps {
   onCancel: () => void;
 }
 
-const PostForm: React.FC<PostFormProps> = ({ title, onSubmit, onCancel }) => {
+const PostForm: React.FC<PostFormProps> = ({ title, onSubmit }) => {
+  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState("");
   const [content, setContent] = useState<string>("");
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
@@ -54,6 +56,10 @@ const PostForm: React.FC<PostFormProps> = ({ title, onSubmit, onCancel }) => {
       duration,
     };
     onSubmit(formData);
+  };
+  // 취소 버튼 클릭 시 이전 페이지로 이동
+  const handleCancel = () => {
+    navigate(-1); // 이전 페이지로 이동
   };
 
   return (
@@ -141,7 +147,7 @@ const PostForm: React.FC<PostFormProps> = ({ title, onSubmit, onCancel }) => {
           buttonType="outline"
           buttonSize="medium"
           label="취소"
-          onClick={onCancel}
+          onClick={handleCancel}
         />
         <Button
           buttonType="fill"
