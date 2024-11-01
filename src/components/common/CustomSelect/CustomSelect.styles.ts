@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 export const SelectWrapper = styled.div`
   margin-bottom: 30px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
 `;
 
 export const Label = styled.p`
@@ -13,7 +13,7 @@ export const Label = styled.p`
 `;
 
 // default: 글 작성 Select, rounded: 카테고리 Select
-export const StyledSelect = styled.div<{ $variant: 'default' | 'rounded' }>`
+export const StyledSelect = styled.div<{ $variant: "default" | "rounded" }>`
   .react--select__control {
     min-height: auto;
     width: 600px;
@@ -26,11 +26,12 @@ export const StyledSelect = styled.div<{ $variant: 'default' | 'rounded' }>`
     display: flex;
 
     ${({ $variant }) =>
-      $variant === 'rounded' &&
+      $variant === "rounded" &&
       css`
         width: 240px;
         height: 50px;
         border-radius: 30px;
+        font-size: var(--font-size-body-medium);
       `}
   }
   .react--select__value-container {
@@ -40,7 +41,7 @@ export const StyledSelect = styled.div<{ $variant: 'default' | 'rounded' }>`
     min-height: 60px;
 
     ${({ $variant }) =>
-      $variant === 'rounded' &&
+      $variant === "rounded" &&
       css`
         min-height: 50px;
         flex-wrap: nowrap; /* 줄바꿈을 없앰 */
@@ -50,7 +51,7 @@ export const StyledSelect = styled.div<{ $variant: 'default' | 'rounded' }>`
       `}
   }
   .react--select__menu {
-    width: ${({ $variant }) => ($variant === 'rounded' ? '240px' : '600px')};
+    width: ${({ $variant }) => ($variant === "rounded" ? "240px" : "600px")};
   }
 
   .react--select__indicator-separator {
