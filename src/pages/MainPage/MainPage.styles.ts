@@ -12,6 +12,7 @@ export const CustomSelectWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  /* font-size: var(--font-size-body-small); */
 `;
 
 export const SearchBarWrapper = styled.div`

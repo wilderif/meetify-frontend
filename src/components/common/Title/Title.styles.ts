@@ -1,11 +1,12 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 15px;
   border-bottom: 3px solid var(--color-gray-light);
-  font-family: 'DM Sans', sans-serif;
+  margin-bottom: 30px;
+  font-family: "DM Sans", sans-serif;
 `;
 
 export const StepIcon = styled.span`
