@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const BannerContainer = styled.div`
   position: relative;
@@ -38,11 +38,34 @@ export const MainText = styled.h1`
   padding-top: 3rem;
 `;
 
+const trackingInExpand = keyframes`
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
 export const HighlightedLogo = styled.span`
+  position: absolute;
   font-family: "HakgyoansimDunggeunmisoTTF-B";
+  font-size: var(--font-size-head-extraLarge);
   background: linear-gradient(120deg, #ff935a 28.37%, #ffdc78 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: ${trackingInExpand} 1s ease-out;
+  display: inline-block;
+`;
+
+export const FixedText = styled.span`
+  position: relative;
+  margin: 200px;
+  font-size: 50px;
 `;
 
 export const SubText = styled.p`
