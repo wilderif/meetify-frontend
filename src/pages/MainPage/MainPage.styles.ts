@@ -1,11 +1,5 @@
 import styled from "styled-components";
 
-export const WriteButtonWrapper = styled.div`
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-`;
-
 export const FilterWrapper = styled.div`
   display: flex;
   justify-content: space-between;

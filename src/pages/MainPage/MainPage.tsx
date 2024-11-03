@@ -4,7 +4,6 @@ import {
   CustomSelect,
   Pagination,
   SearchBar,
-  WriteButton,
 } from "../../components/common";
 import {
   InterestsOptions,
@@ -15,7 +14,6 @@ import { MainBanner, MainTabs } from "../../components/features/Main";
 import {
   FilterWrapper,
   CustomSelectWrapper,
-  WriteButtonWrapper,
   SearchBarWrapper,
 } from "./MainPage.styles";
 
@@ -64,9 +62,6 @@ const MainPage = () => {
         totalPages={10}
         onPageChange={handlePageChange}
       />
-      <WriteButtonWrapper>
-        <WriteButton />
-      </WriteButtonWrapper>
     </>
   );
 };
