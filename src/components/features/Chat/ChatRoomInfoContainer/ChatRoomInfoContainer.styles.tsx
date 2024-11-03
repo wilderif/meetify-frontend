@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 export const ChatRoomInfoContainerWrapper = styled.div`
-  min-width: 512px;
+  min-width: 350px;
+  width: 100%;
   display: flex;
-  width: max-content;
-  border-radius: 16px;
-
   flex-direction: column;
+  border-radius: 16px;
   background-color: var(--color-chat-bg);
 `;
 export const EmptyChatRoomInfoContainerWrapper = styled.div`
