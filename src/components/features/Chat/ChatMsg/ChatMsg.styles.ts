@@ -10,6 +10,8 @@ const ChatMsgWrapper = styled.div`
     display: inline-block;
     border-radius: 16px;
     padding: 8px 12px;
+    max-width: 200px;
+    word-break: break-word;
   }
 
   .my {
