@@ -1,7 +1,8 @@
-import { IoReturnUpBack } from "react-icons/io5";
+import React from "react";
+import { StyledBackIcon } from "./BackIcon.styles";
 
 const BackIcon = () => {
-  return <IoReturnUpBack />;
+  return <StyledBackIcon />;
 };
 
 export default BackIcon;

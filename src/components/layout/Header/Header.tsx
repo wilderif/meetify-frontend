@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HeaderContainer, NavContainer, LogoContainer } from "./Header.styles";
 
 import Logo from "../../common/Logo/Logo";
@@ -8,6 +8,7 @@ import ProfileImage from "../../common/ProfileImage/ProfileImage";
 import NotificationIcon from "../../common/icon/NotificationIcon/NotificationIcon";
 import ContactIcon from "../../common/icon/ContactIcon/ContactIcon";
 import Button from "../../common/button/Button";
+import BackIcon from "../../common/icon/BackIcon/BackIcon";
 import ProfileDropdown from "../../features/profileDropdown/ProfileDropdown";
 
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
@@ -26,7 +27,8 @@ import useModal from "../../../hooks/useModal";
  * Profile Image 클릭시 마이페이지로 이동
  */
 
-const Header = () => {
+const Header = ({ isMainPage }) => {
+  const navigate = useNavigate();
   const {
     isLogin,
     isModalOpen,
@@ -100,6 +102,11 @@ const Header = () => {
             </h1>
           </Link>
         </LogoContainer>
+        {!isMainPage && (
+          <button onClick={() => navigate(-1)}>
+            <BackIcon />
+          </button>
+        )}
         {isLogin ? (
           <NavContainer>
             <Link to="/chats">
