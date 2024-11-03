@@ -9,6 +9,7 @@ import {
   HighlightedText,
   FixedText,
   WriteButtonWrapper,
+  ButtonWrapper,
 } from "./MainBanner.styles";
 import BannerIcon from "../../../common/icon/BannerIcon/BannerIcon";
 import WriteModal from "../../../common/WriteModal/WriteModal";
@@ -37,7 +38,9 @@ const MainBanner = () => {
                 <HighlightedLogo> Meetify </HighlightedLogo>{" "}
                 <FixedText>에서!</FixedText>
               </MainText>
-              <Button label="등록하기" onClick={handleClick} />
+              <ButtonWrapper>
+                <Button label="등록하기" onClick={handleClick} />
+              </ButtonWrapper>
             </BannerContent>
             <BannerIcon />
           </ContentWrapper>
