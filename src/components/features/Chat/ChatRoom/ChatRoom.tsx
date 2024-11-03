@@ -6,6 +6,7 @@ import ChatDay from "../ChatDay/ChatDay";
 import { ServerChat } from "../../../../types/Chat";
 import { useChatGroups } from "../../../../hooks/Chat/useChatGroups";
 import { convertDate2Str } from "../../../../utils/dateUtil";
+import BannerIcon from "../../../common/icon/BannerIcon/BannerIcon";
 
 interface ChatRoomProps {
   chatList?: ServerChat[] | null;
@@ -115,14 +116,19 @@ const ChatRoom = ({
     });
   };
 
-  return (
+  return chatGroups.length === 0 ? (
+    <ChatRoomWrapper className="no--msg">
+      <BannerIcon />
+      <p>대화방을 선택해주세요.</p>
+    </ChatRoomWrapper>
+  ) : (
     <ChatRoomWrapper ref={chatRoomRef} tabIndex={0}>
-      <div className="chat-item">
+      <div className="chat--item">
         {chatGroups.map((group, index) => {
           const msgDay = convertDate2Str(group.chatList[0].creadtedAt);
 
           return (
-            <div key={index} className="chat-date-item">
+            <div key={index} className="chat--date--item">
               {/* 첫 번째 메시지이거나 2개의 메시지 날짜가 다를 때만 출력 */}
               {index === 0 ||
               msgDay !==
