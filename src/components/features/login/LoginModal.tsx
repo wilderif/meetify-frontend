@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Overlay,
   StyledLoginModal,
@@ -28,6 +28,15 @@ const LoginModal = ({
   const { validation, validateForm, handleFieldChange } = useValidation();
   const { login } = useAuthApi(); // useAuthApi 훅 사용
   const setEmailInStore = useAuthStore((state) => state.setEmail);
+
+  useEffect(() => {
+    // 모달이 열릴 때 스크롤 금지
+    document.body.style.overflow = "hidden";
+    return () => {
+      // 모달이 닫힐 때 스크롤 허용
+      document.body.style.overflow = "auto";
+    };
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
