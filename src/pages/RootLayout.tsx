@@ -8,7 +8,7 @@ const RootLayout = () => {
   return (
     <>
       <header>
-        <Header />
+        <Header isMainPage={isMainPage} />
       </header>
       <main className={isMainPage ? "no-padding" : ""}>
         <Outlet />
