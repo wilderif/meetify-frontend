@@ -7,7 +7,9 @@ import {
   SubText,
   HighlightedLogo,
   HighlightedText,
+  FixedText,
   WriteButtonWrapper,
+  ButtonWrapper,
 } from "./MainBanner.styles";
 import BannerIcon from "../../../common/icon/BannerIcon/BannerIcon";
 import WriteModal from "../../../common/WriteModal/WriteModal";
@@ -33,9 +35,12 @@ const MainBanner = () => {
             <BannerContent>
               <MainText>
                 꿈을 현실로 만들 출발점, <br />
-                <HighlightedLogo> Meetify </HighlightedLogo> 에서!
+                <HighlightedLogo> Meetify </HighlightedLogo>{" "}
+                <FixedText>에서!</FixedText>
               </MainText>
-              <Button label="등록하기" onClick={handleClick} />
+              <ButtonWrapper>
+                <Button label="등록하기" onClick={handleClick} />
+              </ButtonWrapper>
             </BannerContent>
             <BannerIcon />
           </ContentWrapper>
