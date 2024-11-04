@@ -25,3 +25,12 @@ export const ButtonWrapper = styled.div`
   margin-top: 40px;
   margin-bottom: 50px;
 `;
+
+// 추가 스타일
+export const Content = styled.pre`
+  white-space: pre-wrap;
+  font-size: var(--font-size-body-large);
+  font-family: "DM Sans", sans-serif;
+  line-height: 1.6;
+  color: var(--font-color-dark);
+`;

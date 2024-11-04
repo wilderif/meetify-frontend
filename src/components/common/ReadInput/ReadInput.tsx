@@ -9,7 +9,8 @@ const ReadInput: React.FC<ReadInputProps> = ({ label, value }) => {
   return (
     <Container>
       {label && <Label>{label}</Label>}
-      <StyledInput type="text" value={value} readOnly disabled />
+      <StyledInput type="text" value={value} readOnly disabled />{" "}
+      {/* readOnly, disabled 속성 추가 */}
     </Container>
   );
 };
