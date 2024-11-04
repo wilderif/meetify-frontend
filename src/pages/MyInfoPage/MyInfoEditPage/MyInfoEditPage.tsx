@@ -103,7 +103,7 @@ const MyInfoEditPage = () => {
         userInformation.inputIntroduction,
         userInformation.selectInterests
       );
-      navigate("/");
+      navigate("/my-info");
     } catch (error) {
       console.error("프로필 저장 중 오류 발생:", error);
     }
@@ -147,7 +147,9 @@ const MyInfoEditPage = () => {
           alt="user profile image"
           usageType="userInformation"
         />
-        <div style={{ marginTop: "1rem" }}>User Name 님 환영해요.</div>
+        <div style={{ marginTop: "1rem" }}>
+          {userInformation.inputNickname} 님 환영해요.
+        </div>
       </ProfileContainer>
       <Input
         label="닉네임"
