@@ -27,8 +27,10 @@ const useAuthApi = (): UseAuthApiReturn => {
     }
   );
 
-  // Zustand 훅을 사용하여 isLogin 상태를 업데이트하는 메서드 가져오기
+  // Zustand 훅을 사용하여 상태를 업데이트하는 메서드 가져오기
   const setIsLogin = useAuthStore((state) => state.setIsLogin);
+  const setEmail = useAuthStore((state) => state.setEmail);
+  const setNickname = useAuthStore((state) => state.setNickname);
   const setShowProfileProposal = useAuthStore(
     (state) => state.setShowProfileProposal
   );
@@ -45,6 +47,13 @@ const useAuthApi = (): UseAuthApiReturn => {
       );
       console.log("로그인 성공:", response.data);
       setIsLogin(true); // 로그인 성공 시 isLogin 상태 업데이트
+      setEmail(email); // 로그인 성공 시 이메일 상태 업데이트
+      setNickname(response.data.nickname); // 로그인 성공 시 닉네임 상태 업데이트
+      console.log("닉네임:", response.data.nickname);
+
+      // JWT 토큰을 로컬 스토리지에 저장
+      localStorage.setItem("token", response.data.token);
+
       if (response.data.is_first_login) {
         setShowProfileProposal(true); // 첫 로그인 시 ProfileProposal 모달 표시
       } else {
