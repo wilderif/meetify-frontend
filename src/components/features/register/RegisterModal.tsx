@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Overlay,
   StyledRegisterModal,
@@ -31,6 +31,15 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
   const setEmailInStore = useAuthStore((state) => state.setEmail);
   const setNicknameInStore = useAuthStore((state) => state.setNickname);
 
+  useEffect(() => {
+    // 모달이 열릴 때 스크롤 금지
+    document.body.style.overflow = "hidden";
+    return () => {
+      // 모달이 닫힐 때 스크롤 허용
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -58,7 +67,7 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
 
   return (
     <Overlay>
-      <StyledRegisterModal>
+      <StyledRegisterModal onClick={(e) => e.stopPropagation()}>
         <CloseButton onClick={onClose} />
         <Title />
         <form onSubmit={handleRegister}>
@@ -107,12 +116,19 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
             />
           </InputWrapper>
           <ButtonContainer>
-            <StyledButton buttonType="fill" buttonSize="large" type="submit">
+            <StyledButton $buttonType="fill" $buttonSize="large" type="submit">
               회원가입
             </StyledButton>
             <LoginText>
               이미 계정이 있으신가요?{" "}
-              <BoldText onClick={onToggleView}>로그인</BoldText>
+              <BoldText
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onToggleView();
+                }}
+              >
+                로그인
+              </BoldText>
             </LoginText>
           </ButtonContainer>
         </form>

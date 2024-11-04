@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Overlay,
   StyledLoginModal,
@@ -28,6 +28,15 @@ const LoginModal = ({
   const { validation, validateForm, handleFieldChange } = useValidation();
   const { login } = useAuthApi(); // useAuthApi 훅 사용
   const setEmailInStore = useAuthStore((state) => state.setEmail);
+
+  useEffect(() => {
+    // 모달이 열릴 때 스크롤 금지
+    document.body.style.overflow = "hidden";
+    return () => {
+      // 모달이 닫힐 때 스크롤 허용
+      document.body.style.overflow = "auto";
+    };
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -59,23 +68,23 @@ const LoginModal = ({
         <Title />
         <InputWrapper>
           <Input
-            type='email'
-            placeholder='이메일'
+            type="email"
+            placeholder="이메일"
             value={formData.email}
             onChange={handleChange}
-            name='email'
+            name="email"
             hasError={!validation.email.isValid}
             errorMessage={
               !validation.email.isValid ? validation.email.message : ""
             }
           />
           <Input
-            type='password'
-            placeholder='비밀번호'
-            iconType='password'
+            type="password"
+            placeholder="비밀번호"
+            iconType="password"
             value={formData.password}
             onChange={handleChange}
-            name='password'
+            name="password"
             hasError={!validation.password.isValid}
             errorMessage={
               !validation.password.isValid ? validation.password.message : ""
@@ -84,15 +93,15 @@ const LoginModal = ({
         </InputWrapper>
         <ButtonContainer>
           <StyledButton
-            $buttonType='fill'
-            $buttonSize='large'
+            $buttonType="fill"
+            $buttonSize="large"
             onClick={handleSubmit}
           >
             로그인
           </StyledButton>
           <StyledButton
-            $buttonType='outline'
-            $buttonSize='large'
+            $buttonType="outline"
+            $buttonSize="large"
             onClick={onToggleView}
           >
             회원가입

@@ -1,6 +1,17 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { IoClose } from "react-icons/io5";
 import LogoGradation from "../../common/Logo/LogoGradation";
+
+const modalAnimation = keyframes`
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+`;
 
 /* 오버레이 스타일 */
 export const Overlay = styled.div`
@@ -44,6 +55,7 @@ export const StyledLoginModal = styled.div`
   border-radius: 30px;
   width: 500px;
   height: 450px;
+  animation: ${modalAnimation} 0.3s ease-out;
 `;
 
 export const Title = styled(LogoGradation)``;

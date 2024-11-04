@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HeaderContainer, NavContainer, LogoContainer } from "./Header.styles";
 
 import Logo from "../../common/Logo/Logo";
@@ -8,13 +8,14 @@ import ProfileImage from "../../common/ProfileImage/ProfileImage";
 import NotificationIcon from "../../common/icon/NotificationIcon/NotificationIcon";
 import ContactIcon from "../../common/icon/ContactIcon/ContactIcon";
 import Button from "../../common/button/Button";
+import BackIcon from "../../common/icon/BackIcon/BackIcon";
 import ProfileDropdown from "../../features/profileDropdown/ProfileDropdown";
 
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import LoginModal from "../../features/login/LoginModal";
 import RegisterModal from "../../features/register/RegisterModal";
 import ProfileProposal from "../../features/register/ProfileProposal";
-import useAuthStore from "../../../store/useAuthStore";
+import useModal from "../../../hooks/useModal";
 
 /**
  * 로그인 안 되 었을 때
@@ -26,39 +27,21 @@ import useAuthStore from "../../../store/useAuthStore";
  * Profile Image 클릭시 마이페이지로 이동
  */
 
-const Header = () => {
-  const isLogin = useAuthStore((state) => state.isLogin);
-  const showProfileProposal = useAuthStore(
-    (state) => state.showProfileProposal
-  );
-  const setShowProfileProposal = useAuthStore(
-    (state) => state.setShowProfileProposal
-  );
-  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열림/닫힘 상태
-  const [isLoginView, setIsLoginView] = useState(true); // 로그인/회원가입 모달 전환 상태
+const Header = ({ isMainPage }) => {
+  const navigate = useNavigate();
+  const {
+    isLogin,
+    isModalOpen,
+    isLoginView,
+    showProfileProposal,
+    handleClick,
+    handleCloseModal,
+    toggleModalView,
+    handleLoginSuccess,
+    handleCloseProfileProposal,
+  } = useModal();
+
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-
-  const handleLogin = () => {
-    // 로그인 모달 띄우기
-    setIsModalOpen(true);
-    setIsLoginView(true); // 로그인 모달로 설정
-  };
-
-  const handleCloseLoginModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCloseProfileProposal = () => {
-    setShowProfileProposal(false);
-  };
-
-  const toggleModalView = () => {
-    setIsLoginView(!isLoginView); // 로그인/회원가입 모달 전환
-  };
-
-  const handleLoginSuccess = () => {
-    setIsModalOpen(false); // 모달 닫기
-  };
 
   const toggleDropdown = () => {
     console.log("toggleDropdown", isDropdownVisible);
@@ -113,15 +96,20 @@ const Header = () => {
     <>
       <HeaderContainer ref={headerRef}>
         <LogoContainer>
-          <Link to='/'>
+          <Link to="/">
             <h1>
               <Logo />
             </h1>
           </Link>
         </LogoContainer>
+        {!isMainPage && (
+          <button onClick={() => navigate(-1)}>
+            <BackIcon />
+          </button>
+        )}
         {isLogin ? (
           <NavContainer>
-            <Link to='/chats'>
+            <Link to="/chats">
               <NotificationIconContainer notificationCount={1}>
                 <ContactIcon />
               </NotificationIconContainer>
@@ -133,7 +121,7 @@ const Header = () => {
               <NotificationIcon />
             </NotificationIconContainer>
             <button onClick={toggleDropdown}>
-              <ProfileImage src={DummyProfileImage} usageType='header' />
+              <ProfileImage src={DummyProfileImage} usageType="header" />
             </button>
           </NavContainer>
         ) : (
@@ -141,22 +129,22 @@ const Header = () => {
            * TODO: 우선 Button 컴포넌트를 사용하고, 텍스트 색상, 버튼 height 같은 디테일한 css는 후반부에 수정
            */
           <Button
-            buttonType='outline'
-            buttonSize='small'
-            label='로그인'
-            onClick={handleLogin}
+            buttonType="outline"
+            buttonSize="small"
+            label="로그인"
+            onClick={handleClick}
           />
         )}
         {isModalOpen &&
           (isLoginView ? (
             <LoginModal
-              onClose={handleCloseLoginModal}
+              onClose={handleCloseModal}
               onToggleView={toggleModalView} // 모달 전환 함수 전달
               onLoginSuccess={handleLoginSuccess} // 로그인 성공 시 처리 함수 전달
             />
           ) : (
             <RegisterModal
-              onClose={handleCloseLoginModal}
+              onClose={handleCloseModal}
               onToggleView={toggleModalView} // 모달 전환 함수 전달
             />
           ))}
