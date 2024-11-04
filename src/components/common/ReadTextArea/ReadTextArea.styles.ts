@@ -1,5 +1,7 @@
 import styled from "styled-components";
-
+interface StyledTextAreaProps {
+  variant?: "placeholder" | "default";
+}
 export const TextAreaWrapper = styled.div`
   width: 100%;
   max-width: 100%;
@@ -15,7 +17,7 @@ export const Label = styled.label`
   display: block;
 `;
 
-export const StyledTextArea = styled.textarea`
+export const StyledTextArea = styled.textarea<StyledTextAreaProps>`
   width: 100%;
   height: 150px;
   border: 1px solid var(--bg-gray-light);
@@ -29,6 +31,11 @@ export const StyledTextArea = styled.textarea`
   resize: none; /* 리사이즈 핸들 제거 */
   text-align: left;
   background-color: var(--font-color-white);
+
+  color: ${(props) =>
+    props.variant === "placeholder"
+      ? "var(--bg-gray-light)"
+      : "var(--font-color-dark)"};
 
   &::placeholder {
     color: var(--bg-gray-light);

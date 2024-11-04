@@ -3,14 +3,24 @@ import { Container, Label, StyledInput } from "./ReadInput.styles"; // 각각의
 interface ReadInputProps {
   label?: string;
   value: string;
+  variant?: "primary" | "placeholder" | "default"; // variant prop 추가
 }
 
-const ReadInput: React.FC<ReadInputProps> = ({ label, value }) => {
+const ReadInput: React.FC<ReadInputProps> = ({
+  label,
+  value,
+  variant = "default",
+}) => {
   return (
     <Container>
       {label && <Label>{label}</Label>}
-      <StyledInput type="text" value={value} readOnly disabled />{" "}
-      {/* readOnly, disabled 속성 추가 */}
+      <StyledInput
+        type="text"
+        value={value}
+        readOnly
+        disabled
+        variant={variant} // variant 전달
+      />
     </Container>
   );
 };
