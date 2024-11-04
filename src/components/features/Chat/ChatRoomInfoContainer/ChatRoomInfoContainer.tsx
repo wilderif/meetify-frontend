@@ -1,3 +1,5 @@
+import useAuthStore from "../../../../store/useAuthStore";
+import useChatStore from "../../../../store/useChatStore";
 import { ChatRoomInfo } from "../../../../types/Chat";
 import BannerIcon from "../../../common/icon/BannerIcon/BannerIcon";
 import ChatRoomItem from "../ChatRoomInfo/ChatRoomInfo";
@@ -9,7 +11,11 @@ import {
 interface ChatRoomContainerProps {
   /** 채팅 정보 리스트 */
   chatRoomList?: ChatRoomInfo[] | null;
-  onChatRoomClick?: (chatRoom: string, otherUserId: string) => void; // 클릭 이벤트 처리 함수
+  onChatRoomClick?: (
+    chatRoom: string,
+    otherUserId: string,
+    isEmptyRoom: boolean
+  ) => void; // 클릭 이벤트 처리 함수
   selectedRoomId: string;
 }
 const ChatRoomContainer = ({
@@ -20,7 +26,11 @@ const ChatRoomContainer = ({
   // chatRoomList가 null일 경우 빈 배열로 초기화
   const rooms = chatRoomList || [];
 
-  return rooms.length === 0 ? (
+  // 채팅 방 전역 상태 관리
+  const userId = useAuthStore((state) => state.email); // 현재 로그인한 유저 아이디
+  const chatRooms = useChatStore((state) => state.userChatRooms[userId]);
+
+  return rooms.length === 0 && chatRooms && chatRooms.length === 0 ? (
     <EmptyChatRoomInfoContainerWrapper>
       <div className="contact">
         <BannerIcon></BannerIcon>
@@ -30,6 +40,18 @@ const ChatRoomContainer = ({
     </EmptyChatRoomInfoContainerWrapper>
   ) : (
     <ChatRoomInfoContainerWrapper>
+      {chatRooms &&
+        chatRooms.map((chatRoom) => (
+          <ChatRoomItem
+            key={chatRoom.roomId}
+            name={chatRoom.name}
+            onClick={() =>
+              onChatRoomClick(chatRoom.roomId, chatRoom.otherUserId, true)
+            } // 클릭 시 roomId 전달
+            roomId={chatRoom.roomId}
+            selectedRoomId={selectedRoomId}
+          />
+        ))}
       {rooms.map((chatRoom) => (
         <ChatRoomItem
           key={chatRoom.roomId}
@@ -38,7 +60,9 @@ const ChatRoomContainer = ({
           unReadMsgCnt={chatRoom.unReadMsgCnt}
           lastMsg={chatRoom.lastMsg}
           creadtedAt={chatRoom.creadtedAt}
-          onClick={() => onChatRoomClick(chatRoom.roomId, chatRoom.otherUserId)} // 클릭 시 roomId 전달
+          onClick={() =>
+            onChatRoomClick(chatRoom.roomId, chatRoom.otherUserId, false)
+          } // 클릭 시 roomId 전달
           roomId={chatRoom.roomId}
           selectedRoomId={selectedRoomId}
         />

@@ -10,7 +10,7 @@ export function useChatGroups(
 ) {
   const [chatGroups, setChatGroups] = useState<ChatMsgContainerProps[]>([]);
   useEffect(() => {
-    if (chatList && chatList.length !== 0) {
+    if (chatList) {
       const groups = groupChats(chatList, myUsername);
       setChatGroups(groups);
     }
@@ -29,7 +29,6 @@ function groupChats(
   chatList.forEach((chat) => {
     const chatTime = formatTime(chat.created_at);
     const isMe = chat.sender === myUsername;
-
     if (
       !currentGroup ||
       currentGroup.isMe !== isMe ||

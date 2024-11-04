@@ -67,7 +67,7 @@ const ChatRoom = ({
     sendMessage(msg, otherUserId);
   };
 
-  return chatGroups.length === 0 ? (
+  return roomId === "" ? (
     <ChatRoomWrapper className="no--msg">
       <BannerIcon />
       <p>대화방을 선택해주세요.</p>

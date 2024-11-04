@@ -63,7 +63,11 @@ const ChatsPage = () => {
   }, [userId]);
 
   // 채팅 방 클릭시 해당 채팅 방의 채팅리스트 호출
-  const handleClick = (roomId: string, otherUserId: string) => {
+  const handleClick = (
+    roomId: string,
+    otherUserId: string,
+    isEmptyRoom: boolean
+  ) => {
     const fetchChatList = async () => {
       try {
         const chatListData: ServerChat[] = await fetchData(
@@ -76,7 +80,11 @@ const ChatsPage = () => {
     };
     setCurrentRoomId(roomId);
     setOtherUserId(otherUserId);
-    fetchChatList();
+    if (isEmptyRoom) {
+      setChatList([]);
+    } else {
+      fetchChatList();
+    }
   };
 
   return (

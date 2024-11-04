@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { io, Socket } from "socket.io-client";
 import { ServerChat, ChatRoomInfo } from "../../types/Chat";
 import { SERVER_URL } from "../../constants/Chat";
+import useChatStore from "../../store/useChatStore";
 
 interface UseSocketProps {
   userId: string;
@@ -81,6 +82,14 @@ const useSocket = ({
         targetId,
         message: msg,
       });
+    }
+    // Zustand 스토어에서 userChatRooms에서 해당 roomId가 있는지 확인
+    const userRooms = useChatStore.getState().userChatRooms[userId] || [];
+    const roomExists = userRooms.some((room) => room.otherUserId === targetId);
+
+    // roomId가 존재하는 경우, 채팅방 제거
+    if (roomExists) {
+      useChatStore.getState().removeChatRoom(userId, targetId);
     }
   };
 
