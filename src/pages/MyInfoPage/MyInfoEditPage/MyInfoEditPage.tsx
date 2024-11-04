@@ -163,26 +163,27 @@ const MyInfoEditPage = () => {
       <CustomSelect
         label="직무"
         options={PositionOptions}
-        placeholder={
-          userInformation.selectPosition
-            ? userInformation.selectPosition.label
-            : "직무를 선택해주세요."
-        }
+        placeholder={"직무를 선택해주세요."}
         onChange={handleSelectChange("selectPosition")}
-        value={userInformation.selectPosition || null}
+        value={
+          userInformation.selectPosition && userInformation.selectPosition.value
+            ? userInformation.selectPosition
+            : null
+        }
         isMulti={false}
         variant="default"
       />
       <CustomSelect
         label="소속"
         options={AffiliationOptions}
-        placeholder={
-          userInformation.selectAffiliation
-            ? userInformation.selectAffiliation.label
-            : "소속을 선택해주세요."
-        }
+        placeholder="소속을 선택해주세요."
         onChange={handleSelectChange("selectAffiliation")}
-        value={userInformation.selectAffiliation || null}
+        value={
+          userInformation.selectAffiliation &&
+          userInformation.selectAffiliation.value
+            ? userInformation.selectAffiliation
+            : null
+        }
         isMulti={false}
         variant="default"
       />

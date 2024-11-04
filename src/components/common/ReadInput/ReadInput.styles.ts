@@ -12,7 +12,7 @@ export const Container = styled.div`
 
 export const Label = styled.label`
   font-size: var(--font-size-head-small);
-  margin-bottom: 8px;
+  margin-bottom: 7px;
   font-weight: var(--font-weight-semi-bold);
   font-family: inherit;
 `;
@@ -22,14 +22,14 @@ export const StyledInput = styled.input<StyledInputProps>`
   width: 600px;
   border-radius: 10px;
   padding: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-size: var(--font-size-head-small);
   font-weight: var(--font-weight-semi-bold);
   font-family: "DM Sans", sans-serif;
   align-items: center;
   display: flex;
   background-color: var(--font-color-white);
-  border: 1px solid #e6e6e6;
+  border: 1px solid #e4e4e4;
 
   color: ${(props) => {
     switch (props.variant) {
