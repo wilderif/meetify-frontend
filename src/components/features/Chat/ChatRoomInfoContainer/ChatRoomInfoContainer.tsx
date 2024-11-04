@@ -38,7 +38,7 @@ const ChatRoomContainer = ({
           unReadMsgCnt={chatRoom.unReadMsgCnt}
           lastMsg={chatRoom.lastMsg}
           creadtedAt={chatRoom.creadtedAt}
-          onClick={() => onChatRoomClick(chatRoom.roomId, chatRoom.name)} // 클릭 시 roomId 전달
+          onClick={() => onChatRoomClick(chatRoom.roomId, chatRoom.otherUserId)} // 클릭 시 roomId 전달
           roomId={chatRoom.roomId}
           selectedRoomId={selectedRoomId}
         />
