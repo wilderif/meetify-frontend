@@ -34,7 +34,7 @@ const ProfileDropdown: React.FC<DropdownProps> = ({
 
   const handleClickMyPage = () => {
     closeDropdown();
-    navigate("/my-info");
+    navigate("/my-info/edit");
   };
 
   const handleClickMyLike = () => {
