@@ -3,7 +3,7 @@ import styled from "styled-components";
 const ChatsPageWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin: 0px 200px 0px 200px;
+  margin: 50px 200px 0px 200px;
   gap: 24px;
 `;
 

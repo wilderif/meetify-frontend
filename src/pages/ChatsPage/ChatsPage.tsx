@@ -20,7 +20,6 @@ const ChatsPage = () => {
 
   const userId = useAuthStore((state) => state.email); // 현재 로그인한 유저 아이디
   const userNickName = useAuthStore((state) => state.nickname); // 현재 로그인한 유저 아이디
-  const setNickname = useAuthStore((state) => state.setNickname); // 현재 로그인한 유저 아이디
   // 소켓 훅 사용
   const { sendMessage, sendUnReadMessage } = useSocket({
     userId,
@@ -60,21 +59,6 @@ const ChatsPage = () => {
         console.error("Error fetching chat rooms:", error);
       }
     };
-    /**
-     * TODO: 66~77 line 로그인 이후에 NickName 세팅 부분 완료 되면 삭제
-     */
-    const fetchUserNickName = async () => {
-      try {
-        const nickName: string = await fetchData(
-          `${SERVER_URL}/nickname/${userId}`
-        );
-        setNickname(nickName);
-        console.log("내 닉네임 초기 세팅 : ", nickName);
-      } catch (error) {
-        console.error("Error fetching chat rooms:", error);
-      }
-    };
-    fetchUserNickName();
     fetchChatRooms();
   }, [userId]);
 
