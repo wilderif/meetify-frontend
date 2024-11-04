@@ -22,19 +22,21 @@ interface DropdownProps {
 }
 
 /**
- * TODO: ProfileDropdown 노출 숨김 로직 조건에 따라 컴포넌트가 호출되도록 수정 고려
+ * TODO:
+ * ProfileDropdown 노출 숨김 로직 조건에 따라 컴포넌트가 호출되도록 수정 고려
  * 현재는 isVisible 값에 따라 css로 노출 여부를 결정하고 있음
  */
 const ProfileDropdown: React.FC<DropdownProps> = ({
   isVisible,
   closeDropdown,
 }) => {
+  const userNickname = useAuthStore((state) => state.nickname);
   const navigate = useNavigate();
   const logout = useAuthStore((state) => state.logout);
 
   const handleClickMyPage = () => {
     closeDropdown();
-    navigate("/my-info");
+    navigate("/my-info/edit");
   };
 
   const handleClickMyLike = () => {
@@ -61,7 +63,7 @@ const ProfileDropdown: React.FC<DropdownProps> = ({
         <ProfileImageContainer>
           <ProfileImage src={DummyProfileImage} usageType="card" />
         </ProfileImageContainer>
-        User Name
+        {userNickname && <span>{userNickname}</span>}
       </ProfileContainer>
       <Divider />
       <MenuItem
