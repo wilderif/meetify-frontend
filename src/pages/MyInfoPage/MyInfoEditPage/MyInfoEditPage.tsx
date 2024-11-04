@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { SelectOption } from "../../../types/types";
 import {
   ButtonContainer,
   MyInfoEditPageWrapper,
@@ -17,8 +19,6 @@ import {
 } from "../../../constants/options";
 
 import DummyProfileImage from "../../../assets/profile-image/dummy-profile-image.png";
-import { useNavigate } from "react-router-dom";
-import { SelectOption } from "../../../types/types";
 
 /**
  * CustomSelect 컴포넌트의 width 값이 600px로 고정되어 있어,
