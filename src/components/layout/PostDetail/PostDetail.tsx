@@ -11,25 +11,30 @@ import ReadInput from "../../common/ReadInput/ReadInput";
 import ReadTitle from "../../common/ReadTitle/ReadTitle";
 import handIcon from "../../../assets/post-image/hand.svg";
 
+interface UserProfile {
+  name: string;
+  profile_image: string;
+}
+
 interface PostDetailProps {
   postData: {
     id: string;
     title: string;
-    author: string;
-    createdAt: string;
-    participationMethod: string;
-    recruitmentCapacity: string;
+    content: string;
     interests: string[];
     position: string;
-    duration: string;
-    deadline: string;
-    content: string;
+    participation_method: string;
+    recruitment_capacity?: string;
+    duration?: string;
+    recruitment_deadline?: string;
+    created_at: string;
+    user_profile: UserProfile;
   };
   onEdit: () => void;
   onDelete: () => void;
 }
 
-const PostDetail: React.FC<PostDetailProps> = ({
+const ProjectDetail: React.FC<PostDetailProps> = ({
   postData,
   onEdit,
   onDelete,
@@ -40,37 +45,52 @@ const PostDetail: React.FC<PostDetailProps> = ({
         <ReadTitle
           text={postData.title}
           iconSrc={handIcon}
-          author={postData.author}
-          authorImageSrc={handIcon}
-          createdAt={postData.createdAt}
+          author={postData.user_profile.name}
+          authorImageSrc={postData.user_profile.profile_image}
+          createdAt={postData.created_at}
         />
         <Row>
           <FormColumn>
-            <ReadInput label="진행 방식" value={postData.participationMethod} />
+            <ReadInput
+              label="진행 방식"
+              value={postData.participation_method}
+            />
           </FormColumn>
-          <FormColumn>
-            <ReadInput label="모집 인원" value={postData.recruitmentCapacity} />
-          </FormColumn>
+          {postData.recruitment_capacity && (
+            <FormColumn>
+              <ReadInput
+                label="모집 인원"
+                value={postData.recruitment_capacity.toString()}
+              />
+            </FormColumn>
+          )}
           <FormColumn>
             <ReadInput
               label="기술 스택"
               value={postData.interests.join(", ")}
             />
           </FormColumn>
-          <FormColumn>
-            <ReadInput label="진행 기간" value={postData.duration} />
-          </FormColumn>
+          {postData.duration && (
+            <FormColumn>
+              <ReadInput label="진행 기간" value={postData.duration} />
+            </FormColumn>
+          )}
           <FormColumn>
             <ReadInput label="모집 포지션" value={postData.position} />
           </FormColumn>
-          <FormColumn>
-            <ReadInput label="모집 마감일" value={postData.deadline} />
-          </FormColumn>
+          {postData.recruitment_deadline && (
+            <FormColumn>
+              <ReadInput
+                label="모집 마감일"
+                value={postData.recruitment_deadline}
+              />
+            </FormColumn>
+          )}
         </Row>
       </Section>
 
       <Section>
-        <ReadTitle text="소개내용" iconSrc={handIcon} />
+        <ReadTitle text="소개 내용" iconSrc={handIcon} />
         <Content>{postData.content}</Content>
       </Section>
 
@@ -92,4 +112,4 @@ const PostDetail: React.FC<PostDetailProps> = ({
   );
 };
 
-export default PostDetail;
+export default ProjectDetail;
