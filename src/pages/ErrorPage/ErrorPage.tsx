@@ -1,5 +1,11 @@
+import LoadingSpinner from "../../components/common/LoadingSpinner/LoadingSpinner";
+
 const ErrorPage = () => {
-  return <div>Error Page</div>;
+  return (
+    <>
+      <LoadingSpinner />
+    </>
+  );
 };
 
 export default ErrorPage;

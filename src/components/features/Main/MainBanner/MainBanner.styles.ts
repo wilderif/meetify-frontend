@@ -55,9 +55,7 @@ export const HighlightedLogo = styled.span`
   position: absolute;
   font-family: "HakgyoansimDunggeunmisoTTF-B";
   font-size: var(--font-size-head-extraLarge);
-  background: linear-gradient(120deg, #ff935a 28.37%, #ffdc78 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--primary-color-org);
   animation: ${trackingInExpand} 1s ease-out;
   display: inline-block;
 `;
