@@ -22,8 +22,11 @@ interface DropdownProps {
 }
 
 /**
- * TODO: ProfileDropdown 노출 숨김 로직 조건에 따라 컴포넌트가 호출되도록 수정 고려
+ * TODO:
+ * ProfileDropdown 노출 숨김 로직 조건에 따라 컴포넌트가 호출되도록 수정 고려
  * 현재는 isVisible 값에 따라 css로 노출 여부를 결정하고 있음
+ *
+ * Nickname이 없을 수 있어서 User Name 보여주는 부분 어떤 방식으로 처리할지 다시 고민
  */
 const ProfileDropdown: React.FC<DropdownProps> = ({
   isVisible,

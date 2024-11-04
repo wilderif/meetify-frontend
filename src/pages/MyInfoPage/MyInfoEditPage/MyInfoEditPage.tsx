@@ -28,10 +28,6 @@ import useAuthApi from "../../../hooks/useAuthApi";
  * 우선 MyInfoEditPageWrapper의 width 값을 600px로 설정하였습니다.
  *
  * TODO:
- * placeholder
- * - 사용자 정보 유무에 따라 default 값과 db의 값 선택하여 설정
- * - 전역 상태와 백앤드 로직 작업 후 수정
- *
  * 프로필 이미지 수정 기능, 수정 아이콘 추가
  */
 const MyInfoEditPage = () => {
@@ -47,11 +43,6 @@ const MyInfoEditPage = () => {
 
   const { deleteUser } = useAuthApi();
 
-  /**
-   * TODO:
-   * useEffect 내부에서 초기에 사용자 정보를 불러오는 함수 호출
-   * db에 사용자 정보가 있다면 state에 저장
-   */
   useEffect(() => {
     const fetchUserProfileData = async () => {
       try {
@@ -60,8 +51,6 @@ const MyInfoEditPage = () => {
         }
 
         const userProfileData = await fetchUserProfile(loginEmail);
-
-        console.log("userProfileData", userProfileData);
 
         setUserInformation({
           inputNickname: userProfileData.nickname,
@@ -88,7 +77,6 @@ const MyInfoEditPage = () => {
     };
 
     fetchUserProfileData();
-    console.log("userInformation", userInformation);
   }, []);
 
   /**
