@@ -1,14 +1,20 @@
 import styled from "styled-components";
 
 const ChatRoomWrapper = styled.div`
-  min-width: 500px;
-  min-height: 500px;
+  min-width: 512px;
+  width: 100%;
+  min-height: 600px;
+  max-height: 700px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 24px;
 
-  .chat-item {
+  background-color: var(--color-chat-bg);
+  gap: 24px;
+  border-radius: 16px;
+
+  .chat--item {
     max-height: 800px;
     overflow-y: auto;
     display: flex;
@@ -16,10 +22,21 @@ const ChatRoomWrapper = styled.div`
     gap: 12px;
   }
 
-  .chat-date-item {
+  .chat--date--item {
     display: flex;
     flex-direction: column;
     gap: 12px;
+  }
+
+  &.no--msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-chat-bg);
+
+    font-size: var(--font-size-head-large);
+    font-weight: var(--font-weight-bold);
   }
 `;
 

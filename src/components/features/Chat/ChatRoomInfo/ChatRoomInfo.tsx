@@ -40,10 +40,12 @@ const ChatRoomItem = ({
       className={roomId === selectedRoomId ? "active" : ""}
       onClick={onClick}
     >
-      <img src={imgUrl}></img>
-      <div className="name--and--msg">
-        <strong>{name}</strong>
-        <span>{lastMsg}</span>
+      <div className="profile--and--msg">
+        <img src={imgUrl}></img>
+        <div className="name--and--msg">
+          <strong>{name}</strong>
+          <span>{lastMsg}</span>
+        </div>
       </div>
       <div className="time--and--cnt">
         <div>{lastMsgTime}</div>
