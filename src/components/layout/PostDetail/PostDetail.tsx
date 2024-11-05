@@ -54,6 +54,7 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
             <ReadInput
               label="진행 방식"
               value={postData.participation_method}
+              variant="primary"
             />
           </FormColumn>
           {postData.recruitment_capacity && (
@@ -61,6 +62,7 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
               <ReadInput
                 label="모집 인원"
                 value={postData.recruitment_capacity.toString()}
+                variant="primary"
               />
             </FormColumn>
           )}
@@ -68,27 +70,36 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
             <ReadInput
               label="기술 스택"
               value={postData.interests.join(", ")}
+              variant="primary"
             />
           </FormColumn>
           {postData.duration && (
             <FormColumn>
-              <ReadInput label="진행 기간" value={postData.duration} />
+              <ReadInput
+                label="진행 기간"
+                value={postData.duration}
+                variant="primary"
+              />
             </FormColumn>
           )}
           <FormColumn>
-            <ReadInput label="모집 포지션" value={postData.position} />
+            <ReadInput
+              label="모집 포지션"
+              value={postData.position}
+              variant="primary"
+            />
           </FormColumn>
           {postData.recruitment_deadline && (
             <FormColumn>
               <ReadInput
                 label="모집 마감일"
                 value={postData.recruitment_deadline}
+                variant="primary"
               />
             </FormColumn>
           )}
         </Row>
       </Section>
-
       <Section>
         <ReadTitle text="소개 내용" iconSrc={handIcon} />
         <Content>{postData.content}</Content>

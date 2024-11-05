@@ -103,7 +103,7 @@ const MyInfoEditPage = () => {
         userInformation.inputIntroduction,
         userInformation.selectInterests
       );
-      navigate("/");
+      navigate("/my-info");
     } catch (error) {
       console.error("프로필 저장 중 오류 발생:", error);
     }
@@ -147,7 +147,9 @@ const MyInfoEditPage = () => {
           alt="user profile image"
           usageType="userInformation"
         />
-        <div style={{ marginTop: "1rem" }}>User Name 님 환영해요.</div>
+        <div style={{ marginTop: "1rem" }}>
+          {userInformation.inputNickname} 님 환영해요.
+        </div>
       </ProfileContainer>
       <Input
         label="닉네임"
@@ -163,26 +165,27 @@ const MyInfoEditPage = () => {
       <CustomSelect
         label="직무"
         options={PositionOptions}
-        placeholder={
-          userInformation.selectPosition
-            ? userInformation.selectPosition.label
-            : "직무를 선택해주세요."
-        }
+        placeholder={"직무를 선택해주세요."}
         onChange={handleSelectChange("selectPosition")}
-        value={userInformation.selectPosition || null}
+        value={
+          userInformation.selectPosition && userInformation.selectPosition.value
+            ? userInformation.selectPosition
+            : null
+        }
         isMulti={false}
         variant="default"
       />
       <CustomSelect
         label="소속"
         options={AffiliationOptions}
-        placeholder={
-          userInformation.selectAffiliation
-            ? userInformation.selectAffiliation.label
-            : "소속을 선택해주세요."
-        }
+        placeholder="소속을 선택해주세요."
         onChange={handleSelectChange("selectAffiliation")}
-        value={userInformation.selectAffiliation || null}
+        value={
+          userInformation.selectAffiliation &&
+          userInformation.selectAffiliation.value
+            ? userInformation.selectAffiliation
+            : null
+        }
         isMulti={false}
         variant="default"
       />

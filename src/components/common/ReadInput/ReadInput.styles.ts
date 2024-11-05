@@ -1,29 +1,44 @@
 import styled from "styled-components";
 
+interface StyledInputProps {
+  variant?: "primary" | "placeholder" | "default";
+}
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 `;
 
 export const Label = styled.label`
   font-size: var(--font-size-head-small);
-  margin-bottom: 8px;
+  margin-bottom: 7px;
   font-weight: var(--font-weight-semi-bold);
   font-family: inherit;
 `;
 
-export const StyledInput = styled.input`
-  min-height: 60px;
+export const StyledInput = styled.input<StyledInputProps>`
+  min-height: 62px;
   width: 600px;
   border-radius: 10px;
-  padding: 0 15px;
+  padding: 12px;
+  margin-bottom: 10px;
   font-size: var(--font-size-head-small);
   font-weight: var(--font-weight-semi-bold);
   font-family: "DM Sans", sans-serif;
   align-items: center;
   display: flex;
-  color: var(--font-color-light);
   background-color: var(--font-color-white);
-  border: 1px solid #c4c4c4;
+  border: 1px solid #e4e4e4;
+
+  color: ${(props) => {
+    switch (props.variant) {
+      case "primary":
+        return "var(--primary-color-org)"; // primary 색상
+      case "placeholder":
+        return "var(--bg-gray-light)"; // 연한 회색
+      default:
+        return "var(--font-color-dark)"; // 기본 검정색
+    }
+  }};
 `;
