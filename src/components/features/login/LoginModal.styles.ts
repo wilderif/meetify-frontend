@@ -80,13 +80,13 @@ export const InputWrapper = styled.div`
   }
 `;
 
-export const Input = styled.input<{ hasIcon?: boolean; isError?: boolean }>`
+export const Input = styled.input<{ $hasIcon?: boolean; $isError?: boolean }>`
   display: block;
   padding: 10px 20px;
-  padding-right: ${({ hasIcon }) => (hasIcon ? "40px" : "20px")};
+  padding-right: ${({ $hasIcon }) => ($hasIcon ? "40px" : "20px")};
   color: var(--font-color-dark);
   border: 1px solid
-    ${({ isError }) => (isError ? "red" : "var(--bg-gray-light)")};
+    ${({ $isError }) => ($isError ? "red" : "var(--bg-gray-light)")};
   border-radius: 30px;
   width: 100%;
   height: 44px;
