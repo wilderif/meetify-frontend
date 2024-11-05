@@ -1,6 +1,9 @@
-import ChatsPageWrapper from "./ChatsPage.style";
+import ChatsPageWrapper, {
+  ChatRoomInfoContainerWrapper,
+  ToggleSidebarButton,
+} from "./ChatsPage.style";
 import { fetchData } from "../../utils/dataUtil";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ChatRoomInfo, ServerChat } from "../../types/Chat";
 import ChatRoomInfoContainer from "../../components/features/Chat/ChatRoomInfoContainer/ChatRoomInfoContainer";
 import ChatRoom from "../../components/features/Chat/ChatRoom/ChatRoom";
@@ -8,10 +11,15 @@ import useAuthStore from "../../store/useAuthStore";
 import useAuthCheck from "../../hooks/Chat/useAuthCheck";
 import useSocket from "../../hooks/Chat/useSocket";
 import { SERVER_URL } from "../../constants/Chat";
+import ListIcon from "../../components/common/icon/ListIcon/ListIcon";
 
 const ChatsPage = () => {
   /* 1. 로그인 상태가 아니면 Error 페이지로 리다이렉트 */
   useAuthCheck();
+
+  const [isSidebarOpen, setSidebarOpen] = useState(false); //반응형 사이드 바 관련 상태
+  const sidebarRef = useRef<HTMLDivElement>(null); //반응형 사이드 바 관련 ref
+  const toggleSidebar = () => setSidebarOpen(!isSidebarOpen); //반응형 사이드 바 온클릭 함수
 
   const [data, setData] = useState<ChatRoomInfo[] | null>(null); //유저별 채팅 방 리스트
   const [chatList, setChatList] = useState<ServerChat[]>([]); //채팅 방 채팅리스트
@@ -87,13 +95,40 @@ const ChatsPage = () => {
     }
   };
 
+  // 포커스 벗어나면 사이드바 닫기
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target as Node)
+      ) {
+        setSidebarOpen(false);
+      }
+    };
+
+    if (isSidebarOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isSidebarOpen]);
+
   return (
     <ChatsPageWrapper>
-      <ChatRoomInfoContainer
-        chatRoomList={data}
-        onChatRoomClick={handleClick}
-        selectedRoomId={currentRoomId}
-      />
+      <ToggleSidebarButton onClick={toggleSidebar}>
+        {isSidebarOpen ? "" : <ListIcon />}
+      </ToggleSidebarButton>
+      <ChatRoomInfoContainerWrapper ref={sidebarRef} isOpen={isSidebarOpen}>
+        <ChatRoomInfoContainer
+          chatRoomList={data}
+          onChatRoomClick={handleClick}
+          selectedRoomId={currentRoomId}
+        />
+      </ChatRoomInfoContainerWrapper>
       <ChatRoom
         chatList={chatList}
         roomId={currentRoomId}
