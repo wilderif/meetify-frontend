@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const ChatRoomWrapper = styled.div`
-  min-width: 512px;
+  min-width: 412px;
   width: 100%;
-  min-height: 600px;
+  min-height: 700px;
   max-height: 700px;
 
   display: flex;
