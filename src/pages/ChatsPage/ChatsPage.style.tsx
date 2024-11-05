@@ -15,7 +15,7 @@ const ChatsPageWrapper = styled.div`
 export default ChatsPageWrapper;
 
 interface ChatRoomInfoContainerWrapperProps {
-  isOpen: boolean;
+  $isOpen: boolean;
 }
 
 export const ChatRoomInfoContainerWrapper = styled.div<ChatRoomInfoContainerWrapperProps>`
@@ -34,8 +34,8 @@ export const ChatRoomInfoContainerWrapper = styled.div<ChatRoomInfoContainerWrap
 
     z-index: 100;
     // 애니메이션 효과
-    transform: ${({ isOpen }) =>
-      isOpen ? "translateX(0)" : "translateX(-100%)"};
+    transform: ${({ $isOpen }) =>
+      $isOpen ? "translateX(0)" : "translateX(-100%)"};
     transition: transform 0.3s ease-in-out;
   }
 `;
