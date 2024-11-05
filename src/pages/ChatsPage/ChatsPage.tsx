@@ -122,7 +122,7 @@ const ChatsPage = () => {
       <ToggleSidebarButton onClick={toggleSidebar}>
         {isSidebarOpen ? "" : <ListIcon />}
       </ToggleSidebarButton>
-      <ChatRoomInfoContainerWrapper ref={sidebarRef} isOpen={isSidebarOpen}>
+      <ChatRoomInfoContainerWrapper ref={sidebarRef} $isOpen={isSidebarOpen}>
         <ChatRoomInfoContainer
           chatRoomList={data}
           onChatRoomClick={handleClick}
