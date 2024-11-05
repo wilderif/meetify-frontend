@@ -10,8 +10,8 @@ interface TechIconContainerProps {
 const TechIconContainer = ({ techStackList }: TechIconContainerProps) => {
   return (
     <StyledTechIconContainer>
-      {techStackList.map((tech) => (
-        <TechIcon key={tech} techStack={tech} />
+      {techStackList.map((tech, idx) => (
+        <TechIcon key={idx} techStack={tech} />
       ))}
     </StyledTechIconContainer>
   );

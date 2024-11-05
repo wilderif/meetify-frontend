@@ -1,5 +1,4 @@
 const Interests = {
-  UNDETERMINED: "미정",
   TYPESCRIPT: "Typescript",
   JAVASCRIPT: "Javascript",
   SWIFT: "Swift",

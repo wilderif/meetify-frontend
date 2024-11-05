@@ -10,8 +10,8 @@ interface PositionTagContainerProps {
 const PositionTagContainer = ({ positionList }: PositionTagContainerProps) => {
   return (
     <StyledPositionTagContainer>
-      {positionList.map((position) => (
-        <PositionTag key={position} position={position} />
+      {positionList.map((position, idx) => (
+        <PositionTag key={idx} position={position} />
       ))}
     </StyledPositionTagContainer>
   );
