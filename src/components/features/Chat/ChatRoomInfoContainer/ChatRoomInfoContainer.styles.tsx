@@ -1,13 +1,25 @@
 import styled from "styled-components";
 
-const ChatRoomInfoContainerWrapper = styled.div`
-  min-width: 300px;
+export const ChatRoomInfoContainerWrapper = styled.div`
+  min-width: 350px;
+  width: 100%;
   display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  background-color: var(--color-chat-bg);
+`;
+export const EmptyChatRoomInfoContainerWrapper = styled.div`
+  min-width: 512px;
   width: max-content;
   border-radius: 16px;
 
+  display: flex;
   flex-direction: column;
-  background-color: var(--color-gray-light);
-`;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-chat-bg);
 
-export default ChatRoomInfoContainerWrapper;
+  font-size: var(--font-size-head-small);
+  font-weight: var(--font-weight-bold);
+`;

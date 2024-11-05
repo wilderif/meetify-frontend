@@ -14,8 +14,10 @@ export interface ChatRoomInfo {
   roomId: string;
   /** 프로필 이미지 경로 */
   imgUrl?: string;
-  /** 닉네임 */
+  /** 타 유저 닉네임 */
   name: string;
+  /** 타 유저 아이디 */
+  otherUserId: string;
   /** 마지막에 온 메시지 */
   lastMsg?: string;
   /** 안 읽은 메시지 개수 */
