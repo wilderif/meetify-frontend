@@ -65,11 +65,13 @@ const MainPage = () => {
         </SearchBarWrapper>
       </FilterWrapper>
       <CardContainer postList={postList} />
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPage}
-        onPageChange={handlePageChange}
-      />
+      {postList && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPage}
+          onPageChange={handlePageChange}
+        />
+      )}
     </>
   );
 };
