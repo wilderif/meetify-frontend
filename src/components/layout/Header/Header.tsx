@@ -27,7 +27,11 @@ import useModal from "../../../hooks/useModal";
  * Profile Image 클릭시 마이페이지로 이동
  */
 
-const Header = ({ isMainPage }) => {
+interface HeaderProps {
+  isMainPage: boolean;
+  isChatPage: boolean;
+}
+const Header = ({ isMainPage, isChatPage }: HeaderProps) => {
   const navigate = useNavigate();
   const {
     isLogin,
@@ -102,7 +106,7 @@ const Header = ({ isMainPage }) => {
             </h1>
           </Link>
         </LogoContainer>
-        {!isMainPage && (
+        {!isMainPage && !isChatPage && (
           <button onClick={() => navigate(-1)}>
             <BackIcon />
           </button>
