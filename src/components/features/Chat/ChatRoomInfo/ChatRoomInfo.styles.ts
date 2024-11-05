@@ -11,7 +11,7 @@ const ChatRoomInfoWrapper = styled.div`
   padding: 10px;
 
   &:hover {
-    background-color: var(--color-white);
+    background-color: var(--bg-gray-light);
   }
   cursor: pointer;
 
@@ -41,7 +41,7 @@ const ChatRoomInfoWrapper = styled.div`
   }
 
   &.active {
-    background-color: var(--color-white);
+    background-color: var(--bg-gray-light);
   }
 `;
 

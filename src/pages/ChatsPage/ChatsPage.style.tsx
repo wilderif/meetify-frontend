@@ -8,6 +8,8 @@ const ChatsPageWrapper = styled.div`
 
   @media (max-width: 900px) {
     margin: 50px 20px 0px 20px;
+    height: calc(100vh - 50px); /* 모바일에서도 높이 조정 */
+    overflow: hidden; /* 필요 시 세로 스크롤 제거 */
   }
 `;
 export default ChatsPageWrapper;
@@ -20,7 +22,7 @@ export const ChatRoomInfoContainerWrapper = styled.div<ChatRoomInfoContainerWrap
   display: flex;
 
   @media (max-width: 900px) {
-    min-width: 350px;
+    min-width: 250px;
     min-height: 700px;
 
     position: absolute;
@@ -28,7 +30,7 @@ export const ChatRoomInfoContainerWrapper = styled.div<ChatRoomInfoContainerWrap
 
     border-radius: 16px;
 
-    background-color: var(--color-chat-bg);
+    background-color: var(--color-white);
 
     z-index: 100;
     // 애니메이션 효과
