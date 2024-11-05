@@ -89,7 +89,9 @@ const ChatRoom = ({
                 convertDate2Str(
                   chatGroups[index - 1].chatList[0].creadtedAt
                 ) ? (
-                <ChatDay date={msgDay} />
+                <div className="chat--day">
+                  <ChatDay date={msgDay} />
+                </div>
               ) : null}
               <ChatMsgContainer
                 key={index}
