@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useChatStore from "../../store/useChatStore";
 import useAuthStore from "../../store/useAuthStore";
@@ -13,11 +13,9 @@ const TestChat = () => {
   const navigate = useNavigate();
   const userId = useAuthStore((state) => state.email); // 현재 로그인한 유저 아이디
   const addChatRoom = useChatStore((state) => state.addChatRoom);
-  const chatRooms = useChatStore((state) => state.userChatRooms[userId]);
 
   const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log(userId);
     if (!targetId.trim()) {
       console.log("타겟 ID를 입력해주세요.");
       return;
@@ -34,6 +32,9 @@ const TestChat = () => {
         // 응답값이 true일 때만 addChatRoom 호출
         if (!response.data.exists) {
           addChatRoom(userId, {
+            /**
+             * TODO: 전역 상태에 있는 닉네임 가져오도록 구현(게시글 내에서)
+             */
             name: `타겟: ${targetId}`, // 타겟 닉네임
             otherUserId: targetId, // 타겟 아이디
           });
@@ -47,15 +48,8 @@ const TestChat = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("chatRooms");
-    if (chatRooms) {
-      console.log(chatRooms);
-    }
-  }, [chatRooms]);
-
   return (
-    <div className="input-area">
+    <div style={{ padding: "100px" }} className="input-area">
       <input
         type="text"
         value={targetId}
