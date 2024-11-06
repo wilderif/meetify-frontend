@@ -1,8 +1,10 @@
 export interface PostListReqParams {
+  // Post ID
+  postId?: string;
   // 페이지 번호
-  page: number;
+  page?: number;
   // 페이지당 게시글 수
-  limit: number;
+  limit?: number;
   // 검색어
   searchTerm?: string;
   // 게시글 타입 (탭 구분)

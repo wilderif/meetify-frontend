@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import ProfileImage from "../ProfileImage/ProfileImage";
 import { PostType, Interests, Position } from "../../../constants/index";
 import { formatDate, isToday } from "../../../utils/dateUtils";
@@ -18,6 +20,7 @@ import {
   TechIconContainer,
 } from "./elements/index";
 import { PostListResParams } from "../../../types/PostList";
+import useMyLikePage from "../../../hooks/useMyLikePage";
 /**
  * TODO
  * 임시로 사용하는 프로필 이미지로 첨부파일 업로드기능 개발 시, 실제 프로필이미지로 교체
@@ -29,8 +32,10 @@ const MAX_POSITION_DISPLAY = 3;
 const MAX_TECH_STACK_DISPLAY = 8;
 
 const Card = ({
+  /** 게시글 고유번호 */
+  id,
   /** 관심글 유/무 */
-  isLiked,
+  isLiked: initialIsLiked,
   /** 모집유형 */
   type,
   /** 작성일 */
@@ -46,11 +51,16 @@ const Card = ({
   /** 작성자 닉네임 */
   user_profile,
 }: PostListResParams) => {
+  const [isLiked, setIsLiked] = useState(initialIsLiked);
+  const location = useLocation();
+  const isLikePage = location.pathname === "/my-like";
+
   // 날짜 포맷팅
   const createDate = new Date(created_at);
   const formattedDate = recruitment_deadline
     ? formatDate(new Date(recruitment_deadline))
     : "미정";
+
   // (포지션, 기술 스택) 최대 표시 개수 노출
   const displayedPositions = sliceList(
     position.map((pos) => pos as keyof typeof Position),
@@ -61,7 +71,16 @@ const Card = ({
     MAX_TECH_STACK_DISPLAY
   );
 
-  const handleLikeButtonClick = () => {};
+  // 관심글 추가/삭제 핸들러
+  const { handleLikeAdd, handleLikeRemove } = useMyLikePage(isLikePage);
+  const handleLikeButtonClick = () => {
+    if (isLiked) {
+      handleLikeRemove(id);
+    } else {
+      handleLikeAdd(id);
+    }
+    setIsLiked(!isLiked);
+  };
 
   return (
     <StyledCard>

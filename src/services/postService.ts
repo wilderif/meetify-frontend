@@ -10,3 +10,31 @@ export const getPostList = async (params: PostListReqParams) => {
     params
   );
 };
+
+export const getMyPostList = async (params: PostListReqParams) => {
+  return axios.post<{ postList: PostListResParams[]; totalPage: number }>(
+    `${API_BASE_URL}/postList/my-posts`,
+    params
+  );
+};
+
+export const getLikePostList = async (params: PostListReqParams) => {
+  return axios.post<{ postList: PostListResParams[]; totalPage: number }>(
+    `${API_BASE_URL}/like-post`,
+    params
+  );
+};
+
+export const addLikePostList = async (params: PostListReqParams) => {
+  return axios.post<{ postList: PostListResParams[]; totalPage: number }>(
+    `${API_BASE_URL}/like-post/add`,
+    params
+  );
+};
+
+export const removeLikePostList = async (params: PostListReqParams) => {
+  return axios.post<{ postList: PostListResParams[]; totalPage: number }>(
+    `${API_BASE_URL}/like-post/remove`,
+    params
+  );
+};

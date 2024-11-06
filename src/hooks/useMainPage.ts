@@ -18,6 +18,7 @@ interface UseMainPageReturn {
   selectPostType: string;
 }
 
+// TODO 전역으로 변경
 // 포스트 최대 표시 개수 정의
 const MAX_POST_DISPLAY = 8;
 
