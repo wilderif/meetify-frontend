@@ -11,6 +11,7 @@ export const StyledCard = styled.div`
   justify-content: space-between;
   flex-direction: column;
   gap: 12px;
+  cursor: pointer;
 `;
 
 export const Header = styled.div`
