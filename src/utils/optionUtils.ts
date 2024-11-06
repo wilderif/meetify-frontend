@@ -5,7 +5,7 @@ export const convertToSelectOptions = (
   obj: Record<string, string>
 ): SelectOption[] => {
   return Object.entries(obj).map(([key, label]) => ({
-    value: key,
+    value: key.toUpperCase(),
     label,
   }));
 };
