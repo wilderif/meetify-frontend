@@ -21,6 +21,8 @@ import {
 } from "./elements/index";
 import { PostListResParams } from "../../../types/PostList";
 import useMyLikePage from "../../../hooks/useMyLikePage";
+import useModal from "../../../hooks/useModal";
+import LoginModal from "../../features/login/LoginModal";
 /**
  * TODO
  * 임시로 사용하는 프로필 이미지로 첨부파일 업로드기능 개발 시, 실제 프로필이미지로 교체
@@ -72,10 +74,27 @@ const Card = ({
     MAX_TECH_STACK_DISPLAY
   );
 
+  // 관심글 로그인 체크
+  const {
+    isLogin,
+    isModalOpen,
+    handleClick,
+    handleCloseModal,
+    toggleModalView,
+    handleLoginSuccess,
+  } = useModal();
+
   // 관심글 추가/삭제 핸들러
   const { handleLikeAdd, handleLikeRemove } = useMyLikePage(isLikePage);
   const handleLikeButtonClick = (event: React.MouseEvent) => {
     event?.stopPropagation();
+    if (!isLogin) {
+      handleClick();
+    } else {
+      handleLikeAddRemove();
+    }
+  };
+  const handleLikeAddRemove = () => {
     if (isLiked) {
       handleLikeRemove(id);
     } else {
@@ -84,32 +103,43 @@ const Card = ({
     setIsLiked(!isLiked);
   };
 
+  // 디테일 페이지 이동
   const handleCardClick = () => {
     navigate(`/post/${id}`);
   };
 
   return (
-    <StyledCard onClick={handleCardClick}>
-      <Header>
-        <PostTag postType={type as keyof typeof PostType} />
-        {isToday(createDate) && <NewTag />}
-        <LikeButton
-          isLiked={isLiked}
-          onClick={(e: React.MouseEvent) => handleLikeButtonClick(e)}
+    <>
+      <StyledCard onClick={handleCardClick}>
+        <Header>
+          <PostTag postType={type as keyof typeof PostType} />
+          {isToday(createDate) && <NewTag />}
+          <LikeButton
+            isLiked={isLiked}
+            onClick={(e: React.MouseEvent) => handleLikeButtonClick(e)}
+          />
+        </Header>
+
+        <DateText>마감일 | {formattedDate}</DateText>
+        <Title>{title}</Title>
+
+        <PositionTagContainer positionList={displayedPositions} />
+        <TechIconContainer techStackList={displayedTechStacks} />
+
+        <Author>
+          <ProfileImage src={DummyProfileImage} usageType='card' />
+          <AuthorName>{user_profile.nickname}</AuthorName>
+        </Author>
+      </StyledCard>
+
+      {isModalOpen && !isLogin && (
+        <LoginModal
+          onClose={handleCloseModal}
+          onToggleView={toggleModalView}
+          onLoginSuccess={handleLoginSuccess}
         />
-      </Header>
-
-      <DateText>마감일 | {formattedDate}</DateText>
-      <Title>{title}</Title>
-
-      <PositionTagContainer positionList={displayedPositions} />
-      <TechIconContainer techStackList={displayedTechStacks} />
-
-      <Author>
-        <ProfileImage src={DummyProfileImage} usageType='card' />
-        <AuthorName>{user_profile.nickname}</AuthorName>
-      </Author>
-    </StyledCard>
+      )}
+    </>
   );
 };
 
