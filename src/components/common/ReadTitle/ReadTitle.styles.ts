@@ -4,8 +4,6 @@ export const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 12px 0;
-
-  font-family: "DM Sans", sans-serif;
 `;
 
 export const IconWrapper = styled.span`

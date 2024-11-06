@@ -12,7 +12,6 @@ export const DatePickerWrapper = styled.div`
 export const Label = styled.p`
   font-size: var(--font-size-head-small);
   font-weight: var(--font-weight-semi-bold);
-  font-family: "DM Sans", sans-serif;
   color: var(--font-color-dark);
   margin-top: -30px;
 `;
@@ -25,7 +24,6 @@ export const StyledDatePicker = styled(MuiDatePicker)`
     padding: 0 3px;
     font-size: var(--font-size-head-small);
     font-weight: var(--font-weight-semi-bold);
-    font-family: "DM Sans", sans-serif;
     align-items: center;
     display: flex;
   }
