@@ -127,7 +127,7 @@ export const ErrorMessage = styled.p`
 
 export const IconWrapper = styled.span`
   position: absolute;
-  top: 50%;
+  top: 22px;
   right: 10px;
   transform: translateY(-50%); /* isError일때 아이콘 처리 실패 */
   display: flex;
