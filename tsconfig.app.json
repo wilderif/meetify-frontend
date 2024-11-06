@@ -23,5 +23,5 @@
     "removeComments": true
   },
   "include": ["src"],
-  "exclude": ["src/**/*.stories.tsx"]
+  "exclude": ["src/**/*.stories.tsx", "src/**/*.stories.ts"]
 }
