@@ -6,7 +6,6 @@ export const TextAreaWrapper = styled.div`
   width: 100%;
   max-width: 100%;
   margin-bottom: 30px;
-  font-family: "DM Sans", sans-serif;
 `;
 
 export const Label = styled.label`
@@ -27,7 +26,6 @@ export const StyledTextArea = styled.textarea<StyledTextAreaProps>`
   padding-left: 10px;
   font-size: var(--font-size-head-small);
   font-weight: var(--font-weight-semi-bold);
-  font-family: "DM Sans", sans-serif;
   resize: none; /* 리사이즈 핸들 제거 */
   text-align: left;
   background-color: var(--font-color-white);

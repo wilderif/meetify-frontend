@@ -12,7 +12,8 @@ export const IconContainer = styled.button`
   justify-content: center;
   width: 50px;
   height: 50px;
-  background-color: var(--bg-gray-light);
+  background-color: var(--color-white);
+  color: var(--font-color-dark);
   border-radius: 50%;
   font-size: 24px;
   cursor: pointer;

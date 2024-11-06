@@ -6,7 +6,6 @@ export const TitleWrapper = styled.div`
   padding: 15px;
   border-bottom: 3px solid var(--color-gray-light);
   margin-bottom: 30px;
-  font-family: "DM Sans", sans-serif;
 `;
 
 export const StepIcon = styled.span`

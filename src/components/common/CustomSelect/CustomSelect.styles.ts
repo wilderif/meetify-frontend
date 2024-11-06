@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 
 export const SelectWrapper = styled.div`
   margin-bottom: 30px;
-  font-family: "DM Sans", sans-serif;
 `;
 
 export const Label = styled.p`

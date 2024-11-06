@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import ReactQuill from 'react-quill';
+import styled from "styled-components";
+import ReactQuill from "react-quill";
 
 export const EditorWrapper = styled.div`
   width: 100%;
@@ -15,7 +15,6 @@ export const StyledReactQuill = styled(ReactQuill)`
 
   .ql-container {
     border-radius: 0 0 8px 8px;
-    font-family: 'DM Sans', sans-serif;
     font-size: var(--font-size-body-medium);
     min-height: 500px;
   }
@@ -23,7 +22,6 @@ export const StyledReactQuill = styled(ReactQuill)`
   .ql-editor {
     padding: 16px;
     line-height: 1.6;
-    font-family: 'DM Sans', sans-serif;
     font-weight: var(--font-weight-regular);
 
     /* index.css 때문에 해당 요소 스타일이 초기화되어서 다시 지정! */

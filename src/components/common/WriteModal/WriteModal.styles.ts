@@ -52,30 +52,29 @@ export const ButtonContent = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  font-size: 10px;
+  font-size: var(--font-size-body-small);
   margin-top: 0;
   line-height: 1.6;
-  margin-bottom: 20px;
 `;
 
 export const ButtonText = styled.div`
-  font-size: 18px;
+  font-size: var(--font-size-head-small);
   font-weight: var(--font-weight-bold);
   color: var(--font-color-light);
   margin-bottom: 15px;
 `;
 
 export const ButtonContentTitle = styled.strong`
-  font-size: 12px;
+  font-size: var(--font-size-body-medium);
   font-weight: var(--font-weight-bold);
   color: var(--font-color-light);
-  margin-bottom: 0px;
+  margin-bottom: 4px;
 `;
 
 export const ButtonDescription = styled.div`
-  font-size: 11px;
+  font-size: var(--font-size-body-small);
   color: var(--font-color-light);
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `;
 
 export const ModalButton = styled.button`
