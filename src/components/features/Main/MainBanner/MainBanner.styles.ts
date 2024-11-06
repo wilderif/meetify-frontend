@@ -11,7 +11,7 @@ export const StyledBanner = styled.div`
   align-items: center;
   position: relative;
   height: 450px;
-  background-image: url("/src/assets/banner/Banner-Bg.svg");
+  background-image: url("/Banner-Bg.svg");
   background-size: cover;
 `;
 
