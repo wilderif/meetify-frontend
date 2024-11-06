@@ -6,7 +6,7 @@ interface LikeButtonProps {
   /** 관심글 상태 */
   isLiked?: boolean;
   /** 아이콘 클릭 이벤트 */
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
 }
 
 const LikeButton = ({ isLiked = false, onClick }: LikeButtonProps) => {
