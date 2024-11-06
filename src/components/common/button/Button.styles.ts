@@ -9,7 +9,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
   cursor: pointer;
   border-radius: 30px;
   padding: 12px 0;
-  font-weight: var(--font-weight-semi-bold);
   user-select: none;
 
   ${({ $buttonType }) =>

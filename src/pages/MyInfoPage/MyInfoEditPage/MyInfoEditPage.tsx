@@ -20,7 +20,7 @@ import {
 import { fetchUserProfile } from "../../../services/userProfile/fetchUserProfile";
 import { saveUserProfile } from "../../../services/userProfile/saveUserProfile";
 
-import DummyProfileImage from "../../../assets/profile-image/dummy-profile-image.png";
+import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import useAuthApi from "../../../hooks/useAuthApi";
 
 /**
@@ -64,7 +64,7 @@ const MyInfoEditPage = () => {
               (option.value as string).toUpperCase() ===
               userProfileData.affiliation
           ) as SelectOption,
-          inputIntroduction: userProfileData.bio,
+          inputIntroduction: userProfileData.bio ?? "",
           selectInterests: InterestsOptions.filter((option) =>
             userProfileData.interests.includes(
               (option.value as string).toUpperCase()
