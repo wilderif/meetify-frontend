@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   Overlay,
   StyledLoginModal,
@@ -15,6 +16,13 @@ interface ProposalModalProps {
 }
 
 const ProfileProposal = ({ onClose }: ProposalModalProps) => {
+  const navigate = useNavigate();
+
+  const handleClickMyPage = () => {
+    onClose();
+    navigate("/my-info/edit");
+  };
+
   return (
     <Overlay>
       <StyledLoginModal>
@@ -25,11 +33,15 @@ const ProfileProposal = ({ onClose }: ProposalModalProps) => {
         </ProPosalText>
         <ButtonContainer>
           <ButtonWrapper>
-            <StyledButton $buttonType="fill" $buttonSize="large">
+            <StyledButton
+              $buttonType='fill'
+              $buttonSize='large'
+              onClick={handleClickMyPage}
+            >
               내 프로필 작성하기
             </StyledButton>
           </ButtonWrapper>
-          <LoginText>다음에 작성할래요</LoginText>
+          <LoginText onClick={onClose}>다음에 작성할래요</LoginText>
         </ButtonContainer>
       </StyledLoginModal>
     </Overlay>

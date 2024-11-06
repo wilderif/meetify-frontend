@@ -1,17 +1,19 @@
 import MainTabType from "../../../../constants/MainTabType";
 import { StyledMainTabs, TabButton } from "./MainTabs.styles";
-import { useTabStore } from "../../../../store/useMainFilterStore";
 
-const MainTabs = () => {
-  const { selectedTab, setSelectedTab } = useTabStore();
+interface MainTabsProps {
+  onTabChange: (type: string) => void;
+  activeTab: string;
+}
 
+const MainTabs = ({ onTabChange, activeTab }: MainTabsProps) => {
   return (
     <StyledMainTabs>
       {Object.entries(MainTabType).map(([tab, tabLabel]) => (
         <TabButton
           key={tab}
-          $isActive={selectedTab === tab}
-          onClick={() => setSelectedTab(tab)}
+          $isActive={activeTab === tab}
+          onClick={() => onTabChange(tab)}
         >
           {tabLabel}
         </TabButton>
