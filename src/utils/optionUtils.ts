@@ -4,8 +4,8 @@ import { SelectOption } from "../types/types";
 export const convertToSelectOptions = (
   obj: Record<string, string>
 ): SelectOption[] => {
-  return Object.entries(obj).map(([key2, label]) => ({
-    value: key2,
+  return Object.entries(obj).map(([key, label]) => ({
+    value: key,
     label,
   }));
 };
