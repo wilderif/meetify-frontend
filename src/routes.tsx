@@ -1,9 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
 import MainPage from "./pages/MainPage/MainPage";
-import ChatsPage from "./pages/ChatsPage/ChatsPage";
-import MyInfoPage from "./pages/MyInfoPage/MyInfoPage";
-import MyInfoEditPage from "./pages/MyInfoPage/MyInfoEditPage";
+import MyInfoPage from "./pages/MyInfoPage/MyInfoPage/MyInfoPage";
+import MyInfoEditPage from "./pages/MyInfoPage/MyInfoEditPage/MyInfoEditPage";
 import MyLikePage from "./pages/MyLikePage/MyLikePage";
 import MyPostsPage from "./pages/MyPostPage/MyPostsPage";
 import PostPage from "./pages/PostPage/PostPage";
@@ -16,6 +15,8 @@ import UpdateMeetPage from "./pages/PostUpdatePage/UpdateMeetPage";
 import UpdateProjectPage from "./pages/PostUpdatePage/UpdateProjectPage";
 import UpdateStudyPage from "./pages/PostUpdatePage/UpdateStudyPage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage"; // 에러 페이지
+import ChatsPage from "./pages/ChatsPage/ChatsPage";
+import TestChat from "./pages/ChatsPage/TestChat"; // 1:1 문의 테스트용 페이지, 이후 1:1문의 개발 끝나면 삭제
 
 const routes = createBrowserRouter([
   {
@@ -83,7 +84,12 @@ const routes = createBrowserRouter([
       {
         path: "chats",
         element: <ChatsPage />,
-        children: [{ path: ":chatId", element: <ChatsPage /> }],
+        children: [{ path: ":userId", element: <ChatsPage /> }],
+      },
+      // 1:1 문의 테스트용 페이지, 이후 1:1문의 개발 끝나면 삭제
+      {
+        path: "test",
+        element: <TestChat />,
       },
     ],
   },

@@ -1,5 +1,6 @@
 /* Font */
 :root {
+  --font-size-head-extraLarge: 50px;
   --font-size-head-large: 35px;
   --font-size-head-medium: 25px;
   --font-size-head-small: 20px;
@@ -24,19 +25,47 @@
   --color-white: #ffffff;
   --color-gray-light: #f7f5f4;
   --color-gray-white: #f5f6f8;
+  --color-rose: #b06264;
+  --color-green: #0aa949;
+  --color-purple: #8c89fc;
 
   --bg-gray-light: #dcdcdc;
   --bg-coral-light: #ffc2af;
   --bg-green-light: #d5eadd;
+  --bg-purple-light: #f2f4ff;
 
   --mask-color-20: rgba(0, 0, 0, 0.2);
+  --mask-color-40: rgba(0, 0, 0, 0.4);
+  /* Chat Colors */
+  --color-chat-yellow: #ffeb3b;
+  --color-chat-orange: #ff7831;
+  --color-chat-gray: #a19791;
+  --color-chat-bg: rgb(178, 199, 217);
 
   /* Gradient */
   --primary-color-gra-start: #ff7831;
   --primary-color-gra-end: #ffdc78;
 }
 
+/* Width */
+:root {
+  --max-width: 1200px;
+  --button-width-large: 300px;
+  --button-width-medium: 150px;
+  --button-width-small: 100px;
+}
+
 body {
   font-size: var(--font-size-medium);
   color: var(--font-color-dark);
+  margin: 0 auto;
+}
+
+main {
+  /* 헤더 높이만큼 */
+  padding-top: 120px;
+}
+
+main.no-padding {
+  padding-top: 0;
 }

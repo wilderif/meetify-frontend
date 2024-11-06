@@ -1,7 +1,15 @@
 import { IoClose } from "react-icons/io5";
 
-const CloseIcon = () => {
-  return <IoClose />;
+interface CloseIconProps {
+  onClick: () => void;
+}
+
+const CloseIcon = ({ onClick }: CloseIconProps) => {
+  return (
+    <button onClick={onClick}>
+      <IoClose />
+    </button>
+  );
 };
 
 export default CloseIcon;

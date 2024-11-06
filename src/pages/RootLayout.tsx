@@ -1,11 +1,20 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+import Header from "../components/layout/Header/Header";
 
 const RootLayout = () => {
+  const location = useLocation();
+  const isMainPage = location.pathname === "/";
+  const isChatPage = location.pathname === "/chats";
+
   return (
-    <div>
-      <h1>Main Layout</h1>
-      <Outlet />
-    </div>
+    <>
+      <header>
+        <Header isMainPage={isMainPage} isChatPage={isChatPage} />
+      </header>
+      <main className={isMainPage ? "no-padding" : ""}>
+        <Outlet />
+      </main>
+    </>
   );
 };
 

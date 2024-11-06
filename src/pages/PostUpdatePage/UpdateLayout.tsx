@@ -1,11 +1,12 @@
 import { Outlet } from "react-router-dom";
-
+import { Container, Content } from "./UpdateLayout.styles";
 const UpdateLayout = () => {
   return (
-    <div>
-      포스트 수정 레이아웃
-      <Outlet />
-    </div>
+    <Container>
+      <Content>
+        <Outlet /> {/* 중첩된 자식 컴포넌트가 여기에서 렌더링됨 */}
+      </Content>
+    </Container>
   );
 };
 
