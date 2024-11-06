@@ -21,6 +21,7 @@ const PostPage = () => {
       try {
         const data = await getPostById(postId);
         console.log("게시글 데이터를 불러왔습니다:", data);
+        console.log("게시글 유저정보:", data.user_profile);
         // PostDetailProps["postData"] 형식에 맞게 변환
         const transformedData: PostDetailProps["postData"] = {
           id: data.id,
@@ -36,10 +37,11 @@ const PostPage = () => {
           created_at: data.created_at,
           affiliation: data.affiliation,
           available_time: data.available_time,
-          // user_profile: {
-          //   name: data.user_profile.name,
-          //   // profile_image: data.user_profile.profile_image,
-          // },
+          user_profile: {
+            nickname: data.user_profile.nickname,
+            email: data.user_profile.email,
+            profile_image: data.user_profile.profile_image,
+          },
         };
         console.log("변환된 데이터:", transformedData);
         setPostData(transformedData);
