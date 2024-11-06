@@ -10,3 +10,10 @@ export const getPostList = async (params: PostListReqParams) => {
     params
   );
 };
+
+export const getMyPostList = async (params: PostListReqParams) => {
+  return axios.post<{ postList: PostListResParams[]; totalPage: number }>(
+    `${API_BASE_URL}/postList/my-posts`,
+    params
+  );
+};
