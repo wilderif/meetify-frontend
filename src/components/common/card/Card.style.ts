@@ -32,8 +32,8 @@ export const Title = styled.span`
   color: var(--font-color-dark);
   font-size: var(--font-size-head-small);
   font-weight: var(--font-weight-semi-bold);
-  line-height: 1.2;
-  height: calc(1.2em * 2);
+  line-height: 1.3;
+  height: calc(1.3em * 2);
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;

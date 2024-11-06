@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import ProfileImage from "../ProfileImage/ProfileImage";
 import { PostType, Interests, Position } from "../../../constants/index";
 import { formatDate, isToday } from "../../../utils/dateUtils";
@@ -53,6 +53,7 @@ const Card = ({
 }: PostListResParams) => {
   const [isLiked, setIsLiked] = useState(initialIsLiked);
   const location = useLocation();
+  const navigate = useNavigate();
   const isLikePage = location.pathname === "/my-like";
 
   // 날짜 포맷팅
@@ -73,7 +74,8 @@ const Card = ({
 
   // 관심글 추가/삭제 핸들러
   const { handleLikeAdd, handleLikeRemove } = useMyLikePage(isLikePage);
-  const handleLikeButtonClick = () => {
+  const handleLikeButtonClick = (event: React.MouseEvent) => {
+    event?.stopPropagation();
     if (isLiked) {
       handleLikeRemove(id);
     } else {
@@ -82,12 +84,19 @@ const Card = ({
     setIsLiked(!isLiked);
   };
 
+  const handleCardClick = () => {
+    navigate(`/post/${id}`);
+  };
+
   return (
-    <StyledCard>
+    <StyledCard onClick={handleCardClick}>
       <Header>
         <PostTag postType={type as keyof typeof PostType} />
         {isToday(createDate) && <NewTag />}
-        <LikeButton isLiked={isLiked} onClick={handleLikeButtonClick} />
+        <LikeButton
+          isLiked={isLiked}
+          onClick={(e: React.MouseEvent) => handleLikeButtonClick(e)}
+        />
       </Header>
 
       <DateText>마감일 | {formattedDate}</DateText>

@@ -1,10 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const TextAreaWrapper = styled.div`
   width: 100%;
   max-width: 100%;
   margin-bottom: 30px;
-  font-family: 'DM Sans', sans-serif;
 `;
 
 export const Label = styled.label`
@@ -27,7 +26,6 @@ export const StyledTextArea = styled.textarea`
   font-size: var(--font-size-head-small);
   font-weight: var(--font-weight-semi-bold);
   color: var(--font-color-light);
-  font-family: 'DM Sans', sans-serif;
   resize: none; /* 리사이즈 핸들 제거 */
   text-align: left;
 

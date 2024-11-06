@@ -25,7 +25,6 @@ export const StyledInput = styled.input<StyledInputProps>`
   margin-bottom: 10px;
   font-size: var(--font-size-head-small);
   font-weight: var(--font-weight-semi-bold);
-  font-family: "DM Sans", sans-serif;
   align-items: center;
   display: flex;
   background-color: var(--font-color-white);

@@ -1,9 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const InputWrapper = styled.div`
   max-width: 100%;
   margin-bottom: 30px;
-  font-family: 'DM Sans', sans-serif;
 `;
 
 export const Label = styled.p`
@@ -23,7 +22,6 @@ export const StyledInput = styled.input`
   font-size: var(--font-size-head-small);
   font-weight: var(--font-weight-semi-bold);
   color: var(--font-color-dark);
-  font-family: 'DM Sans', sans-serif;
 
   &::placeholder {
     color: var(--bg-gray-light);
