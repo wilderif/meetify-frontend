@@ -83,6 +83,7 @@ export const ModalButton = styled.button`
   border: 1px solid var(--bg-gray-light);
   border-radius: 20px;
   transition: background-color 0.3s, color 0.3s;
+  height: 100%;
 
   &:hover {
     background-color: var(--primary-color-org-light);
