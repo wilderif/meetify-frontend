@@ -18,7 +18,7 @@ import {
 } from "../../../constants/options";
 import { fetchUserProfile } from "../../../services/userProfile/fetchUserProfile";
 
-import DummyProfileImage from "../../../assets/profile-image/dummy-profile-image.png";
+import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import useAuthApi from "../../../hooks/useAuthApi";
 
 /**

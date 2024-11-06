@@ -1,6 +1,6 @@
 import styled from "styled-components";
 interface StyledTextAreaProps {
-  variant?: "placeholder" | "default";
+  $variant?: "placeholder" | "default";
 }
 export const TextAreaWrapper = styled.div`
   width: 100%;
@@ -33,7 +33,7 @@ export const StyledTextArea = styled.textarea<StyledTextAreaProps>`
   background-color: var(--font-color-white);
 
   color: ${(props) =>
-    props.variant === "placeholder"
+    props.$variant === "placeholder"
       ? "var(--bg-gray-light)"
       : "var(--font-color-dark)"};
 
