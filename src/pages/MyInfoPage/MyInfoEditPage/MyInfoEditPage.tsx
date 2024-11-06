@@ -64,7 +64,7 @@ const MyInfoEditPage = () => {
               (option.value as string).toUpperCase() ===
               userProfileData.affiliation
           ) as SelectOption,
-          inputIntroduction: userProfileData.bio,
+          inputIntroduction: userProfileData.bio ?? "",
           selectInterests: InterestsOptions.filter((option) =>
             userProfileData.interests.includes(
               (option.value as string).toUpperCase()

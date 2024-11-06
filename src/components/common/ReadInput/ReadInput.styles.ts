@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface StyledInputProps {
-  variant?: "primary" | "placeholder" | "default";
+  $variant?: "primary" | "placeholder" | "default";
 }
 
 export const Container = styled.div`
@@ -32,7 +32,7 @@ export const StyledInput = styled.input<StyledInputProps>`
   border: 1px solid #e4e4e4;
 
   color: ${(props) => {
-    switch (props.variant) {
+    switch (props.$variant) {
       case "primary":
         return "var(--primary-color-org)"; // primary 색상
       case "placeholder":
