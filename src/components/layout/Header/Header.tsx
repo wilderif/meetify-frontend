@@ -16,6 +16,8 @@ import LoginModal from "../../features/login/LoginModal";
 import RegisterModal from "../../features/register/RegisterModal";
 import ProfileProposal from "../../features/register/ProfileProposal";
 import useModal from "../../../hooks/useModal";
+import useAuthStore from "../../../store/useAuthStore";
+import useChatUnread from "../../../hooks/Chat/useChatUnread";
 
 /**
  * 로그인 안 되 었을 때
@@ -46,6 +48,10 @@ const Header = ({ isMainPage, isChatPage }: HeaderProps) => {
   } = useModal();
 
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+  //채팅 unread msg 개수 관련 커스텀 훅
+  const userId = useAuthStore((state) => state.email); // 현재 로그인한 유저 아이디
+  const unreadCount = useChatUnread(userId);
 
   const toggleDropdown = () => {
     console.log("toggleDropdown", isDropdownVisible);
@@ -114,7 +120,7 @@ const Header = ({ isMainPage, isChatPage }: HeaderProps) => {
         {isLogin ? (
           <NavContainer>
             <Link to="/chats">
-              <NotificationIconContainer notificationCount={1}>
+              <NotificationIconContainer notificationCount={unreadCount}>
                 <ContactIcon />
               </NotificationIconContainer>
             </Link>

@@ -7,7 +7,7 @@ import useChatStore from "../../store/useChatStore";
 interface UseSocketProps {
   userId: string;
   onMessage: (chat: ServerChat) => void;
-  onUnreadUpdate: (unreadData: ChatRoomInfo[]) => void;
+  onUnreadUpdate: (unreadData: ChatRoomInfo[], roomId?: string) => void;
   onMessageRead: (
     updatedChatList: string[],
     updatedRooms: ChatRoomInfo[]
@@ -21,6 +21,7 @@ interface ServerMsgType {
   chat: ServerChat;
   targetId: string;
   unreadData: ChatRoomInfo[];
+  roomId?: string;
 }
 
 /**
@@ -52,7 +53,7 @@ const useSocket = ({
     const handleMessage = (response: ServerMsgType) => {
       onMessage(response.chat);
       if (response.unreadData) {
-        onUnreadUpdate(response.unreadData);
+        onUnreadUpdate(response.unreadData, response.roomId);
       }
     };
 
@@ -76,13 +77,6 @@ const useSocket = ({
 
   // 메시지 전송 함수
   const sendMessage = (msg: string, targetId: string) => {
-    if (socket && msg.trim() && targetId) {
-      socket.emit("message", {
-        senderId: userId,
-        targetId,
-        message: msg,
-      });
-    }
     // Zustand 스토어에서 userChatRooms에서 해당 roomId가 있는지 확인
     const userRooms = useChatStore.getState().userChatRooms[userId] || [];
     const roomExists = userRooms.some((room) => room.otherUserId === targetId);
@@ -90,6 +84,14 @@ const useSocket = ({
     // roomId가 존재하는 경우, 채팅방 제거
     if (roomExists) {
       useChatStore.getState().removeChatRoom(userId, targetId);
+    }
+
+    if (socket && msg.trim() && targetId) {
+      socket.emit("message", {
+        senderId: userId,
+        targetId,
+        message: msg,
+      });
     }
   };
 
