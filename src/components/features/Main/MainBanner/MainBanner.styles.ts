@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import BannerBg from "/src/assets/banner/Banner-Bg.svg";
 
 export const BannerContainer = styled.div`
   position: relative;
@@ -11,7 +12,7 @@ export const StyledBanner = styled.div`
   align-items: center;
   position: relative;
   height: 450px;
-  background-image: url("/src/assets/banner/Banner-Bg.svg");
+  background-image: url(${BannerBg});
   background-size: cover;
 `;
 
