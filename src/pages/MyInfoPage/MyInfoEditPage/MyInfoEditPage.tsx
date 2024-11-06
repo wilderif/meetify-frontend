@@ -20,7 +20,7 @@ import {
 import { fetchUserProfile } from "../../../services/userProfile/fetchUserProfile";
 import { saveUserProfile } from "../../../services/userProfile/saveUserProfile";
 
-import DummyProfileImage from "../../../assets/profile-image/dummy-profile-image.png";
+import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import useAuthApi from "../../../hooks/useAuthApi";
 
 /**
