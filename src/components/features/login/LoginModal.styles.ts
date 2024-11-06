@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 import { IoClose } from "react-icons/io5";
-import LogoGradation from "../../common/Logo/LogoGradation";
 
 const modalAnimation = keyframes`
   from {
@@ -9,6 +8,18 @@ const modalAnimation = keyframes`
   }
   to {
     transform: scale(1);
+    opacity: 1;
+  }
+`;
+const titleAnimate = keyframes`
+  0% {
+    -webkit-filter: blur(12px);
+            filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
     opacity: 1;
   }
 `;
@@ -58,7 +69,15 @@ export const StyledLoginModal = styled.div`
   animation: ${modalAnimation} 0.3s ease-out;
 `;
 
-export const Title = styled(LogoGradation)``;
+export const Title = styled.span`
+  font-family: "HakgyoansimDunggeunmisoTTF-B";
+  font-size: 60px;
+  background: linear-gradient(120deg, #ff935a 28.37%, #ffdc78 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: ${titleAnimate} 1s ease-out;
+  display: inline-block;
+`;
 
 export const CloseButton = styled(IoClose)`
   position: absolute;
@@ -152,4 +171,44 @@ export const ProPosalText = styled.span`
   text-align: center;
   margin: 20px;
   line-height: 1.5;
+`;
+
+const vibrate = keyframes`
+  0%,
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    -webkit-transform-origin: 50% 0;
+            transform-origin: 50% 0;
+  }
+  10% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: rotate(-4deg);
+            transform: rotate(-4deg);
+  }
+  30%,
+  50%,
+  70% {
+    -webkit-transform: rotate(4deg);
+            transform: rotate(4deg);
+  }
+  80% {
+    -webkit-transform: rotate(-2deg);
+            transform: rotate(-2deg);
+  }
+  90% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
+`;
+
+export const ButtonWrapper = styled.div`
+  animation: ${vibrate} 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
+  animation-delay: 0.5s;
+  opacity: 1;
 `;
