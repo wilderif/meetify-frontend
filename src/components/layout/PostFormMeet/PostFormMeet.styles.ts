@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-export const PostFormContainer = styled.div`
-  margin-top: 120px; /* 헤더 높이만큼 margin-top 추가 */
-`;
+export const PostFormContainer = styled.div``;
 
 export const Section = styled.div`
   margin-top: 30px;
