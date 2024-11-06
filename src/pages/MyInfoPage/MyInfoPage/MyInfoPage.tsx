@@ -26,6 +26,7 @@ import useAuthApi from "../../../hooks/useAuthApi";
  */
 const MyInfoPage = () => {
   const loginEmail = useAuthStore((state) => state.email);
+  const setIsLogin = useAuthStore((state) => state.setIsLogin);
   const [userInformation, setUserInformation] = useState({
     inputNickname: "",
     selectPosition: {} as SelectOption,
@@ -74,8 +75,13 @@ const MyInfoPage = () => {
   }, []);
 
   const handleDeleteUser = async () => {
-    deleteUser(loginEmail);
-    navigate("/");
+    try {
+      await deleteUser(loginEmail);
+      setIsLogin(false);
+      navigate("/");
+    } catch (error) {
+      console.error("회원 탈퇴 중 오류 발생:", error);
+    }
   };
 
   return (

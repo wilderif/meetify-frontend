@@ -69,7 +69,7 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
     <Overlay>
       <StyledRegisterModal onClick={(e) => e.stopPropagation()}>
         <CloseButton onClick={onClose} />
-        <Title />
+        <Title>Meetify</Title>
         <form onSubmit={handleRegister}>
           <InputWrapper>
             <Input
