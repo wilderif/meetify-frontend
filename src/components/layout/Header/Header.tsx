@@ -5,7 +5,7 @@ import { HeaderContainer, NavContainer, LogoContainer } from "./Header.styles";
 import Logo from "../../common/Logo/Logo";
 import NotificationIconContainer from "./NotificationIconContainer/NotificationIconContainer";
 import ProfileImage from "../../common/ProfileImage/ProfileImage";
-import NotificationIcon from "../../common/icon/NotificationIcon/NotificationIcon";
+// import NotificationIcon from "../../common/icon/NotificationIcon/NotificationIcon";
 import ContactIcon from "../../common/icon/ContactIcon/ContactIcon";
 import Button from "../../common/button/Button";
 import BackIcon from "../../common/icon/BackIcon/BackIcon";
@@ -16,6 +16,8 @@ import LoginModal from "../../features/login/LoginModal";
 import RegisterModal from "../../features/register/RegisterModal";
 import ProfileProposal from "../../features/register/ProfileProposal";
 import useModal from "../../../hooks/useModal";
+import useAuthStore from "../../../store/useAuthStore";
+import useChatUnread from "../../../hooks/Chat/useChatUnread";
 
 /**
  * 로그인 안 되 었을 때
@@ -47,8 +49,11 @@ const Header = ({ isMainPage, isChatPage }: HeaderProps) => {
 
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
+  //채팅 unread msg 개수 관련 커스텀 훅
+  const userId = useAuthStore((state) => state.email); // 현재 로그인한 유저 아이디
+  const unreadCount = useChatUnread(userId);
+
   const toggleDropdown = () => {
-    console.log("toggleDropdown", isDropdownVisible);
     setIsDropdownVisible((prev) => !prev);
   };
 
@@ -65,9 +70,9 @@ const Header = ({ isMainPage, isChatPage }: HeaderProps) => {
   //   navigate("/chats");
   // };
 
-  const handleNotification = () => {
-    // 알림 모달 띄우기
-  };
+  // const handleNotification = () => {
+  //   // 알림 모달 띄우기
+  // };
 
   // const handleMyPage = () => {
   //   navigate("/my-info");
@@ -107,24 +112,24 @@ const Header = ({ isMainPage, isChatPage }: HeaderProps) => {
           </Link>
         </LogoContainer>
         {!isMainPage && !isChatPage && (
-          <button onClick={() => navigate(-1)}>
+          <button onClick={() => navigate(-1)} title="Go Back">
             <BackIcon />
           </button>
         )}
         {isLogin ? (
           <NavContainer>
             <Link to="/chats">
-              <NotificationIconContainer notificationCount={1}>
+              <NotificationIconContainer notificationCount={unreadCount}>
                 <ContactIcon />
               </NotificationIconContainer>
             </Link>
-            <NotificationIconContainer
+            {/* <NotificationIconContainer
               notificationCount={1}
               onClick={handleNotification}
             >
               <NotificationIcon />
-            </NotificationIconContainer>
-            <button onClick={toggleDropdown}>
+            </NotificationIconContainer> */}
+            <button onClick={toggleDropdown} title="Toggle Profile Dropdown">
               <ProfileImage src={DummyProfileImage} usageType="header" />
             </button>
           </NavContainer>

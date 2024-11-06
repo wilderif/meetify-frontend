@@ -41,7 +41,14 @@ const ChatsPage = () => {
         return prevChatList;
       });
     }, []),
-    onUnreadUpdate: useCallback((unreadData) => setData(unreadData), []),
+    onUnreadUpdate: useCallback((unreadData, roomId) => {
+      if (roomId) {
+        setCurrentRoomId(roomId);
+        const matchingRoom = unreadData.find((data) => data.roomId === roomId);
+        if (matchingRoom) handleClick(roomId, matchingRoom.otherUserId, false);
+      }
+      setData(unreadData);
+    }, []),
     onMessageRead: useCallback((unreadChatIds, updatedRooms) => {
       setChatList(
         (prevChatList) =>
