@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { validatePostFormMeet } from "../../../utils/postValidation";
 import Select from "../../common/CustomSelect/CustomSelect";
 import Title from "../../common/Title/Title";
@@ -27,18 +27,43 @@ interface PostFormProps {
   title: string;
   onSubmit: (data: PostFormMeetData) => void;
   onCancel: () => void;
+  initialData?: PostFormMeetData; // 초기 데이터를 받을 수 있도록 추가
 }
 
-const PostFormMeet: React.FC<PostFormProps> = ({ onSubmit, onCancel }) => {
-  const [inputValue, setInputValue] = useState("");
-  const [content, setContent] = useState<string>("");
+const PostFormMeet: React.FC<PostFormProps> = ({
+  onSubmit,
+  onCancel,
+  initialData,
+}) => {
+  const [inputValue, setInputValue] = useState(initialData?.inputValue || "");
+  const [content, setContent] = useState<string>(initialData?.content || "");
 
   const [participationMethod, setParticipationMethod] =
-    useState<SelectOption | null>(null);
-  const [interests, setInterests] = useState<SelectOption[]>([]);
-  const [affiliation, setAffiliation] = useState<SelectOption | null>(null);
-  const [position, setPosition] = useState<SelectOption | null>(null);
-  const [availableTime, setAvailableTime] = useState<SelectOption | null>(null);
+    useState<SelectOption | null>(initialData?.participationMethod || null);
+  const [interests, setInterests] = useState<SelectOption[]>(
+    initialData?.interests || []
+  );
+  const [affiliation, setAffiliation] = useState<SelectOption | null>(
+    initialData?.affiliation || null
+  );
+  const [position, setPosition] = useState<SelectOption[]>(
+    initialData?.position || []
+  );
+  const [availableTime, setAvailableTime] = useState<SelectOption | null>(
+    initialData?.availableTime || null
+  );
+
+  useEffect(() => {
+    if (initialData) {
+      setInputValue(initialData.inputValue);
+      setContent(initialData.content);
+      setParticipationMethod(initialData.participationMethod);
+      setInterests(initialData.interests);
+      setAffiliation(initialData.affiliation);
+      setPosition(initialData.position);
+      setAvailableTime(initialData.availableTime);
+    }
+  }, [initialData]);
 
   const handleSubmit = () => {
     const formData: PostFormMeetData = {
@@ -96,8 +121,9 @@ const PostFormMeet: React.FC<PostFormProps> = ({ onSubmit, onCancel }) => {
               label="직무"
               options={PositionOptions}
               placeholder={PLACEHOLDERS.POSITION}
-              onChange={(value) => setPosition(value as SelectOption)}
+              onChange={(value) => setPosition(value as SelectOption[])}
               value={position}
+              isMulti={true}
             />
           </FormColumn>
           <FormColumn>
@@ -137,7 +163,7 @@ const PostFormMeet: React.FC<PostFormProps> = ({ onSubmit, onCancel }) => {
         <Button
           buttonType="fill"
           buttonSize="medium"
-          label="작성"
+          label={initialData ? "수정" : "작성"}
           onClick={handleSubmit}
         />
       </ButtonWrapper>

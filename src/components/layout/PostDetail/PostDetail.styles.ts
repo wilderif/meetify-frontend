@@ -28,6 +28,7 @@ export const ButtonWrapper = styled.div`
 
 // 추가 스타일
 export const Content = styled.pre`
+  min-height: 300px;
   white-space: pre-wrap;
   font-size: var(--font-size-body-large);
   line-height: 1.6;

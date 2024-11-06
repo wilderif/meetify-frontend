@@ -11,10 +11,10 @@ import ReadInput from "../../common/ReadInput/ReadInput";
 import ReadTitle from "../../common/ReadTitle/ReadTitle";
 import handIcon from "../../../assets/post-image/hand.svg";
 
-interface UserProfile {
-  name: string;
-  profile_image: string;
-}
+// interface UserProfile {
+//   name: string;
+//   profile_image: string;
+// }
 
 interface PostDetailProps {
   postData: {
@@ -22,17 +22,20 @@ interface PostDetailProps {
     title: string;
     content: string;
     interests: string[];
-    position: string;
+    position: string[];
     participation_method: string;
     recruitment_capacity?: string;
     duration?: string;
     recruitment_deadline?: string;
     created_at: string;
-    user_profile: UserProfile;
   };
   onEdit: () => void;
   onDelete: () => void;
 }
+
+const stripHtmlTags = (html: string) => {
+  return html.replace(/<[^>]*>?/gm, ""); // 정규 표현식을 사용하여 HTML 태그 제거
+};
 
 const ProjectDetail: React.FC<PostDetailProps> = ({
   postData,
@@ -45,8 +48,8 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
         <ReadTitle
           text={postData.title}
           iconSrc={handIcon}
-          author={postData.user_profile.name}
-          authorImageSrc={postData.user_profile.profile_image}
+          author={"임시 아무 이름"}
+          // authorImageSrc={postData.user_profile.profile_image}
           createdAt={postData.created_at}
         />
         <Row>
@@ -85,7 +88,7 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
           <FormColumn>
             <ReadInput
               label="모집 포지션"
-              value={postData.position}
+              value={postData.position.join(", ")}
               variant="primary"
             />
           </FormColumn>
@@ -102,7 +105,8 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
       </Section>
       <Section>
         <ReadTitle text="소개 내용" iconSrc={handIcon} />
-        <Content>{postData.content}</Content>
+        <Content>{stripHtmlTags(postData.content)}</Content>{" "}
+        {/* HTML 태그 제거 후 표시 */}
       </Section>
 
       <ButtonWrapper>

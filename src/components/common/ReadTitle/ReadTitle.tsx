@@ -39,7 +39,7 @@ const ReadTitle: React.FC<ReadTitleProps> = ({
     </TitleWrapper>
 
     {/* 작성자 정보가 있을 때는 AuthorInfo 아래에 밑줄 */}
-    {author && authorImageSrc && createdAt ? (
+    {author || authorImageSrc || createdAt ? (
       <>
         <AuthorInfo>
           <ProfileImage src={authorImageSrc} alt={`${author}'s profile`} />
