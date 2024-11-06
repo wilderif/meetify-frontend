@@ -33,7 +33,7 @@ export const StyledInput = styled.input<StyledInputProps>`
   color: ${(props) => {
     switch (props.$variant) {
       case "primary":
-        return "var(--primary-color-org)"; // primary 색상
+        return "var(--color-chat-orange)"; // primary 색상
       case "placeholder":
         return "var(--bg-gray-light)"; // 연한 회색
       default:

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { validatePostForm } from "../../../utils/postValidation";
 import Select from "../../common/CustomSelect/CustomSelect";
 import Input from "../../common/input/Input";
@@ -29,19 +29,46 @@ interface PostFormProps {
   title: string;
   onSubmit: (data: PostFormData) => void;
   onCancel: () => void;
+  initialData?: PostFormData; // 초기 데이터 옵션으로 추가
 }
 
-const PostForm: React.FC<PostFormProps> = ({ title, onSubmit, onCancel }) => {
-  const [inputValue, setInputValue] = useState("");
-  const [content, setContent] = useState<string>("");
-  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
+const PostForm: React.FC<PostFormProps> = ({
+  title,
+  onSubmit,
+  onCancel,
+  initialData,
+}) => {
+  const [inputValue, setInputValue] = useState(initialData?.inputValue || "");
+  const [content, setContent] = useState<string>(initialData?.content || "");
+  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(
+    initialData?.selectedDate || null
+  );
   const [participationMethod, setParticipationMethod] =
-    useState<SelectOption | null>(null);
+    useState<SelectOption | null>(initialData?.participationMethod || null);
   const [recruitmentCapacity, setRecruitmentCapacity] =
-    useState<SelectOption | null>(null);
-  const [interests, setInterests] = useState<SelectOption[]>([]);
-  const [position, setPosition] = useState<SelectOption | null>(null);
-  const [duration, setDuration] = useState<SelectOption | null>(null);
+    useState<SelectOption | null>(initialData?.recruitmentCapacity || null);
+  const [interests, setInterests] = useState<SelectOption[]>(
+    initialData?.interests || []
+  );
+  const [position, setPosition] = useState<SelectOption[]>(
+    initialData?.position || []
+  );
+  const [duration, setDuration] = useState<SelectOption | null>(
+    initialData?.duration || null
+  );
+
+  useEffect(() => {
+    if (initialData) {
+      setInputValue(initialData.inputValue);
+      setContent(initialData.content);
+      setSelectedDate(initialData.selectedDate);
+      setParticipationMethod(initialData.participationMethod);
+      setRecruitmentCapacity(initialData.recruitmentCapacity);
+      setInterests(initialData.interests);
+      setPosition(initialData.position);
+      setDuration(initialData.duration);
+    }
+  }, [initialData]);
 
   const handleSubmit = () => {
     const formData: PostFormData = {
@@ -111,8 +138,9 @@ const PostForm: React.FC<PostFormProps> = ({ title, onSubmit, onCancel }) => {
               label="모집 포지션"
               options={PositionOptions}
               placeholder={PLACEHOLDERS.POSITION}
-              onChange={(value) => setPosition(value as SelectOption)}
+              onChange={(value) => setPosition(value as SelectOption[])}
               value={position}
+              isMulti={true}
             />
           </FormColumn>
           <FormColumn>
@@ -126,7 +154,7 @@ const PostForm: React.FC<PostFormProps> = ({ title, onSubmit, onCancel }) => {
       </Section>
 
       <Section>
-        <Title text={FORM_TITLES.PROJECT_INTRO} stepNumber={2} />
+        <Title text={`${title} ${FORM_TITLES.POST_FORM}`} stepNumber={2} />
         <Input
           label="제목"
           placeholder={PLACEHOLDERS.TITLE}
@@ -150,7 +178,7 @@ const PostForm: React.FC<PostFormProps> = ({ title, onSubmit, onCancel }) => {
         <Button
           buttonType="fill"
           buttonSize="medium"
-          label="작성"
+          label={initialData ? "수정" : "작성"}
           onClick={handleSubmit}
         />
       </ButtonWrapper>
