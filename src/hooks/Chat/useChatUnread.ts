@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { SERVER_URL } from "../../constants/Chat";
 
 // useChatUnread 커스텀 훅
 const useChatUnread = (userId: string) => {
@@ -8,7 +9,7 @@ const useChatUnread = (userId: string) => {
     if (!userId) return; // userId가 없으면 SSE 연결하지 않음
 
     const eventSource = new EventSource(
-      `http://59.8.137.118:5172/chat/unread/cnt/${userId}`
+      `${SERVER_URL}/chat/unread/cnt/${userId}`
     );
 
     eventSource.onmessage = (event) => {
