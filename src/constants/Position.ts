@@ -1,5 +1,4 @@
 const Position = {
-  ALL: "전체",
   FRONTEND: "프론트엔드",
   BACKEND: "백엔드",
   FULLSTACK: "풀스택",
