@@ -41,6 +41,7 @@ const ProfileProposal = ({ onClose }: ProposalModalProps) => {
               내 프로필 작성하기
             </StyledButton>
           </ButtonWrapper>
+          <LoginText onClick={onClose}>다음에 작성할래요</LoginText>
         </ButtonContainer>
       </StyledLoginModal>
     </Overlay>
