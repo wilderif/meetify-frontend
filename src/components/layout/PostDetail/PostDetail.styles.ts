@@ -31,7 +31,6 @@ export const Content = styled.pre`
   min-height: 300px;
   white-space: pre-wrap;
   font-size: var(--font-size-body-large);
-  font-family: "DM Sans", sans-serif;
   line-height: 1.6;
   color: var(--font-color-dark);
 `;

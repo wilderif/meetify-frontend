@@ -18,7 +18,10 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    "removeComments": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["src/**/*.stories.tsx", "src/**/*.stories.ts"]
 }

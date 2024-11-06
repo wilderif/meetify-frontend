@@ -12,7 +12,8 @@ export const IconContainer = styled.button`
   justify-content: center;
   width: 50px;
   height: 50px;
-  background-color: var(--bg-gray-light);
+  background-color: var(--primary-color-org);
+  color: var(--color-white);
   border-radius: 50%;
   font-size: 24px;
   cursor: pointer;
@@ -20,8 +21,8 @@ export const IconContainer = styled.button`
   border: none;
 
   &:hover {
-    background-color: gray;
-    color: var(--bg-gray-light);
+    background-color: var(--color-chat-orange);
+    /* color: var(--font-color-dark); */
   }
 `;
 

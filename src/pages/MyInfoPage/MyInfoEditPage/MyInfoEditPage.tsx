@@ -20,7 +20,7 @@ import {
 import { fetchUserProfile } from "../../../services/userProfile/fetchUserProfile";
 import { saveUserProfile } from "../../../services/userProfile/saveUserProfile";
 
-import DummyProfileImage from "../../../assets/profile-image/dummy-profile-image.png";
+import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import useAuthApi from "../../../hooks/useAuthApi";
 
 /**
@@ -31,6 +31,7 @@ import useAuthApi from "../../../hooks/useAuthApi";
  * 프로필 이미지 수정 기능, 수정 아이콘 추가
  */
 const MyInfoEditPage = () => {
+  const setNickname = useAuthStore((state) => state.setNickname);
   const loginEmail = useAuthStore((state) => state.email);
   const [userInformation, setUserInformation] = useState({
     inputNickname: "",
@@ -47,6 +48,7 @@ const MyInfoEditPage = () => {
     const fetchUserProfileData = async () => {
       try {
         if (!loginEmail) {
+          navigate("/");
           throw new Error("로그인한 사용자 정보가 없습니다.");
         }
 
@@ -64,7 +66,7 @@ const MyInfoEditPage = () => {
               (option.value as string).toUpperCase() ===
               userProfileData.affiliation
           ) as SelectOption,
-          inputIntroduction: userProfileData.bio,
+          inputIntroduction: userProfileData.bio ?? "",
           selectInterests: InterestsOptions.filter((option) =>
             userProfileData.interests.includes(
               (option.value as string).toUpperCase()
@@ -103,6 +105,7 @@ const MyInfoEditPage = () => {
         userInformation.inputIntroduction,
         userInformation.selectInterests
       );
+      setNickname(userInformation.inputNickname);
       navigate("/my-info");
     } catch (error) {
       console.error("프로필 저장 중 오류 발생:", error);
@@ -192,13 +195,9 @@ const MyInfoEditPage = () => {
       <TextArea
         label="자기소개"
         placeholder={
-          (console.log(
-            "userInformation.inputIntroduction",
-            userInformation.inputIntroduction
-          ),
           userInformation.inputIntroduction
             ? userInformation.inputIntroduction
-            : "자기소개를 입력해주세요.")
+            : "자기소개를 입력해주세요."
         }
         value={userInformation.inputIntroduction}
         onChange={handleInputChange("inputIntroduction")}

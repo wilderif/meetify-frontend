@@ -11,7 +11,7 @@ export const StyledBanner = styled.div`
   align-items: center;
   position: relative;
   height: 450px;
-  background-image: url("/src/assets/banner/Banner-Bg.svg");
+  background-image: url("/Banner-Bg.svg");
   background-size: cover;
 `;
 
@@ -32,8 +32,8 @@ export const BannerContent = styled.div`
 `;
 
 export const MainText = styled.h1`
+  font-family: "TTLaundryGothicB";
   font-size: var(--font-size-head-large);
-  font-weight: var(--font-weight-bold);
   line-height: 1.5;
   padding-top: 3rem;
 `;
@@ -124,7 +124,7 @@ const bounceTop = keyframes`
     transform: translateY(0px);
     animation-timing-function: ease-out;
     opacity: 1;
-    animation: fadeIn 1s ease-in-out 0.5s forwards; 
+    animation: fadeIn 1s ease-in-out 0.5s forwards;
   }
 `;
 

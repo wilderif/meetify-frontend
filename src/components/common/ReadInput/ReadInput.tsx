@@ -19,7 +19,7 @@ const ReadInput: React.FC<ReadInputProps> = ({
         value={value}
         readOnly
         disabled
-        variant={variant} // variant 전달
+        $variant={variant} // variant 전달
       />
     </Container>
   );

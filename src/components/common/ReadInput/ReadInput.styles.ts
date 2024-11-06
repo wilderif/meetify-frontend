@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface StyledInputProps {
-  variant?: "primary" | "placeholder" | "default";
+  $variant?: "primary" | "placeholder" | "default";
 }
 
 export const Container = styled.div`
@@ -25,14 +25,13 @@ export const StyledInput = styled.input<StyledInputProps>`
   margin-bottom: 10px;
   font-size: var(--font-size-head-small);
   font-weight: var(--font-weight-semi-bold);
-  font-family: "DM Sans", sans-serif;
   align-items: center;
   display: flex;
   background-color: var(--font-color-white);
   border: 1px solid #e4e4e4;
 
   color: ${(props) => {
-    switch (props.variant) {
+    switch (props.$variant) {
       case "primary":
         return "var(--color-chat-orange)"; // primary 색상
       case "placeholder":

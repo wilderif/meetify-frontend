@@ -15,7 +15,7 @@ const ReadOnlyTextArea: React.FC<ReadOnlyTextAreaProps> = ({
   return (
     <TextAreaWrapper>
       <Label>{label}</Label>
-      <StyledTextArea value={value} readOnly disabled variant={variant} />
+      <StyledTextArea value={value} readOnly disabled $variant={variant} />
     </TextAreaWrapper>
   );
 };

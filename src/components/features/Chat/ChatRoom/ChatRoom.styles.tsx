@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const ChatRoomWrapper = styled.div`
-  min-width: 512px;
+  min-width: 300px;
   width: 100%;
-  min-height: 600px;
+  min-height: 700px;
   max-height: 700px;
 
   display: flex;
@@ -27,7 +27,10 @@ const ChatRoomWrapper = styled.div`
     flex-direction: column;
     gap: 12px;
   }
-
+  .chat--day {
+    display: flex;
+    justify-content: center;
+  }
   &.no--msg {
     display: flex;
     justify-content: center;

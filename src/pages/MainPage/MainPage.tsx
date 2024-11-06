@@ -1,4 +1,3 @@
-import { SelectOption } from "../../types/types";
 import {
   CardContainer,
   CustomSelect,
@@ -8,7 +7,7 @@ import {
 import {
   InterestsOptions,
   PositionOptions,
-  RecruitmentCapacityOptions,
+  ParticipationMethodOptions,
 } from "../../constants/options";
 import { MainBanner, MainTabs } from "../../components/features/Main";
 import {
@@ -16,23 +15,31 @@ import {
   CustomSelectWrapper,
   SearchBarWrapper,
 } from "./MainPage.styles";
+import useMainPage from "../../hooks/useMainPage";
 
 const MainPage = () => {
-  const handleSearch = (searchValue: string) => {};
-  const handleSelectChange = (option: SelectOption | SelectOption[]) => {};
-  const handlePageChange = (page: number) => {};
+  const {
+    postList,
+    currentPage,
+    totalPage,
+    handleTabChange,
+    handleSearch,
+    handleSelectChange,
+    handlePageChange,
+    selectPostType,
+  } = useMainPage();
 
   return (
     <>
       <MainBanner />
-      <MainTabs />
+      <MainTabs onTabChange={handleTabChange} activeTab={selectPostType} />
       <FilterWrapper>
         <CustomSelectWrapper>
           <CustomSelect
             label={"기술스택"}
             placeholder={"기술스택"}
             options={InterestsOptions}
-            onChange={handleSelectChange}
+            onChange={(option) => handleSelectChange(option, "interests")}
             variant={"rounded"}
             isMulti={true}
           />
@@ -40,14 +47,16 @@ const MainPage = () => {
             label={"포지션"}
             placeholder={"포지션"}
             options={PositionOptions}
-            onChange={handleSelectChange}
+            onChange={(option) => handleSelectChange(option, "position")}
             variant={"rounded"}
           />
           <CustomSelect
             label={"진행방식"}
             placeholder={"진행방식"}
-            options={RecruitmentCapacityOptions}
-            onChange={handleSelectChange}
+            options={ParticipationMethodOptions}
+            onChange={(option) =>
+              handleSelectChange(option, "participationMethod")
+            }
             variant={"rounded"}
           />
         </CustomSelectWrapper>
@@ -55,13 +64,14 @@ const MainPage = () => {
           <SearchBar onSearch={handleSearch} />
         </SearchBarWrapper>
       </FilterWrapper>
-      <CardContainer />
-      {/* 임시 */}
-      <Pagination
-        currentPage={1}
-        totalPages={10}
-        onPageChange={handlePageChange}
-      />
+      <CardContainer postList={postList} />
+      {postList && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPage}
+          onPageChange={handlePageChange}
+        />
+      )}
     </>
   );
 };

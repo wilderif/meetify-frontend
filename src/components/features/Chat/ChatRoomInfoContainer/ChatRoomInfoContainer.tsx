@@ -29,8 +29,7 @@ const ChatRoomContainer = ({
   // 채팅 방 전역 상태 관리
   const userId = useAuthStore((state) => state.email); // 현재 로그인한 유저 아이디
   const chatRooms = useChatStore((state) => state.userChatRooms[userId]);
-
-  return rooms.length === 0 && chatRooms && chatRooms.length === 0 ? (
+  return rooms.length === 0 && !chatRooms ? (
     <EmptyChatRoomInfoContainerWrapper>
       <div className="contact">
         <BannerIcon></BannerIcon>

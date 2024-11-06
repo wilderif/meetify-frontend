@@ -12,6 +12,8 @@ import { StyledButton } from "../../common/button/Button.styles";
 import { useValidation } from "../../../hooks/useValidation";
 import useAuthStore from "../../../store/useAuthStore";
 import useAuthApi from "../../../hooks/useAuthApi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface LoginModalProps {
   onClose: () => void;
@@ -51,13 +53,15 @@ const LoginModal = ({
         setEmailInStore(formData.email);
         onLoginSuccess(); // 로그인 성공 시 호출하여 isLogin 상태 업데이트
         onClose(); // 로그인 성공 후 모달 닫기
-        console.log("로그인 성공");
+        toast.success("로그인 성공", { autoClose: 2000 });
       } catch (error) {
         console.error("로그인 실패:", error);
-        alert("로그인에 실패했습니다. 다시 시도해주세요.");
+        toast.error("로그인에 실패했습니다. 다시 시도해주세요.", {
+          autoClose: 2000,
+        });
       }
     } else {
-      alert("입력한 정보가 유효하지 않습니다.");
+      toast.error("입력한 정보가 유효하지 않습니다.", { autoClose: 2000 });
     }
   };
 
@@ -65,7 +69,7 @@ const LoginModal = ({
     <Overlay>
       <StyledLoginModal>
         <CloseButton onClick={onClose} />
-        <Title />
+        <Title>Meetify</Title>
         <InputWrapper>
           <Input
             type="email"
@@ -107,6 +111,7 @@ const LoginModal = ({
             회원가입
           </StyledButton>
         </ButtonContainer>
+        <ToastContainer />
       </StyledLoginModal>
     </Overlay>
   );

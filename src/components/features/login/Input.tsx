@@ -51,8 +51,8 @@ const InputWithIcon = ({
         value={value}
         onChange={onChange}
         name={name}
-        hasIcon={isPasswordType}
-        isError={!!errorMessage}
+        $hasIcon={isPasswordType}
+        $isError={!!errorMessage}
       />
       {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </InputWrapper>

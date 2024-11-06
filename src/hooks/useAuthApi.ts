@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import useAuthStore from "../store/useAuthStore";
 
+const VITE_API_URL = import.meta.env.VITE_API_URL;
+
 interface ValidationState {
   isValid: boolean;
   message: string;
@@ -38,13 +40,10 @@ const useAuthApi = (): UseAuthApiReturn => {
   const login = async (email: string, password: string) => {
     try {
       // 로그인 API 호출
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/login",
-        {
-          email,
-          password,
-        }
-      );
+      const response = await axios.post(`${VITE_API_URL}/auth/login`, {
+        email,
+        password,
+      });
       console.log("로그인 성공:", response.data);
       setIsLogin(true); // 로그인 성공 시 isLogin 상태 업데이트
       setEmail(email); // 로그인 성공 시 이메일 상태 업데이트
@@ -79,14 +78,12 @@ const useAuthApi = (): UseAuthApiReturn => {
   ) => {
     try {
       // 회원가입 API 호출
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/register",
-        {
-          email,
-          nickname,
-          password,
-        }
-      );
+      console.log("api: ", `${VITE_API_URL}/auth/register`);
+      const response = await axios.post(`${VITE_API_URL}/auth/register`, {
+        email,
+        nickname,
+        password,
+      });
       console.log("회원가입 성공:", response.data);
     } catch (error) {
       console.error("회원가입 실패:", error);
@@ -104,9 +101,7 @@ const useAuthApi = (): UseAuthApiReturn => {
 
   const deleteUser = async (email: string) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:3000/api/auth/${email}`
-      );
+      const response = await axios.delete(`${VITE_API_URL}/auth/${email}`);
       console.log("회원탈퇴 성공:", response.data);
     } catch (error) {
       console.error("회원탈퇴 실패:", error);
