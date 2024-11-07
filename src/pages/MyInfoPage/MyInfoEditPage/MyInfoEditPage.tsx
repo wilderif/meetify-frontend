@@ -24,6 +24,7 @@ import { saveUserProfile } from "../../../services/userProfile/saveUserProfile";
 // import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import { getProfileImagePath } from "../../../utils/getProfileImagePath";
 import useAuthApi from "../../../hooks/useAuthApi";
+import { toast } from "react-toastify";
 
 /**
  * CustomSelect 컴포넌트의 width 값이 600px로 고정되어 있어,
@@ -46,6 +47,7 @@ const MyInfoEditPage = () => {
   });
   const navigate = useNavigate();
 
+  const loginNickname = useAuthStore((state) => state.nickname);
   const loginProfileImage = getProfileImagePath(profileImageIndex);
   const { deleteUser } = useAuthApi();
   const logout = useAuthStore((state) => state.logout);
@@ -152,6 +154,26 @@ const MyInfoEditPage = () => {
     };
   };
 
+  // 닉네임 최대 길이 제한
+  const handleNicknameChange = () => {
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      if (value.length <= 8) {
+        handleInputChange("inputNickname")(e);
+      }
+      if (value.length === 9) {
+        toast.warning("닉네임은 8자 이하로 입력해주세요.", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      }
+    };
+  };
+
   return (
     <MyInfoEditPageWrapper>
       {loading ? (
@@ -165,7 +187,7 @@ const MyInfoEditPage = () => {
               usageType="userInformation"
             />
             <div style={{ marginTop: "1rem" }}>
-              {userInformation.inputNickname} 님 환영해요.
+              {loginNickname} 님 환영해요.
             </div>
           </ProfileContainer>
           <Input
@@ -176,7 +198,7 @@ const MyInfoEditPage = () => {
                 : "닉네임을 입력해주세요."
             }
             value={userInformation.inputNickname}
-            onChange={handleInputChange("inputNickname")}
+            onChange={handleNicknameChange()}
           />
 
           <CustomSelect
