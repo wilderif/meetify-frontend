@@ -16,6 +16,13 @@ import handIcon from "../../../assets/post-image/hand.svg";
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import useAuthStore from "../../../store/useAuthStore";
 
+// 상수 파일 import
+import ParticipationMethod from "../../../constants/ParticipationMethod";
+import Position from "../../../constants/Position";
+import Interests from "../../../constants/Interests";
+import AvailableTime from "../../../constants/AvailableTime";
+import Affiliation from "../../../constants/Affiliation";
+
 interface MeetDetailProps {
   postData: {
     id: string;
@@ -82,14 +89,23 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
           <FormColumn>
             <ReadInput
               label="선호 진행 방식"
-              value={postData.participation_method}
+              value={
+                ParticipationMethod[
+                  postData.participation_method as keyof typeof ParticipationMethod
+                ] || postData.participation_method
+              }
               variant="primary"
             />
           </FormColumn>
           <FormColumn>
             <ReadInput
               label="관심 분야"
-              value={postData.interests.join(", ")}
+              value={postData.interests
+                .map(
+                  (interest) =>
+                    Interests[interest as keyof typeof Interests] || interest
+                )
+                .join(", ")}
               variant="primary"
             />
           </FormColumn>
@@ -97,7 +113,11 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
             <FormColumn>
               <ReadInput
                 label="소속"
-                value={postData.affiliation}
+                value={
+                  Affiliation[
+                    postData.affiliation as keyof typeof Affiliation
+                  ] || postData.affiliation
+                }
                 variant="primary"
               />
             </FormColumn>
@@ -105,7 +125,9 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
           <FormColumn>
             <ReadInput
               label="직무"
-              value={postData.position.join(", ")}
+              value={postData.position
+                .map((pos) => Position[pos as keyof typeof Position] || pos)
+                .join(", ")}
               variant="primary"
             />
           </FormColumn>
@@ -114,7 +136,11 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
             <FormColumn>
               <ReadInput
                 label="참여 가능 시간(주)"
-                value={postData.available_time}
+                value={
+                  AvailableTime[
+                    postData.available_time as keyof typeof AvailableTime
+                  ] || postData.available_time
+                }
                 variant="primary"
               />
             </FormColumn>

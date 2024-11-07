@@ -16,6 +16,13 @@ import handIcon from "../../../assets/post-image/hand.svg";
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import useAuthStore from "../../../store/useAuthStore";
 
+// 상수 파일 import
+import ParticipationMethod from "../../../constants/ParticipationMethod";
+import Position from "../../../constants/Position";
+import RecruitmentCapacity from "../../../constants/RecruitmentCapacity";
+import Interests from "../../../constants/Interests";
+import Duration from "../../../constants/Duration";
+
 interface PostDetailProps {
   postData: {
     id: string;
@@ -50,8 +57,7 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
   const navigate = useNavigate();
   const formattedDate = dayjs(postData.created_at).format("YYYY-MM-DD");
   const currentUserEmail = useAuthStore((state) => state.email); // 현재 로그인한 사용자 ID
-  console.log("currentUserEmail:", currentUserEmail);
-  console.log("postData.user_profile.email:", postData.user_profile.email);
+  console.log("현재 postData:", postData);
   // 문의하기 클릭 시 /chats로 이동
   const handleInquiry = () => {
     navigate("/chats");
@@ -85,7 +91,11 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
           <FormColumn>
             <ReadInput
               label="진행 방식"
-              value={postData.participation_method}
+              value={
+                ParticipationMethod[
+                  postData.participation_method as keyof typeof ParticipationMethod
+                ] || postData.participation_method
+              }
               variant="primary"
             />
           </FormColumn>
@@ -93,7 +103,13 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
             <FormColumn>
               <ReadInput
                 label="모집 인원"
-                value={postData.recruitment_capacity.toString()}
+                value={
+                  RecruitmentCapacity[
+                    Number(
+                      postData.recruitment_capacity
+                    ) as keyof typeof RecruitmentCapacity
+                  ] || postData.recruitment_capacity
+                }
                 variant="primary"
               />
             </FormColumn>
@@ -101,7 +117,12 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
           <FormColumn>
             <ReadInput
               label="기술 스택"
-              value={postData.interests.join(", ")}
+              value={postData.interests
+                .map(
+                  (interest) =>
+                    Interests[interest as keyof typeof Interests] || interest
+                )
+                .join(", ")}
               variant="primary"
             />
           </FormColumn>
@@ -109,7 +130,10 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
             <FormColumn>
               <ReadInput
                 label="진행 기간"
-                value={postData.duration}
+                value={
+                  Duration[postData.duration as keyof typeof Duration] ||
+                  postData.duration
+                }
                 variant="primary"
               />
             </FormColumn>
@@ -117,7 +141,9 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
           <FormColumn>
             <ReadInput
               label="모집 포지션"
-              value={postData.position.join(", ")}
+              value={postData.position
+                .map((pos) => Position[pos as keyof typeof Position] || pos)
+                .join(", ")}
               variant="primary"
             />
           </FormColumn>
@@ -125,7 +151,9 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
             <FormColumn>
               <ReadInput
                 label="모집 마감일"
-                value={postData.recruitment_deadline}
+                value={dayjs(postData.recruitment_deadline).format(
+                  "YYYY-MM-DD"
+                )}
                 variant="primary"
               />
             </FormColumn>
