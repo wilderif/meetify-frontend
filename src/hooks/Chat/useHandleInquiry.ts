@@ -11,13 +11,12 @@ const useHandleInquiry = (
 ) => {
   const navigate = useNavigate();
   const { addChatRoom } = useChatStore();
-  const toastId = "1:1문의";
 
   const handleInquiry = async () => {
     const user_list = [userId, targetId];
     if (userId === targetId) {
+      toast.dismiss(); // 모든 알림 제거
       toast.success("게시글 작성자와 사용자가 동일합니다!", {
-        toastId,
         autoClose: 2000,
       });
     } else {
