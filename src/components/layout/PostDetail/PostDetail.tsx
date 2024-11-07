@@ -1,5 +1,4 @@
 import dayjs from "dayjs";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Button from "../../common/button/Button";
 import {
@@ -15,9 +14,7 @@ import ReadTitle from "../../common/ReadTitle/ReadTitle";
 import handIcon from "../../../assets/post-image/hand.svg";
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import useAuthStore from "../../../store/useAuthStore";
-import axios from "axios";
-import { SERVER_URL } from "../../../constants/Chat";
-import useChatStore from "../../../store/useChatStore";
+import useHandleInquiry from "../../../hooks/Chat/useHandleInquiry";
 
 interface PostDetailProps {
   postData: {
@@ -50,41 +47,14 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
   onEdit,
   onDelete,
 }) => {
-  const navigate = useNavigate();
   const formattedDate = dayjs(postData.created_at).format("YYYY-MM-DD");
   const currentUserEmail = useAuthStore((state) => state.email); // 현재 로그인한 사용자 ID
-  const addChatRoom = useChatStore((state) => state.addChatRoom);
   // 문의하기 클릭 시 /chats로 이동
-  // 문의하기 클릭 시 /chats로 이동
-  const handleInquiry = async () => {
-    const userId = currentUserEmail;
-    const targetId = postData.user_profile.email;
-    const user_list = [userId, targetId];
-
-    if (userId !== targetId) {
-      try {
-        // Axios를 사용하여 API 호출
-        const response = await axios.post(`${SERVER_URL}/room/exists`, {
-          user_list, // userList를 request body에 포함
-        });
-
-        // 응답값이 true일 때만 addChatRoom 호출
-        if (!response.data.exists) {
-          addChatRoom(userId, {
-            name: `${postData.user_profile.nickname}`, // 타겟 닉네임
-            otherUserId: targetId, // 타겟 아이디
-          });
-        } else {
-          console.log("이미 존재하는 채팅방입니다.");
-        }
-
-        console.log(response);
-      } catch (error) {
-        console.error("채팅방 확인 중 오류 발생:", error);
-      }
-      navigate("/chats");
-    }
-  };
+  const handleInquiry = useHandleInquiry(
+    currentUserEmail,
+    postData.user_profile.email,
+    postData.user_profile.nickname
+  );
   // 공유하기 클릭 시 주소 복사 및 toast 메시지 표시
   const handleShare = () => {
     navigator.clipboard.writeText(window.location.href).then(() => {
