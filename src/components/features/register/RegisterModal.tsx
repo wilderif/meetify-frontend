@@ -13,7 +13,7 @@ import { StyledButton } from "../../common/button/Button.styles";
 import Input from "../login/Input";
 import LoadingSpinner from "../../common/LoadingSpinner/LoadingSpinner";
 import { useValidation } from "../../../hooks/useValidation";
-import useAuthStore from "../../../store/useAuthStore";
+// import useAuthStore from "../../../store/useAuthStore";
 import useAuthApi from "../../../hooks/useAuthApi";
 import useLoadingStore from "../../../store/useLoadingStore";
 import { ToastContainer, toast } from "react-toastify";
@@ -32,8 +32,10 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
 
   const { validation, validateForm, handleFieldChange } = useValidation(true); // 회원가입 모드로 호출
   const { register } = useAuthApi(); // useAuthApi 훅 사용
-  const setEmailInStore = useAuthStore((state) => state.setEmail);
-  const setNicknameInStore = useAuthStore((state) => state.setNickname);
+  // const setEmailInStore = useAuthStore((state) => state.setEmail);
+  // const setNicknameInStore = useAuthStore((state) => state.setNickname);
+  // const setEmailInStore = useAuthStore((state) => state.setEmail);
+  // const setNicknameInStore = useAuthStore((state) => state.setNickname);
   const { isLoading, setLoading } = useLoadingStore();
 
   const toastId = "register-toast"; // 고유한 토스트 ID
@@ -60,8 +62,8 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
       setLoading(true);
       try {
         await register(email, nickname, password); // 회원가입 메서드 호출
-        setEmailInStore(email);
-        setNicknameInStore(nickname);
+        // setEmailInStore(email);
+        // setNicknameInStore(nickname);
         onClose(); // 회원가입 후 모달 닫기
         toast.success("회원가입 성공", { autoClose: 2000, toastId }); // 성공 시 토스트 메시지
       } catch (error) {
