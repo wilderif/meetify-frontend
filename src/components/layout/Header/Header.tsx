@@ -51,7 +51,7 @@ const Header = ({ isMainPage, isChatPage }: HeaderProps) => {
 
   //채팅 unread msg 개수 관련 커스텀 훅
   const userId = useAuthStore((state) => state.email); // 현재 로그인한 유저 아이디
-  const unreadCount = useChatUnread(userId);
+  const { unreadCount } = useChatUnread(userId);
 
   const toggleDropdown = () => {
     setIsDropdownVisible((prev) => !prev);
