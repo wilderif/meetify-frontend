@@ -183,7 +183,7 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
             onClick={onEdit}
           />
           <Button
-            buttonType="fill"
+            buttonType="outline"
             buttonSize="medium"
             label="삭제"
             onClick={handleDelete} // 삭제 시 알림 표시
