@@ -103,41 +103,41 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
         <Row>
           <FormColumn>
             <ReadInput
-              label="선호 진행 방식"
+              label='선호 진행 방식'
               value={postData.participation_method}
-              variant="primary"
+              variant='primary'
             />
           </FormColumn>
           <FormColumn>
             <ReadInput
-              label="관심 분야"
+              label='관심 분야'
               value={postData.interests.join(", ")}
-              variant="primary"
+              variant='primary'
             />
           </FormColumn>
           {postData.affiliation && (
             <FormColumn>
               <ReadInput
-                label="소속"
+                label='소속'
                 value={postData.affiliation}
-                variant="primary"
+                variant='primary'
               />
             </FormColumn>
           )}
           <FormColumn>
             <ReadInput
-              label="직무"
+              label='직무'
               value={postData.position.join(", ")}
-              variant="primary"
+              variant='primary'
             />
           </FormColumn>
 
           {postData.available_time && (
             <FormColumn>
               <ReadInput
-                label="참여 가능 시간(주)"
+                label='참여 가능 시간(주)'
                 value={postData.available_time}
-                variant="primary"
+                variant='primary'
               />
             </FormColumn>
           )}
@@ -145,20 +145,20 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
       </Section>
       <ButtonWrapper>
         <Button
-          buttonType="fill"
-          buttonSize="medium"
-          label="문의하기"
+          buttonType='fill'
+          buttonSize='medium'
+          label='문의하기'
           onClick={handle1on1Chat} // /chats 페이지로 이동
         />
         <Button
-          buttonType="outline"
-          buttonSize="medium"
-          label="공유하기"
+          buttonType='outline'
+          buttonSize='medium'
+          label='공유하기'
           onClick={handleShare} // 현재 페이지 URL 복사 및 알림
         />
       </ButtonWrapper>
       <Section>
-        <ReadTitle text="소개 내용" iconSrc={handIcon} />
+        <ReadTitle text='소개 내용' iconSrc={handIcon} />
         <Content>{stripHtmlTags(postData.content)}</Content>{" "}
       </Section>
 
@@ -166,15 +166,15 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
       {postData.user_profile.email === currentUserEmail && (
         <ButtonWrapper>
           <Button
-            buttonType="fill"
-            buttonSize="medium"
-            label="수정"
+            buttonType='fill'
+            buttonSize='medium'
+            label='수정'
             onClick={onEdit}
           />
           <Button
-            buttonType="fill"
-            buttonSize="medium"
-            label="삭제"
+            buttonType='outline'
+            buttonSize='medium'
+            label='삭제'
             onClick={handleDelete} // 삭제 시 알림 표시
           />
         </ButtonWrapper>
