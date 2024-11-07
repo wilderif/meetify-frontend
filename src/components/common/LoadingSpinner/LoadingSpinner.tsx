@@ -1,6 +1,6 @@
 import { Container, TextWrapper, Title, Letter } from "./LoadingSpinner.styled";
 
-const letters = ["M", "E", "E", "T", "I", "F", "Y"];
+const letters = ["L", "O", "A", "D", "I", "N", "G"];
 
 const LoadingSpinner = () => {
   return (
