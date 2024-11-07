@@ -14,6 +14,10 @@ import ReadTitle from "../../common/ReadTitle/ReadTitle";
 import handIcon from "../../../assets/post-image/hand.svg";
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import useAuthStore from "../../../store/useAuthStore";
+import axios from "axios";
+import { SERVER_URL } from "../../../constants/Chat";
+import useChatStore from "../../../store/useChatStore";
+import { formatDate } from "../../../utils/dateUtils";
 import useHandleInquiry from "../../../hooks/Chat/useHandleInquiry";
 
 interface PostDetailProps {
@@ -123,7 +127,7 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
             <FormColumn>
               <ReadInput
                 label="모집 마감일"
-                value={postData.recruitment_deadline}
+                value={formatDate(new Date(postData.recruitment_deadline))}
                 variant="primary"
               />
             </FormColumn>
