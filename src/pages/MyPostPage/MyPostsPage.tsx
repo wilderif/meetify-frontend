@@ -7,10 +7,13 @@ import {
   EmptyText,
 } from "./MyPostsPage.styles";
 import useMyPostsPage from "../../hooks/useMyPostsPage";
+import LoadingSpinner from "../../components/common/LoadingSpinner/LoadingSpinner";
 
 const MyPostsPage = () => {
   const { postList, currentPage, totalPage, handlePageChange } =
     useMyPostsPage();
+
+  if (!postList) return <LoadingSpinner />;
 
   return (
     <StyledMyPostsContainer>
