@@ -18,6 +18,7 @@ import useAuthStore from "../../../store/useAuthStore";
 import axios from "axios";
 import { SERVER_URL } from "../../../constants/Chat";
 import useChatStore from "../../../store/useChatStore";
+import { formatDate } from "../../../utils/dateUtils";
 
 interface PostDetailProps {
   postData: {
@@ -153,7 +154,7 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
             <FormColumn>
               <ReadInput
                 label="모집 마감일"
-                value={postData.recruitment_deadline}
+                value={formatDate(new Date(postData.recruitment_deadline))}
                 variant="primary"
               />
             </FormColumn>
