@@ -49,8 +49,8 @@ export const StyledRegisterModal = styled.div`
   background-color: #ffff;
   border: 2px solid var(--bg-gray-light);
   border-radius: 30px;
-  width: 500px;
-  height: 550px;
+  width: 430px;
+  height: 500px;
 `;
 
 /* 로그인 모달 사이즈 */
@@ -64,8 +64,8 @@ export const StyledLoginModal = styled.div`
   background-color: #ffff;
   border: 2px solid var(--bg-gray-light);
   border-radius: 30px;
-  width: 500px;
-  height: 450px;
+  width: 420px;
+  height: 470px;
   animation: ${modalAnimation} 0.3s ease-out;
 `;
 
