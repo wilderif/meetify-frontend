@@ -21,6 +21,13 @@ import useModal from "../../../hooks/useModal";
 import LoginModal from "../../features/login/LoginModal";
 import RegisterModal from "../../features/register/RegisterModal";
 
+// 상수 파일 import
+import ParticipationMethod from "../../../constants/ParticipationMethod";
+import Position from "../../../constants/Position";
+import Interests from "../../../constants/Interests";
+import AvailableTime from "../../../constants/AvailableTime";
+import Affiliation from "../../../constants/Affiliation";
+
 interface MeetDetailProps {
   postData: {
     id: string;
@@ -104,62 +111,83 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
         <Row>
           <FormColumn>
             <ReadInput
-              label='선호 진행 방식'
-              value={postData.participation_method}
-              variant='primary'
+              label="선호 진행 방식"
+              value={
+                ParticipationMethod[
+                  postData.participation_method as keyof typeof ParticipationMethod
+                ] || postData.participation_method
+              }
+              variant="primary"
             />
           </FormColumn>
           <FormColumn>
             <ReadInput
-              label='관심 분야'
-              value={postData.interests.join(", ")}
-              variant='primary'
+              label="관심 분야"
+              value={postData.interests
+                .map(
+                  (interest) =>
+                    Interests[interest as keyof typeof Interests] || interest
+                )
+                .join(", ")}
+              variant="primary"
             />
           </FormColumn>
           {postData.affiliation && (
             <FormColumn>
               <ReadInput
-                label='소속'
-                value={postData.affiliation}
-                variant='primary'
+                label="소속"
+                value={
+                  Affiliation[
+                    postData.affiliation as keyof typeof Affiliation
+                  ] || postData.affiliation
+                }
+                variant="primary"
               />
             </FormColumn>
           )}
           <FormColumn>
             <ReadInput
-              label='직무'
-              value={postData.position.join(", ")}
-              variant='primary'
+              label="직무"
+              value={postData.position
+                .map((pos) => Position[pos as keyof typeof Position] || pos)
+                .join(", ")}
+              variant="primary"
             />
           </FormColumn>
 
           {postData.available_time && (
             <FormColumn>
               <ReadInput
-                label='참여 가능 시간(주)'
-                value={postData.available_time}
-                variant='primary'
+                label="참여 가능 시간(주)"
+                value={
+                  AvailableTime[
+                    postData.available_time as keyof typeof AvailableTime
+                  ] || postData.available_time
+                }
+                variant="primary"
               />
             </FormColumn>
           )}
         </Row>
       </Section>
       <ButtonWrapper>
+        {currentUserEmail && (
+          <Button
+            buttonType="fill"
+            buttonSize="medium"
+            label="문의하기"
+            onClick={handle1on1Chat} // /chats 페이지로 이동
+          />
+        )}
         <Button
-          buttonType='fill'
-          buttonSize='medium'
-          label='문의하기'
-          onClick={handle1on1Chat} // /chats 페이지로 이동
-        />
-        <Button
-          buttonType='outline'
-          buttonSize='medium'
-          label='공유하기'
+          buttonType="outline"
+          buttonSize="medium"
+          label="공유하기"
           onClick={handleShare} // 현재 페이지 URL 복사 및 알림
         />
       </ButtonWrapper>
       <Section>
-        <ReadTitle text='소개 내용' iconSrc={handIcon} />
+        <ReadTitle text="소개 내용" iconSrc={handIcon} />
         <Content>{stripHtmlTags(postData.content)}</Content>{" "}
       </Section>
 
@@ -167,15 +195,15 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
       {postData.user_profile.email === currentUserEmail && (
         <ButtonWrapper>
           <Button
-            buttonType='fill'
-            buttonSize='medium'
-            label='수정'
+            buttonType="fill"
+            buttonSize="medium"
+            label="수정"
             onClick={onEdit}
           />
           <Button
-            buttonType='outline'
-            buttonSize='medium'
-            label='삭제'
+            buttonType="outline"
+            buttonSize="medium"
+            label="삭제"
             onClick={handleDelete} // 삭제 시 알림 표시
           />
         </ButtonWrapper>
