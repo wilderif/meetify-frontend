@@ -75,7 +75,8 @@ export const Title = styled.span`
   background: linear-gradient(120deg, #ff935a 28.37%, #ffdc78 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: ${titleAnimate} 1s ease-out;
+  user-select: none;
+  animation: ${titleAnimate} 0.5s ease-out;
   display: inline-block;
 `;
 
