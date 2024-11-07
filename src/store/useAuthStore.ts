@@ -26,7 +26,7 @@ const useAuthStore = create<AuthState>()(
     (set) => ({
       email: "",
       nickname: "",
-      profileImageIndex: 0,
+      profileImageIndex: 1,
       isLogin: false,
       showProfileProposal: false,
       validation: {
@@ -48,7 +48,7 @@ const useAuthStore = create<AuthState>()(
           email: "",
           nickname: "",
           isLogin: false,
-          profileImageIndex: 0,
+          profileImageIndex: 1,
         })),
       setValidation: (validation) => set(() => ({ validation })),
     }),
@@ -59,6 +59,7 @@ const useAuthStore = create<AuthState>()(
         nickname: state.nickname,
         isLogin: state.isLogin,
         showProfileProposal: state.showProfileProposal,
+        profileImageIndex: state.profileImageIndex,
       }),
     }
   )

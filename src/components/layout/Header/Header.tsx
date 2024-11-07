@@ -11,13 +11,14 @@ import Button from "../../common/button/Button";
 import BackIcon from "../../common/icon/BackIcon/BackIcon";
 import ProfileDropdown from "../../features/profileDropdown/ProfileDropdown";
 
-import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
+// import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import LoginModal from "../../features/login/LoginModal";
 import RegisterModal from "../../features/register/RegisterModal";
 import ProfileProposal from "../../features/register/ProfileProposal";
 import useModal from "../../../hooks/useModal";
 import useAuthStore from "../../../store/useAuthStore";
 import useChatUnread from "../../../hooks/Chat/useChatUnread";
+import { getProfileImagePath } from "../../../utils/getProfileImagePath";
 
 /**
  * 로그인 안 되 었을 때
@@ -46,6 +47,9 @@ const Header = ({ isMainPage, isChatPage }: HeaderProps) => {
     handleLoginSuccess,
     handleCloseProfileProposal,
   } = useModal();
+
+  const profileImageIndex = useAuthStore((state) => state.profileImageIndex);
+  const loginProfileImage = getProfileImagePath(profileImageIndex);
 
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
@@ -130,7 +134,7 @@ const Header = ({ isMainPage, isChatPage }: HeaderProps) => {
               <NotificationIcon />
             </NotificationIconContainer> */}
             <button onClick={toggleDropdown} title="Toggle Profile Dropdown">
-              <ProfileImage src={DummyProfileImage} usageType="header" />
+              <ProfileImage src={loginProfileImage} usageType="header" />
             </button>
           </NavContainer>
         ) : (
