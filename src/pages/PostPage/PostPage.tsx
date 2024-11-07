@@ -6,7 +6,7 @@ import { PostDetailProps } from "../../types/Post";
 import { Container, Content } from "./PostPage.styles";
 import PostDetailMeet from "../../components/layout/PostDetailMeet/PostDetailMeet";
 import { deletePost } from "../../services/postDetail/deletePost";
-
+import LoadingSpinner from "../../components/common/LoadingSpinner/LoadingSpinner";
 const PostPage = () => {
   const { postId } = useParams<{ postId: string }>();
   console.log("postId:", postId);
@@ -77,7 +77,7 @@ const PostPage = () => {
     }
   };
 
-  if (!postData) return <p>Loading...</p>;
+  if (!postData) return <LoadingSpinner />;
 
   return (
     <Container>

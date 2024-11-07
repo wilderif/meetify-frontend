@@ -5,6 +5,7 @@ import { PostFormData } from "../../types/Post";
 import { updateProjectPost } from "../../services/postDetail/updatePost";
 import { getPostById } from "../../services/postDetail/getPost";
 import Dayjs from "dayjs";
+import LoadingSpinner from "../../components/common/LoadingSpinner/LoadingSpinner";
 
 const UpdateProjectPage: React.FC = () => {
   const { postId } = useParams<{ postId: string }>();
@@ -79,7 +80,7 @@ const UpdateProjectPage: React.FC = () => {
     navigate(-1); // 취소 버튼 클릭 시 이전 페이지로 이동
   };
 
-  if (!initialData) return <p>Loading...</p>;
+  if (!initialData) return <LoadingSpinner />;
 
   return (
     <PostForm
