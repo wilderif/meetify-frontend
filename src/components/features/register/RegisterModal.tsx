@@ -30,8 +30,8 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
 
   const { validation, validateForm, handleFieldChange } = useValidation(true); // 회원가입 모드로 호출
   const { register } = useAuthApi(); // useAuthApi 훅 사용
-  const setEmailInStore = useAuthStore((state) => state.setEmail);
-  const setNicknameInStore = useAuthStore((state) => state.setNickname);
+  // const setEmailInStore = useAuthStore((state) => state.setEmail);
+  // const setNicknameInStore = useAuthStore((state) => state.setNickname);
 
   const toastId = "register-toast"; // 고유한 토스트 ID
 
@@ -56,8 +56,8 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
     if (isValid) {
       try {
         await register(email, nickname, password); // 회원가입 메서드 호출
-        setEmailInStore(email);
-        setNicknameInStore(nickname);
+        // setEmailInStore(email);
+        // setNicknameInStore(nickname);
         onClose(); // 회원가입 후 모달 닫기
         toast.success("회원가입 성공", { autoClose: 2000, toastId }); // 성공 시 토스트 메시지
       } catch (error) {
