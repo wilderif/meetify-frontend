@@ -1,6 +1,5 @@
 import dayjs from "dayjs";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import Button from "../../common/button/Button";
 import {
   PostFormContainer,
@@ -203,7 +202,6 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
             onToggleView={toggleModalView} // 모달 전환 함수 전달
           />
         ))}
-      <ToastContainer />
     </PostFormContainer>
   );
 };

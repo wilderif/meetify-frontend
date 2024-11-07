@@ -12,8 +12,7 @@ import { StyledButton } from "../../common/button/Button.styles";
 import { useValidation } from "../../../hooks/useValidation";
 import useAuthStore from "../../../store/useAuthStore";
 import useAuthApi from "../../../hooks/useAuthApi";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 interface LoginModalProps {
   onClose: () => void;
@@ -122,7 +121,6 @@ const LoginModal = ({
             회원가입
           </StyledButton>
         </ButtonContainer>
-        <ToastContainer />
       </StyledLoginModal>
     </Overlay>
   );
