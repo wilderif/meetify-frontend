@@ -76,7 +76,7 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
   };
 
   return (
-    <Overlay>
+    <Overlay onClick={onClose}>
       <StyledRegisterModal onClick={(e) => e.stopPropagation()}>
         <CloseButton onClick={onClose} />
         <Title>Meetify</Title>

@@ -77,8 +77,8 @@ const LoginModal = ({
   };
 
   return (
-    <Overlay>
-      <StyledLoginModal>
+    <Overlay onClick={onClose}>
+      <StyledLoginModal onClick={(e) => e.stopPropagation()}>
         <CloseButton onClick={onClose} />
         <Title>Meetify</Title>
         <InputWrapper>
