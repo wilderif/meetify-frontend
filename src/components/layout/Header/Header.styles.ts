@@ -18,7 +18,9 @@ export const HeaderContainer = styled.header`
   }
 `;
 
-export const LogoContainer = styled.div``;
+export const LogoContainer = styled.div`
+  user-select: none;
+`;
 
 export const NavContainer = styled.nav`
   display: flex;
