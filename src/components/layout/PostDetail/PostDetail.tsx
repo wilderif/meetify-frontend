@@ -67,14 +67,6 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
   } = useModal();
   const formattedDate = dayjs(postData.created_at).format("YYYY-MM-DD");
   const currentUserEmail = useAuthStore((state) => state.email); // 현재 로그인한 사용자 ID
-<<<<<<< HEAD
-  console.log("현재 postData:", postData);
-  // 문의하기 클릭 시 /chats로 이동
-  const handleInquiry = () => {
-    navigate("/chats");
-  };
-=======
->>>>>>> develop
 
   const profileImageIndex = postData.user_profile.profile_image_index;
   const postProfileImage = getProfileImagePath(profileImageIndex);
@@ -181,13 +173,7 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
             <FormColumn>
               <ReadInput
                 label="모집 마감일"
-<<<<<<< HEAD
-                value={dayjs(postData.recruitment_deadline).format(
-                  "YYYY-MM-DD"
-                )}
-=======
                 value={formatDate(new Date(postData.recruitment_deadline))}
->>>>>>> develop
                 variant="primary"
               />
             </FormColumn>
@@ -195,23 +181,12 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
         </Row>
       </Section>
       <ButtonWrapper>
-<<<<<<< HEAD
-        {currentUserEmail && (
-          <Button
-            buttonType="fill"
-            buttonSize="medium"
-            label="문의하기"
-            onClick={handleInquiry} // /chats 페이지로 이동
-          />
-        )}
-=======
         <Button
           buttonType="fill"
           buttonSize="medium"
           label="문의하기"
           onClick={handle1on1Chat} // /chats 페이지로 이동
         />
->>>>>>> develop
         <Button
           buttonType="outline"
           buttonSize="medium"

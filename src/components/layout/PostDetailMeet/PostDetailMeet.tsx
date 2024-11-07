@@ -111,7 +111,6 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
         <Row>
           <FormColumn>
             <ReadInput
-<<<<<<< HEAD
               label="선호 진행 방식"
               value={
                 ParticipationMethod[
@@ -119,16 +118,10 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
                 ] || postData.participation_method
               }
               variant="primary"
-=======
-              label='선호 진행 방식'
-              value={postData.participation_method}
-              variant='primary'
->>>>>>> develop
             />
           </FormColumn>
           <FormColumn>
             <ReadInput
-<<<<<<< HEAD
               label="관심 분야"
               value={postData.interests
                 .map(
@@ -137,17 +130,11 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
                 )
                 .join(", ")}
               variant="primary"
-=======
-              label='관심 분야'
-              value={postData.interests.join(", ")}
-              variant='primary'
->>>>>>> develop
             />
           </FormColumn>
           {postData.affiliation && (
             <FormColumn>
               <ReadInput
-<<<<<<< HEAD
                 label="소속"
                 value={
                   Affiliation[
@@ -155,34 +142,22 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
                   ] || postData.affiliation
                 }
                 variant="primary"
-=======
-                label='소속'
-                value={postData.affiliation}
-                variant='primary'
->>>>>>> develop
               />
             </FormColumn>
           )}
           <FormColumn>
             <ReadInput
-<<<<<<< HEAD
               label="직무"
               value={postData.position
                 .map((pos) => Position[pos as keyof typeof Position] || pos)
                 .join(", ")}
               variant="primary"
-=======
-              label='직무'
-              value={postData.position.join(", ")}
-              variant='primary'
->>>>>>> develop
             />
           </FormColumn>
 
           {postData.available_time && (
             <FormColumn>
               <ReadInput
-<<<<<<< HEAD
                 label="참여 가능 시간(주)"
                 value={
                   AvailableTime[
@@ -190,43 +165,29 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
                   ] || postData.available_time
                 }
                 variant="primary"
-=======
-                label='참여 가능 시간(주)'
-                value={postData.available_time}
-                variant='primary'
->>>>>>> develop
               />
             </FormColumn>
           )}
         </Row>
       </Section>
       <ButtonWrapper>
-<<<<<<< HEAD
         {currentUserEmail && (
           <Button
             buttonType="fill"
             buttonSize="medium"
             label="문의하기"
-            onClick={handleInquiry} // /chats 페이지로 이동
+            onClick={handle1on1Chat} // /chats 페이지로 이동
           />
         )}
-=======
         <Button
-          buttonType='fill'
-          buttonSize='medium'
-          label='문의하기'
-          onClick={handle1on1Chat} // /chats 페이지로 이동
-        />
->>>>>>> develop
-        <Button
-          buttonType='outline'
-          buttonSize='medium'
-          label='공유하기'
+          buttonType="outline"
+          buttonSize="medium"
+          label="공유하기"
           onClick={handleShare} // 현재 페이지 URL 복사 및 알림
         />
       </ButtonWrapper>
       <Section>
-        <ReadTitle text='소개 내용' iconSrc={handIcon} />
+        <ReadTitle text="소개 내용" iconSrc={handIcon} />
         <Content>{stripHtmlTags(postData.content)}</Content>{" "}
       </Section>
 
@@ -234,15 +195,15 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
       {postData.user_profile.email === currentUserEmail && (
         <ButtonWrapper>
           <Button
-            buttonType='fill'
-            buttonSize='medium'
-            label='수정'
+            buttonType="fill"
+            buttonSize="medium"
+            label="수정"
             onClick={onEdit}
           />
           <Button
-            buttonType='outline'
-            buttonSize='medium'
-            label='삭제'
+            buttonType="outline"
+            buttonSize="medium"
+            label="삭제"
             onClick={handleDelete} // 삭제 시 알림 표시
           />
         </ButtonWrapper>
