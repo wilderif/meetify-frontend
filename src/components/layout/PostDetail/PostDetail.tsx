@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import DOMPurify from "dompurify";
 import Button from "../../common/button/Button";
 import {
   PostFormContainer,
@@ -45,10 +46,6 @@ interface PostDetailProps {
   onDelete: () => void;
 }
 
-const stripHtmlTags = (html: string) => {
-  return html.replace(/<[^>]*>?/gm, ""); // 정규 표현식을 사용하여 HTML 태그 제거
-};
-
 const ProjectDetail: React.FC<PostDetailProps> = ({
   postData,
   onEdit,
@@ -75,6 +72,9 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
     onDelete(); // 실제 삭제 로직 호출
     toast.success("삭제되었습니다.");
   };
+  // content를 DOMPurify로 정화
+  const sanitizedContent = DOMPurify.sanitize(postData.content);
+
   return (
     <PostFormContainer>
       <Section>
@@ -178,8 +178,8 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
       </ButtonWrapper>
       <Section>
         <ReadTitle text="소개 내용" iconSrc={handIcon} />
-        <Content>{stripHtmlTags(postData.content)}</Content>{" "}
-        {/* HTML 태그 제거 후 표시 */}
+        {/* DOMPurify로 정화된 HTML 콘텐츠를 렌더링 */}
+        <Content dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
       </Section>
 
       {/* 작성자와 로그인 사용자가 동일할 때만 수정 및 삭제 버튼 표시 */}
