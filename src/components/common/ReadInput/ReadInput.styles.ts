@@ -11,19 +11,19 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.label`
-  font-size: var(--font-size-head-small);
+  font-size: var(--font-size-body-medium);
   margin-bottom: 7px;
   font-weight: var(--font-weight-semi-bold);
   font-family: inherit;
 `;
 
 export const StyledInput = styled.input<StyledInputProps>`
-  min-height: 62px;
+  min-height: 50px;
   width: 600px;
   border-radius: 10px;
   padding: 12px;
   margin-bottom: 10px;
-  font-size: var(--font-size-head-small);
+  font-size: var(--font-size-body-medium);
   font-weight: var(--font-weight-semi-bold);
   align-items: center;
   display: flex;

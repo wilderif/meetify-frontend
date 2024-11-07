@@ -43,13 +43,16 @@ const useAuthStore = create<AuthState>()(
       setIsLogin: (isLogin: boolean) => set((state) => ({ ...state, isLogin })),
       setShowProfileProposal: (show: boolean) =>
         set((state) => ({ ...state, showProfileProposal: show })),
-      logout: () =>
+      logout: () => {
         set(() => ({
           email: "",
           nickname: "",
           isLogin: false,
           profileImageIndex: 1,
-        })),
+          showProfileProposal: false,
+        }));
+        localStorage.removeItem("token");
+      },
       setValidation: (validation) => set(() => ({ validation })),
     }),
     {

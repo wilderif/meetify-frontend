@@ -8,7 +8,7 @@ export const StyledMyPostsContainer = styled.div`
 export const Title = styled.div`
   font-size: var(--font-size-head-large);
   font-weight: var(--font-weight-semi-bold);
-  margin-bottom: 1rem;
+  margin: 3rem 0 1rem 0;
   user-select: none;
 `;
 
