@@ -20,8 +20,10 @@ import {
 import { fetchUserProfile } from "../../../services/userProfile/fetchUserProfile";
 import { saveUserProfile } from "../../../services/userProfile/saveUserProfile";
 
-import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
+// import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import useAuthApi from "../../../hooks/useAuthApi";
+import { getProfileImagePath } from "../../../utils/getProfileImagePath";
+import { toast } from "react-toastify";
 
 /**
  * CustomSelect 컴포넌트의 width 값이 600px로 고정되어 있어,
@@ -33,6 +35,9 @@ import useAuthApi from "../../../hooks/useAuthApi";
 const MyInfoEditPage = () => {
   const setNickname = useAuthStore((state) => state.setNickname);
   const loginEmail = useAuthStore((state) => state.email);
+  const profileImageIndex = useAuthStore((state) => state.profileImageIndex);
+  const loginProfileImage = getProfileImagePath(profileImageIndex);
+  const loginNickname = useAuthStore((state) => state.nickname);
   const [userInformation, setUserInformation] = useState({
     inputNickname: "",
     selectPosition: {} as SelectOption,
@@ -142,17 +147,35 @@ const MyInfoEditPage = () => {
     };
   };
 
+  // 닉네임 최대 길이 제한
+  const handleNicknameChange = () => {
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      if (value.length <= 10) {
+        handleInputChange("inputNickname")(e);
+      }
+      if (value.length === 10) {
+        toast.warning("닉네임은 10자 이하로 입력해주세요.", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      }
+    };
+  };
+
   return (
     <MyInfoEditPageWrapper>
       <ProfileContainer>
         <ProfileImage
-          src={DummyProfileImage}
+          src={loginProfileImage}
           alt="user profile image"
           usageType="userInformation"
         />
-        <div style={{ marginTop: "1rem" }}>
-          {userInformation.inputNickname} 님 환영해요.
-        </div>
+        <div style={{ marginTop: "1rem" }}>{loginNickname} 님 환영해요.</div>
       </ProfileContainer>
       <Input
         label="닉네임"
@@ -162,7 +185,7 @@ const MyInfoEditPage = () => {
             : "닉네임을 입력해주세요."
         }
         value={userInformation.inputNickname}
-        onChange={handleInputChange("inputNickname")}
+        onChange={handleNicknameChange()}
       />
 
       <CustomSelect
