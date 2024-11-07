@@ -21,7 +21,8 @@ import {
 import { fetchUserProfile } from "../../../services/userProfile/fetchUserProfile";
 import { saveUserProfile } from "../../../services/userProfile/saveUserProfile";
 
-import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
+// import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
+import { getProfileImagePath } from "../../../utils/getProfileImagePath";
 import useAuthApi from "../../../hooks/useAuthApi";
 
 /**
@@ -35,6 +36,7 @@ const MyInfoEditPage = () => {
   const setNickname = useAuthStore((state) => state.setNickname);
   const loginEmail = useAuthStore((state) => state.email);
   const [loading, setLoading] = useState(false);
+  const profileImageIndex = useAuthStore((state) => state.profileImageIndex);
   const [userInformation, setUserInformation] = useState({
     inputNickname: "",
     selectPosition: {} as SelectOption,
@@ -44,7 +46,9 @@ const MyInfoEditPage = () => {
   });
   const navigate = useNavigate();
 
+  const loginProfileImage = getProfileImagePath(profileImageIndex);
   const { deleteUser } = useAuthApi();
+  const logout = useAuthStore((state) => state.logout);
 
   useEffect(() => {
     const fetchUserProfileData = async () => {
@@ -89,6 +93,7 @@ const MyInfoEditPage = () => {
    */
   const handleDeleteUser = async () => {
     deleteUser(loginEmail);
+    logout();
     navigate("/");
   };
 
@@ -155,7 +160,7 @@ const MyInfoEditPage = () => {
         <>
           <ProfileContainer>
             <ProfileImage
-              src={DummyProfileImage}
+              src={loginProfileImage}
               alt="user profile image"
               usageType="userInformation"
             />
