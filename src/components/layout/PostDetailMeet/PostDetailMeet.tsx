@@ -16,6 +16,9 @@ import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image
 import useAuthStore from "../../../store/useAuthStore";
 
 import useHandleInquiry from "../../../hooks/Chat/useHandleInquiry";
+import useModal from "../../../hooks/useModal";
+import LoginModal from "../../features/login/LoginModal";
+import RegisterModal from "../../features/register/RegisterModal";
 
 interface MeetDetailProps {
   postData: {
@@ -46,6 +49,16 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
   onEdit,
   onDelete,
 }) => {
+  const {
+    isLogin,
+    isModalOpen,
+    isLoginView,
+    handleClick,
+    handleCloseModal,
+    toggleModalView,
+    handleLoginSuccess,
+  } = useModal();
+
   const formattedDate = dayjs(postData.created_at).format("YYYY-MM-DD");
   const currentUserEmail = useAuthStore((state) => state.email);
   const handleInquiry = useHandleInquiry(
@@ -53,6 +66,14 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
     postData.user_profile.email,
     postData.user_profile.nickname
   );
+
+  const handle1on1Chat = () => {
+    if (!isLogin) {
+      handleClick();
+    } else {
+      handleInquiry();
+    }
+  };
 
   // 공유하기 클릭 시 주소 복사 및 toast 메시지 표시
   const handleShare = () => {
@@ -127,7 +148,7 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
           buttonType="fill"
           buttonSize="medium"
           label="문의하기"
-          onClick={handleInquiry} // /chats 페이지로 이동
+          onClick={handle1on1Chat} // /chats 페이지로 이동
         />
         <Button
           buttonType="outline"
@@ -158,6 +179,20 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
           />
         </ButtonWrapper>
       )}
+      {/* 로그인 안하고 1:1문의 클릭시 로그인 모달 띄움 */}
+      {isModalOpen &&
+        (isLoginView ? (
+          <LoginModal
+            onClose={handleCloseModal}
+            onToggleView={toggleModalView} // 모달 전환 함수 전달
+            onLoginSuccess={handleLoginSuccess} // 로그인 성공 시 처리 함수 전달
+          />
+        ) : (
+          <RegisterModal
+            onClose={handleCloseModal}
+            onToggleView={toggleModalView} // 모달 전환 함수 전달
+          />
+        ))}
     </PostFormContainer>
   );
 };

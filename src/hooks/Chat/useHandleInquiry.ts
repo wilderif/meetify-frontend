@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import useChatStore from "../../store/useChatStore";
 import { SERVER_URL } from "../../constants/Chat";
+import { toast } from "react-toastify";
 
 const useHandleInquiry = (
   userId: string,
@@ -13,8 +14,12 @@ const useHandleInquiry = (
 
   const handleInquiry = async () => {
     const user_list = [userId, targetId];
-
-    if (userId !== targetId) {
+    if (userId === targetId) {
+      toast.dismiss(); // 모든 알림 제거
+      toast.success("게시글 작성자와 사용자가 동일합니다!", {
+        autoClose: 2000,
+      });
+    } else {
       try {
         // Axios를 사용하여 API 호출
         const response = await axios.post(`${SERVER_URL}/room/exists`, {
