@@ -9,7 +9,7 @@ import { deletePost } from "../../services/postDetail/deletePost";
 
 const PostPage = () => {
   const { postId } = useParams<{ postId: string }>();
-  console.log("postId:", postId);
+  // console.log("postId:", postId);
   const navigate = useNavigate();
   const [postData, setPostData] = useState<PostDetailProps["postData"] | null>(
     null
@@ -20,8 +20,8 @@ const PostPage = () => {
       if (!postId) return;
       try {
         const data = await getPostById(postId);
-        console.log("게시글 데이터를 불러왔습니다:", data);
-        console.log("게시글 유저정보:", data.user_profile);
+        // console.log("게시글 데이터를 불러왔습니다:", data);
+        // console.log("게시글 유저정보:", data.user_profile);
         // PostDetailProps["postData"] 형식에 맞게 변환
         const transformedData: PostDetailProps["postData"] = {
           id: data.id,
@@ -40,10 +40,10 @@ const PostPage = () => {
           user_profile: {
             nickname: data.user_profile.nickname,
             email: data.user_profile.email,
-            profile_image: data.user_profile.profile_image,
+            profile_image_index: data.user_profile.profile_image_index,
           },
         };
-        console.log("변환된 데이터:", transformedData);
+        // console.log("변환된 데이터:", transformedData);
         setPostData(transformedData);
       } catch (error) {
         console.error("게시글 데이터를 불러오는데 실패했습니다:", error);

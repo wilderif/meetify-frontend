@@ -12,8 +12,9 @@ import {
 import ReadInput from "../../common/ReadInput/ReadInput";
 import ReadTitle from "../../common/ReadTitle/ReadTitle";
 import handIcon from "../../../assets/post-image/hand.svg";
-import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
+// import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import useAuthStore from "../../../store/useAuthStore";
+import { getProfileImagePath } from "../../../utils/getProfileImagePath";
 
 import useHandleInquiry from "../../../hooks/Chat/useHandleInquiry";
 import useModal from "../../../hooks/useModal";
@@ -34,7 +35,7 @@ interface MeetDetailProps {
     user_profile: {
       nickname: string;
       email: string;
-      profile_image: string;
+      profile_image_index: number;
     };
   };
   onEdit: () => void;
@@ -61,6 +62,8 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
 
   const formattedDate = dayjs(postData.created_at).format("YYYY-MM-DD");
   const currentUserEmail = useAuthStore((state) => state.email);
+  const profileImageIndex = postData.user_profile.profile_image_index;
+  const postProfileImage = getProfileImagePath(profileImageIndex);
   const handleInquiry = useHandleInquiry(
     currentUserEmail,
     postData.user_profile.email,
@@ -95,9 +98,7 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
           text={postData.title}
           iconSrc={handIcon}
           author={postData.user_profile.nickname}
-          authorImageSrc={
-            postData.user_profile.profile_image || DummyProfileImage
-          }
+          authorImageSrc={postProfileImage}
           createdAt={formattedDate}
         />
         <Row>
