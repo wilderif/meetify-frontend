@@ -19,6 +19,7 @@ import {
   EmptyText,
 } from "./MainPage.styles";
 import useMainPage from "../../hooks/useMainPage";
+import LoadingSpinner from "../../components/common/LoadingSpinner/LoadingSpinner";
 
 const MainPage = () => {
   const {
@@ -31,6 +32,8 @@ const MainPage = () => {
     handlePageChange,
     selectPostType,
   } = useMainPage();
+
+  if (!postList) return <LoadingSpinner />;
 
   return (
     <>

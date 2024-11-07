@@ -7,10 +7,13 @@ import {
   EmptyText,
 } from "./MyLikePage.styles";
 import useMyLikePage from "../../hooks/useMyLikePage";
+import LoadingSpinner from "../../components/common/LoadingSpinner/LoadingSpinner";
 
 const MyLikePage = () => {
   const { postList, currentPage, totalPage, handlePageChange } =
     useMyLikePage(true);
+
+  if (!postList) return <LoadingSpinner />;
 
   return (
     <StyledMyLikeContainer>
