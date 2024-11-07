@@ -31,12 +31,14 @@ const MainPage = () => {
     handleSelectChange,
     handlePageChange,
     selectPostType,
+    isLoading,
   } = useMainPage();
 
   if (!postList) return <LoadingSpinner />;
 
   return (
     <>
+      {isLoading && <LoadingSpinner />}
       <MainBanner />
       <MainTabs onTabChange={handleTabChange} activeTab={selectPostType} />
       <FilterWrapper>
@@ -80,14 +82,16 @@ const MainPage = () => {
           />
         </>
       ) : (
-        <EmptyTextWrapper>
-          <EmptyBold>데이터가 없습니다.</EmptyBold>
-          <EmptyText>
-            원하시는 데이터를 찾을 수 없습니다.
-            <br />
-            검색 조건을 변경하거나, 다시 시도해주세요.
-          </EmptyText>
-        </EmptyTextWrapper>
+        !isLoading && (
+          <EmptyTextWrapper>
+            <EmptyBold>데이터가 없습니다.</EmptyBold>
+            <EmptyText>
+              원하시는 데이터를 찾을 수 없습니다.
+              <br />
+              검색 조건을 변경하거나, 다시 시도해주세요.
+            </EmptyText>
+          </EmptyTextWrapper>
+        )
       )}
     </>
   );
