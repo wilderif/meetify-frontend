@@ -27,7 +27,8 @@ export const StyledInput = styled.input<StyledInputProps>`
   font-weight: var(--font-weight-semi-bold);
   align-items: center;
   display: flex;
-  background-color: var(--font-color-white);
+  background-color: var(--bg-gray-light);
+  opacity: 0.4;
   border: 1px solid #e4e4e4;
 
   color: ${(props) => {

@@ -28,7 +28,8 @@ export const StyledTextArea = styled.textarea<StyledTextAreaProps>`
   font-weight: var(--font-weight-semi-bold);
   resize: none; /* 리사이즈 핸들 제거 */
   text-align: left;
-  background-color: var(--font-color-white);
+  background-color: var(--bg-gray-light);
+  opacity: 0.3;
 
   color: ${(props) =>
     props.$variant === "placeholder"
