@@ -13,11 +13,12 @@ import {
 import ReadInput from "../../common/ReadInput/ReadInput";
 import ReadTitle from "../../common/ReadTitle/ReadTitle";
 import handIcon from "../../../assets/post-image/hand.svg";
-import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
+// import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import useAuthStore from "../../../store/useAuthStore";
 import axios from "axios";
 import { SERVER_URL } from "../../../constants/Chat";
 import useChatStore from "../../../store/useChatStore";
+import { getProfileImagePath } from "../../../utils/getProfileImagePath";
 
 interface PostDetailProps {
   postData: {
@@ -34,7 +35,7 @@ interface PostDetailProps {
     user_profile: {
       nickname: string;
       email: string;
-      profile_image: string;
+      profile_image_index: number;
     };
   };
   onEdit: () => void;
@@ -54,6 +55,8 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
   const formattedDate = dayjs(postData.created_at).format("YYYY-MM-DD");
   const currentUserEmail = useAuthStore((state) => state.email); // 현재 로그인한 사용자 ID
   const addChatRoom = useChatStore((state) => state.addChatRoom);
+  const profileImageIndex = postData.user_profile.profile_image_index;
+  const postProfileImage = getProfileImagePath(profileImageIndex);
   // 문의하기 클릭 시 /chats로 이동
   // 문의하기 클릭 시 /chats로 이동
   const handleInquiry = async () => {
@@ -104,9 +107,7 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
           text={postData.title}
           iconSrc={handIcon}
           author={postData.user_profile.nickname}
-          authorImageSrc={
-            postData.user_profile.profile_image || DummyProfileImage
-          }
+          authorImageSrc={postProfileImage}
           createdAt={formattedDate}
         />
         <Row>

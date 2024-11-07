@@ -51,7 +51,6 @@ const useMainPage = (): UseMainPageReturn => {
         const response = await getPostList(params);
         setTotalPage(response.data.totalPage);
         setPostList(response.data.postList);
-        console.log("포스트 리스트:", response.data.postList);
       } catch (error) {
         console.error("API 요청 중 에러 발생 :: ", error);
       }
