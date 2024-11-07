@@ -30,7 +30,7 @@ export interface PostFormMeetData {
 export interface UserProfile {
   nickname: string; // 사용자 이름
   email: string; // 사용자 이메일
-  profile_image: string; // 사용자 프로필 이미지 URL
+  profile_image_index: number; // 사용자 프로필 이미지 인덱스
 }
 
 // 게시글 상세 정보에 필요한 모든 필드 포함
