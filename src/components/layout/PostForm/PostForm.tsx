@@ -24,7 +24,7 @@ import {
   PostFormContainer,
 } from "./PostForm.styles";
 import { Dayjs } from "dayjs";
-
+import { toast } from "react-toastify";
 interface PostFormProps {
   title: string;
   onSubmit: (data: PostFormData) => void;
@@ -84,6 +84,10 @@ const PostForm: React.FC<PostFormProps> = ({
     // 폼 검증 후 제출
     if (validatePostForm(formData)) {
       onSubmit(formData);
+      if (initialData) {
+        // Toastify 알림 표시
+        toast.success("성공적으로 수정되었습니다!");
+      }
     }
   };
 
