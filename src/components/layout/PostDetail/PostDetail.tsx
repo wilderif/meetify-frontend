@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
+import DOMPurify from "dompurify";
 import Button from "../../common/button/Button";
 import {
   PostFormContainer,
@@ -20,6 +21,13 @@ import useHandleInquiry from "../../../hooks/Chat/useHandleInquiry";
 import LoginModal from "../../features/login/LoginModal";
 import useModal from "../../../hooks/useModal";
 import RegisterModal from "../../features/register/RegisterModal";
+
+// 상수 파일 import
+import ParticipationMethod from "../../../constants/ParticipationMethod";
+import Position from "../../../constants/Position";
+import RecruitmentCapacity from "../../../constants/RecruitmentCapacity";
+import Interests from "../../../constants/Interests";
+import Duration from "../../../constants/Duration";
 
 interface PostDetailProps {
   postData: {
@@ -42,10 +50,6 @@ interface PostDetailProps {
   onEdit: () => void;
   onDelete: () => void;
 }
-
-const stripHtmlTags = (html: string) => {
-  return html.replace(/<[^>]*>?/gm, ""); // 정규 표현식을 사용하여 HTML 태그 제거
-};
 
 const ProjectDetail: React.FC<PostDetailProps> = ({
   postData,
@@ -92,6 +96,9 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
     onDelete(); // 실제 삭제 로직 호출
     toast.success("삭제되었습니다.");
   };
+  // content를 DOMPurify로 정화
+  const sanitizedContent = DOMPurify.sanitize(postData.content);
+
   return (
     <PostFormContainer>
       <Section>
@@ -106,7 +113,11 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
           <FormColumn>
             <ReadInput
               label="진행 방식"
-              value={postData.participation_method}
+              value={
+                ParticipationMethod[
+                  postData.participation_method as keyof typeof ParticipationMethod
+                ] || postData.participation_method
+              }
               variant="primary"
             />
           </FormColumn>
@@ -114,7 +125,13 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
             <FormColumn>
               <ReadInput
                 label="모집 인원"
-                value={postData.recruitment_capacity.toString()}
+                value={
+                  RecruitmentCapacity[
+                    Number(
+                      postData.recruitment_capacity
+                    ) as keyof typeof RecruitmentCapacity
+                  ] || postData.recruitment_capacity
+                }
                 variant="primary"
               />
             </FormColumn>
@@ -122,7 +139,12 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
           <FormColumn>
             <ReadInput
               label="기술 스택"
-              value={postData.interests.join(", ")}
+              value={postData.interests
+                .map(
+                  (interest) =>
+                    Interests[interest as keyof typeof Interests] || interest
+                )
+                .join(", ")}
               variant="primary"
             />
           </FormColumn>
@@ -130,7 +152,10 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
             <FormColumn>
               <ReadInput
                 label="진행 기간"
-                value={postData.duration}
+                value={
+                  Duration[postData.duration as keyof typeof Duration] ||
+                  postData.duration
+                }
                 variant="primary"
               />
             </FormColumn>
@@ -138,7 +163,9 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
           <FormColumn>
             <ReadInput
               label="모집 포지션"
-              value={postData.position.join(", ")}
+              value={postData.position
+                .map((pos) => Position[pos as keyof typeof Position] || pos)
+                .join(", ")}
               variant="primary"
             />
           </FormColumn>
@@ -169,8 +196,8 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
       </ButtonWrapper>
       <Section>
         <ReadTitle text="소개 내용" iconSrc={handIcon} />
-        <Content>{stripHtmlTags(postData.content)}</Content>{" "}
-        {/* HTML 태그 제거 후 표시 */}
+        {/* DOMPurify로 정화된 HTML 콘텐츠를 렌더링 */}
+        <Content dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
       </Section>
 
       {/* 작성자와 로그인 사용자가 동일할 때만 수정 및 삭제 버튼 표시 */}
@@ -183,7 +210,7 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
             onClick={onEdit}
           />
           <Button
-            buttonType="fill"
+            buttonType="outline"
             buttonSize="medium"
             label="삭제"
             onClick={handleDelete} // 삭제 시 알림 표시

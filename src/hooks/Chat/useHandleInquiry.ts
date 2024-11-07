@@ -37,6 +37,10 @@ const useHandleInquiry = (
             addChatRoom(userId, {
               name: `${targetNickName}`, // 타겟 닉네임
               otherUserId: targetId, // 타겟 아이디
+              /**
+               * TODO: 이 부분은 일단 default로 진행 백엔드에서 해당 user profiel index 불러와야함
+               */
+              profileImageIndex: 1,
             });
           }
         } else {

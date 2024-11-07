@@ -22,8 +22,6 @@ export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 24px;
-  margin-top: 40px;
-  margin-bottom: 50px;
 `;
 
 // 추가 스타일

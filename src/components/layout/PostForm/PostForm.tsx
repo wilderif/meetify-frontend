@@ -86,8 +86,8 @@ const PostForm: React.FC<PostFormProps> = ({
       onSubmit(formData);
       if (initialData) {
         // Toastify 알림 표시
-        toast.success("성공적으로 수정되었습니다!");
-      }
+        toast.success("게시글이 수정되었습니다.");
+      } else toast.success("게시글이 작성되었습니다.");
     }
   };
 
