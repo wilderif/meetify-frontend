@@ -1,7 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import dayjs from "dayjs";
-import axios from "axios";
 import Button from "../../common/button/Button";
 import {
   PostFormContainer,
@@ -16,8 +14,11 @@ import ReadTitle from "../../common/ReadTitle/ReadTitle";
 import handIcon from "../../../assets/post-image/hand.svg";
 import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import useAuthStore from "../../../store/useAuthStore";
-import { SERVER_URL } from "../../../constants/Chat";
-import useChatStore from "../../../store/useChatStore";
+
+import useHandleInquiry from "../../../hooks/Chat/useHandleInquiry";
+import useModal from "../../../hooks/useModal";
+import LoginModal from "../../features/login/LoginModal";
+import RegisterModal from "../../features/register/RegisterModal";
 
 interface MeetDetailProps {
   postData: {
@@ -48,39 +49,29 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
   onEdit,
   onDelete,
 }) => {
-  const navigate = useNavigate();
+  const {
+    isLogin,
+    isModalOpen,
+    isLoginView,
+    handleClick,
+    handleCloseModal,
+    toggleModalView,
+    handleLoginSuccess,
+  } = useModal();
+
   const formattedDate = dayjs(postData.created_at).format("YYYY-MM-DD");
   const currentUserEmail = useAuthStore((state) => state.email);
-  const addChatRoom = useChatStore((state) => state.addChatRoom);
+  const handleInquiry = useHandleInquiry(
+    currentUserEmail,
+    postData.user_profile.email,
+    postData.user_profile.nickname
+  );
 
-  // 문의하기 클릭 시 /chats로 이동
-  const handleInquiry = async () => {
-    const userId = currentUserEmail;
-    const targetId = postData.user_profile.email;
-    const user_list = [userId, targetId];
-
-    if (userId !== targetId) {
-      try {
-        // Axios를 사용하여 API 호출
-        const response = await axios.post(`${SERVER_URL}/room/exists`, {
-          user_list, // userList를 request body에 포함
-        });
-
-        // 응답값이 true일 때만 addChatRoom 호출
-        if (!response.data.exists) {
-          addChatRoom(userId, {
-            name: `${postData.user_profile.nickname}`, // 타겟 닉네임
-            otherUserId: targetId, // 타겟 아이디
-          });
-        } else {
-          console.log("이미 존재하는 채팅방입니다.");
-        }
-
-        console.log(response);
-      } catch (error) {
-        console.error("채팅방 확인 중 오류 발생:", error);
-      }
-      navigate("/chats");
+  const handle1on1Chat = () => {
+    if (!isLogin) {
+      handleClick();
+    } else {
+      handleInquiry();
     }
   };
 
@@ -157,7 +148,7 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
           buttonType="fill"
           buttonSize="medium"
           label="문의하기"
-          onClick={handleInquiry} // /chats 페이지로 이동
+          onClick={handle1on1Chat} // /chats 페이지로 이동
         />
         <Button
           buttonType="outline"
@@ -188,6 +179,20 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
           />
         </ButtonWrapper>
       )}
+      {/* 로그인 안하고 1:1문의 클릭시 로그인 모달 띄움 */}
+      {isModalOpen &&
+        (isLoginView ? (
+          <LoginModal
+            onClose={handleCloseModal}
+            onToggleView={toggleModalView} // 모달 전환 함수 전달
+            onLoginSuccess={handleLoginSuccess} // 로그인 성공 시 처리 함수 전달
+          />
+        ) : (
+          <RegisterModal
+            onClose={handleCloseModal}
+            onToggleView={toggleModalView} // 모달 전환 함수 전달
+          />
+        ))}
     </PostFormContainer>
   );
 };

@@ -2,7 +2,7 @@ import {
   DEFAULT_LAST_MSG,
   DEFAULT_PROFILE_IMG,
 } from "../../../../constants/Chat";
-import { convertDate2ClentTime } from "../../../../utils/dateUtil";
+import { convertDate2ClentTime } from "../../../../utils/dateUtils";
 import ChatRoomInfoWrapper from "./ChatRoomInfo.styles";
 import ChatUnReadCnt from "./ChatUnReadCnt/ChatUnReadCnt";
 
