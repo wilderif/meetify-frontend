@@ -14,6 +14,9 @@ import {
   FilterWrapper,
   CustomSelectWrapper,
   SearchBarWrapper,
+  EmptyTextWrapper,
+  EmptyBold,
+  EmptyText,
 } from "./MainPage.styles";
 import useMainPage from "../../hooks/useMainPage";
 
@@ -64,13 +67,24 @@ const MainPage = () => {
           <SearchBar onSearch={handleSearch} />
         </SearchBarWrapper>
       </FilterWrapper>
-      <CardContainer postList={postList} />
-      {postList && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPage}
-          onPageChange={handlePageChange}
-        />
+      {postList && postList.length > 0 ? (
+        <>
+          <CardContainer postList={postList} />
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPage}
+            onPageChange={handlePageChange}
+          />
+        </>
+      ) : (
+        <EmptyTextWrapper>
+          <EmptyBold>데이터가 없습니다.</EmptyBold>
+          <EmptyText>
+            원하시는 데이터를 찾을 수 없습니다.
+            <br />
+            검색 조건을 변경하거나, 다시 시도해주세요.
+          </EmptyText>
+        </EmptyTextWrapper>
       )}
     </>
   );

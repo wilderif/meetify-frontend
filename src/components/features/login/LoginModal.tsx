@@ -47,27 +47,38 @@ const LoginModal = ({
   };
 
   const handleSubmit = async () => {
+    const toastId = "loginToast"; // 고유 ID 설정
+
     if (validateForm(formData)) {
       try {
         await login(formData.email, formData.password); // 로그인 메서드 호출
         setEmailInStore(formData.email);
         onLoginSuccess(); // 로그인 성공 시 호출하여 isLogin 상태 업데이트
         onClose(); // 로그인 성공 후 모달 닫기
-        toast.success("로그인 성공", { autoClose: 2000 });
+
+        // 동일한 위치의 토스트 메시지를 재생성
+        toast.success("로그인 성공", {
+          toastId,
+          autoClose: 2000,
+        });
       } catch (error) {
-        console.error("로그인 실패:", error);
-        toast.error("로그인에 실패했습니다. 다시 시도해주세요.", {
+        console.error("이메일 또는 비밀번호를 확인해주세요!:", error);
+        toast.error("이메일 또는 비밀번호를 확인해주세요!", {
+          toastId,
           autoClose: 2000,
         });
       }
     } else {
-      toast.error("입력한 정보가 유효하지 않습니다.", { autoClose: 2000 });
+      toast.error("입력 정보를 다시 확인해주세요.", {
+        toastId,
+        autoClose: 2000,
+      });
     }
   };
 
   return (
-    <Overlay>
-      <StyledLoginModal>
+    <Overlay onClick={onClose}>
+      <StyledLoginModal onClick={(e) => e.stopPropagation()}>
         <CloseButton onClick={onClose} />
         <Title>Meetify</Title>
         <InputWrapper>
