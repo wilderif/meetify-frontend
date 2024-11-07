@@ -68,7 +68,7 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
         }); // 실패 시 토스트 메시지
       }
     } else {
-      toast.error("입력한 정보가 유효하지 않습니다.", {
+      toast.error("입력 정보를 다시 확인해주세요", {
         autoClose: 2000,
         toastId,
       }); // 유효하지 않은 경우 토스트 메시지

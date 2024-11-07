@@ -62,14 +62,14 @@ const LoginModal = ({
           autoClose: 2000,
         });
       } catch (error) {
-        console.error("로그인 실패:", error);
-        toast.error("로그인에 실패했습니다. 다시 시도해주세요.", {
+        console.error("이메일 또는 비밀번호를 확인해주세요!:", error);
+        toast.error("이메일 또는 비밀번호를 확인해주세요!", {
           toastId,
           autoClose: 2000,
         });
       }
     } else {
-      toast.error("입력한 정보가 유효하지 않습니다.", {
+      toast.error("입력 정보를 다시 확인해주세요.", {
         toastId,
         autoClose: 2000,
       });
