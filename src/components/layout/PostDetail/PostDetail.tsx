@@ -1,5 +1,4 @@
 import dayjs from "dayjs";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import DOMPurify from "dompurify";
 import Button from "../../common/button/Button";
@@ -14,8 +13,14 @@ import {
 import ReadInput from "../../common/ReadInput/ReadInput";
 import ReadTitle from "../../common/ReadTitle/ReadTitle";
 import handIcon from "../../../assets/post-image/hand.svg";
-import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
+// import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import useAuthStore from "../../../store/useAuthStore";
+import { getProfileImagePath } from "../../../utils/getProfileImagePath";
+import { formatDate } from "../../../utils/dateUtils";
+import useHandleInquiry from "../../../hooks/Chat/useHandleInquiry";
+import LoginModal from "../../features/login/LoginModal";
+import useModal from "../../../hooks/useModal";
+import RegisterModal from "../../features/register/RegisterModal";
 
 // 상수 파일 import
 import ParticipationMethod from "../../../constants/ParticipationMethod";
@@ -39,7 +44,7 @@ interface PostDetailProps {
     user_profile: {
       nickname: string;
       email: string;
-      profile_image: string;
+      profile_image_index: number;
     };
   };
   onEdit: () => void;
@@ -51,15 +56,42 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
   onEdit,
   onDelete,
 }) => {
-  const navigate = useNavigate();
+  const {
+    isLogin,
+    isModalOpen,
+    isLoginView,
+    handleClick,
+    handleCloseModal,
+    toggleModalView,
+    handleLoginSuccess,
+  } = useModal();
   const formattedDate = dayjs(postData.created_at).format("YYYY-MM-DD");
   const currentUserEmail = useAuthStore((state) => state.email); // 현재 로그인한 사용자 ID
+<<<<<<< HEAD
   console.log("현재 postData:", postData);
   // 문의하기 클릭 시 /chats로 이동
   const handleInquiry = () => {
     navigate("/chats");
   };
+=======
+>>>>>>> develop
 
+  const profileImageIndex = postData.user_profile.profile_image_index;
+  const postProfileImage = getProfileImagePath(profileImageIndex);
+  // 문의하기 클릭 시 /chats로 이동
+  const handleInquiry = useHandleInquiry(
+    currentUserEmail,
+    postData.user_profile.email,
+    postData.user_profile.nickname
+  );
+
+  const handle1on1Chat = () => {
+    if (!isLogin) {
+      handleClick();
+    } else {
+      handleInquiry();
+    }
+  };
   // 공유하기 클릭 시 주소 복사 및 toast 메시지 표시
   const handleShare = () => {
     navigator.clipboard.writeText(window.location.href).then(() => {
@@ -82,9 +114,7 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
           text={postData.title}
           iconSrc={handIcon}
           author={postData.user_profile.nickname}
-          authorImageSrc={
-            postData.user_profile.profile_image || DummyProfileImage
-          }
+          authorImageSrc={postProfileImage}
           createdAt={formattedDate}
         />
         <Row>
@@ -151,9 +181,13 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
             <FormColumn>
               <ReadInput
                 label="모집 마감일"
+<<<<<<< HEAD
                 value={dayjs(postData.recruitment_deadline).format(
                   "YYYY-MM-DD"
                 )}
+=======
+                value={formatDate(new Date(postData.recruitment_deadline))}
+>>>>>>> develop
                 variant="primary"
               />
             </FormColumn>
@@ -161,6 +195,7 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
         </Row>
       </Section>
       <ButtonWrapper>
+<<<<<<< HEAD
         {currentUserEmail && (
           <Button
             buttonType="fill"
@@ -169,6 +204,14 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
             onClick={handleInquiry} // /chats 페이지로 이동
           />
         )}
+=======
+        <Button
+          buttonType="fill"
+          buttonSize="medium"
+          label="문의하기"
+          onClick={handle1on1Chat} // /chats 페이지로 이동
+        />
+>>>>>>> develop
         <Button
           buttonType="outline"
           buttonSize="medium"
@@ -192,13 +235,27 @@ const ProjectDetail: React.FC<PostDetailProps> = ({
             onClick={onEdit}
           />
           <Button
-            buttonType="fill"
+            buttonType="outline"
             buttonSize="medium"
             label="삭제"
             onClick={handleDelete} // 삭제 시 알림 표시
           />
         </ButtonWrapper>
       )}
+      {/* 로그인 안하고 1:1문의 클릭시 로그인 모달 띄움 */}
+      {isModalOpen &&
+        (isLoginView ? (
+          <LoginModal
+            onClose={handleCloseModal}
+            onToggleView={toggleModalView} // 모달 전환 함수 전달
+            onLoginSuccess={handleLoginSuccess} // 로그인 성공 시 처리 함수 전달
+          />
+        ) : (
+          <RegisterModal
+            onClose={handleCloseModal}
+            onToggleView={toggleModalView} // 모달 전환 함수 전달
+          />
+        ))}
     </PostFormContainer>
   );
 };

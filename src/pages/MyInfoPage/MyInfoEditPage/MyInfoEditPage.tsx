@@ -11,6 +11,7 @@ import CustomSelect from "../../../components/common/CustomSelect/CustomSelect";
 import Input from "../../../components/common/input/Input";
 import TextArea from "../../../components/common/TextArea/TextArea";
 import Button from "../../../components/common/button/Button";
+import LoadingSpinner from "../../../components/common/LoadingSpinner/LoadingSpinner";
 import { SelectOption } from "../../../types/types";
 import {
   InterestsOptions,
@@ -33,6 +34,7 @@ import useAuthApi from "../../../hooks/useAuthApi";
 const MyInfoEditPage = () => {
   const setNickname = useAuthStore((state) => state.setNickname);
   const loginEmail = useAuthStore((state) => state.email);
+  const [loading, setLoading] = useState(false);
   const [userInformation, setUserInformation] = useState({
     inputNickname: "",
     selectPosition: {} as SelectOption,
@@ -96,6 +98,7 @@ const MyInfoEditPage = () => {
    * 프로필 확인 기능 없다면 메인 페이지로 이동
    */
   const handleSaveProfile = async () => {
+    setLoading(true); // 프로필 저장 시 로딩 상태 변경
     try {
       await saveUserProfile(
         loginEmail,
@@ -109,6 +112,8 @@ const MyInfoEditPage = () => {
       navigate("/my-info");
     } catch (error) {
       console.error("프로필 저장 중 오류 발생:", error);
+    } finally {
+      setLoading(false); // 저장 작업 끝나면 로딩 종료
     }
   };
 
@@ -144,93 +149,100 @@ const MyInfoEditPage = () => {
 
   return (
     <MyInfoEditPageWrapper>
-      <ProfileContainer>
-        <ProfileImage
-          src={DummyProfileImage}
-          alt="user profile image"
-          usageType="userInformation"
-        />
-        <div style={{ marginTop: "1rem" }}>
-          {userInformation.inputNickname} 님 환영해요.
-        </div>
-      </ProfileContainer>
-      <Input
-        label="닉네임"
-        placeholder={
-          userInformation.inputNickname
-            ? userInformation.inputNickname
-            : "닉네임을 입력해주세요."
-        }
-        value={userInformation.inputNickname}
-        onChange={handleInputChange("inputNickname")}
-      />
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <ProfileContainer>
+            <ProfileImage
+              src={DummyProfileImage}
+              alt="user profile image"
+              usageType="userInformation"
+            />
+            <div style={{ marginTop: "1rem" }}>
+              {userInformation.inputNickname} 님 환영해요.
+            </div>
+          </ProfileContainer>
+          <Input
+            label="닉네임"
+            placeholder={
+              userInformation.inputNickname
+                ? userInformation.inputNickname
+                : "닉네임을 입력해주세요."
+            }
+            value={userInformation.inputNickname}
+            onChange={handleInputChange("inputNickname")}
+          />
 
-      <CustomSelect
-        label="직무"
-        options={PositionOptions}
-        placeholder={"직무를 선택해주세요."}
-        onChange={handleSelectChange("selectPosition")}
-        value={
-          userInformation.selectPosition && userInformation.selectPosition.value
-            ? userInformation.selectPosition
-            : null
-        }
-        isMulti={false}
-        variant="default"
-      />
-      <CustomSelect
-        label="소속"
-        options={AffiliationOptions}
-        placeholder="소속을 선택해주세요."
-        onChange={handleSelectChange("selectAffiliation")}
-        value={
-          userInformation.selectAffiliation &&
-          userInformation.selectAffiliation.value
-            ? userInformation.selectAffiliation
-            : null
-        }
-        isMulti={false}
-        variant="default"
-      />
-      <TextArea
-        label="자기소개"
-        placeholder={
-          userInformation.inputIntroduction
-            ? userInformation.inputIntroduction
-            : "자기소개를 입력해주세요."
-        }
-        value={userInformation.inputIntroduction}
-        onChange={handleInputChange("inputIntroduction")}
-      />
-      <CustomSelect
-        label="관심분야"
-        options={InterestsOptions}
-        placeholder={
-          userInformation.selectInterests.length > 0
-            ? userInformation.selectInterests
-                .map((option) => option.label)
-                .join(", ")
-            : "관심분야를 선택해주세요."
-        }
-        onChange={handleSelectChange("selectInterests")}
-        value={userInformation.selectInterests || null}
-        isMulti={true}
-        variant="default"
-      />
-      <ButtonContainer>
-        <Button
-          label="회원 탈퇴"
-          buttonType="outline"
-          buttonSize="medium"
-          onClick={handleDeleteUser}
-        />
-        <Button
-          label="프로필 저장"
-          buttonType="fill"
-          buttonSize="medium"
-          onClick={handleSaveProfile}
-        />
-      </ButtonContainer>
+          <CustomSelect
+            label="직무"
+            options={PositionOptions}
+            placeholder={"직무를 선택해주세요."}
+            onChange={handleSelectChange("selectPosition")}
+            value={
+              userInformation.selectPosition &&
+              userInformation.selectPosition.value
+                ? userInformation.selectPosition
+                : null
+            }
+            isMulti={false}
+            variant="default"
+          />
+          <CustomSelect
+            label="소속"
+            options={AffiliationOptions}
+            placeholder="소속을 선택해주세요."
+            onChange={handleSelectChange("selectAffiliation")}
+            value={
+              userInformation.selectAffiliation &&
+              userInformation.selectAffiliation.value
+                ? userInformation.selectAffiliation
+                : null
+            }
+            isMulti={false}
+            variant="default"
+          />
+          <TextArea
+            label="자기소개"
+            placeholder={
+              userInformation.inputIntroduction
+                ? userInformation.inputIntroduction
+                : "자기소개를 입력해주세요."
+            }
+            value={userInformation.inputIntroduction}
+            onChange={handleInputChange("inputIntroduction")}
+          />
+          <CustomSelect
+            label="관심분야"
+            options={InterestsOptions}
+            placeholder={
+              userInformation.selectInterests.length > 0
+                ? userInformation.selectInterests
+                    .map((option) => option.label)
+                    .join(", ")
+                : "관심분야를 선택해주세요."
+            }
+            onChange={handleSelectChange("selectInterests")}
+            value={userInformation.selectInterests || null}
+            isMulti={true}
+            variant="default"
+          />
+          <ButtonContainer>
+            <Button
+              label="회원 탈퇴"
+              buttonType="outline"
+              buttonSize="medium"
+              onClick={handleDeleteUser}
+            />
+            <Button
+              label="프로필 저장"
+              buttonType="fill"
+              buttonSize="medium"
+              onClick={handleSaveProfile}
+            />
+          </ButtonContainer>
+        </>
+      )}
     </MyInfoEditPageWrapper>
   );
 };

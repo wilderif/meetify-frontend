@@ -14,6 +14,8 @@ import Input from "../login/Input";
 import { useValidation } from "../../../hooks/useValidation";
 import useAuthStore from "../../../store/useAuthStore";
 import useAuthApi from "../../../hooks/useAuthApi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface RegisterModalProps {
   onClose: () => void;
@@ -30,6 +32,8 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
   const { register } = useAuthApi(); // useAuthApi 훅 사용
   const setEmailInStore = useAuthStore((state) => state.setEmail);
   const setNicknameInStore = useAuthStore((state) => state.setNickname);
+
+  const toastId = "register-toast"; // 고유한 토스트 ID
 
   useEffect(() => {
     // 모달이 열릴 때 스크롤 금지
@@ -55,18 +59,24 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
         setEmailInStore(email);
         setNicknameInStore(nickname);
         onClose(); // 회원가입 후 모달 닫기
-        console.log("회원가입 성공");
+        toast.success("회원가입 성공", { autoClose: 2000, toastId }); // 성공 시 토스트 메시지
       } catch (error) {
         console.error("회원가입 실패:", error);
-        alert("회원가입에 실패했습니다. 다시 시도해주세요.");
+        toast.error("회원가입에 실패했습니다. 다시 시도해주세요.", {
+          autoClose: 2000,
+          toastId,
+        }); // 실패 시 토스트 메시지
       }
     } else {
-      alert("입력한 정보가 유효하지 않습니다.");
+      toast.error("입력 정보를 다시 확인해주세요", {
+        autoClose: 2000,
+        toastId,
+      }); // 유효하지 않은 경우 토스트 메시지
     }
   };
 
   return (
-    <Overlay>
+    <Overlay onClick={onClose}>
       <StyledRegisterModal onClick={(e) => e.stopPropagation()}>
         <CloseButton onClick={onClose} />
         <Title>Meetify</Title>
@@ -132,6 +142,7 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
             </LoginText>
           </ButtonContainer>
         </form>
+        <ToastContainer />
       </StyledRegisterModal>
     </Overlay>
   );

@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import dayjs from "dayjs";
 import Button from "../../common/button/Button";
@@ -13,8 +12,14 @@ import {
 import ReadInput from "../../common/ReadInput/ReadInput";
 import ReadTitle from "../../common/ReadTitle/ReadTitle";
 import handIcon from "../../../assets/post-image/hand.svg";
-import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
+// import DummyProfileImage from "../../../assets/profile-image/Dummy-Profile-Image.png";
 import useAuthStore from "../../../store/useAuthStore";
+import { getProfileImagePath } from "../../../utils/getProfileImagePath";
+
+import useHandleInquiry from "../../../hooks/Chat/useHandleInquiry";
+import useModal from "../../../hooks/useModal";
+import LoginModal from "../../features/login/LoginModal";
+import RegisterModal from "../../features/register/RegisterModal";
 
 // 상수 파일 import
 import ParticipationMethod from "../../../constants/ParticipationMethod";
@@ -37,7 +42,7 @@ interface MeetDetailProps {
     user_profile: {
       nickname: string;
       email: string;
-      profile_image: string;
+      profile_image_index: number;
     };
   };
   onEdit: () => void;
@@ -52,12 +57,32 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
   onEdit,
   onDelete,
 }) => {
-  const navigate = useNavigate();
+  const {
+    isLogin,
+    isModalOpen,
+    isLoginView,
+    handleClick,
+    handleCloseModal,
+    toggleModalView,
+    handleLoginSuccess,
+  } = useModal();
+
   const formattedDate = dayjs(postData.created_at).format("YYYY-MM-DD");
   const currentUserEmail = useAuthStore((state) => state.email);
-  // 문의하기 클릭 시 /chats로 이동
-  const handleInquiry = () => {
-    navigate("/chats");
+  const profileImageIndex = postData.user_profile.profile_image_index;
+  const postProfileImage = getProfileImagePath(profileImageIndex);
+  const handleInquiry = useHandleInquiry(
+    currentUserEmail,
+    postData.user_profile.email,
+    postData.user_profile.nickname
+  );
+
+  const handle1on1Chat = () => {
+    if (!isLogin) {
+      handleClick();
+    } else {
+      handleInquiry();
+    }
   };
 
   // 공유하기 클릭 시 주소 복사 및 toast 메시지 표시
@@ -80,14 +105,13 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
           text={postData.title}
           iconSrc={handIcon}
           author={postData.user_profile.nickname}
-          authorImageSrc={
-            postData.user_profile.profile_image || DummyProfileImage
-          }
+          authorImageSrc={postProfileImage}
           createdAt={formattedDate}
         />
         <Row>
           <FormColumn>
             <ReadInput
+<<<<<<< HEAD
               label="선호 진행 방식"
               value={
                 ParticipationMethod[
@@ -95,10 +119,16 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
                 ] || postData.participation_method
               }
               variant="primary"
+=======
+              label='선호 진행 방식'
+              value={postData.participation_method}
+              variant='primary'
+>>>>>>> develop
             />
           </FormColumn>
           <FormColumn>
             <ReadInput
+<<<<<<< HEAD
               label="관심 분야"
               value={postData.interests
                 .map(
@@ -107,11 +137,17 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
                 )
                 .join(", ")}
               variant="primary"
+=======
+              label='관심 분야'
+              value={postData.interests.join(", ")}
+              variant='primary'
+>>>>>>> develop
             />
           </FormColumn>
           {postData.affiliation && (
             <FormColumn>
               <ReadInput
+<<<<<<< HEAD
                 label="소속"
                 value={
                   Affiliation[
@@ -119,22 +155,34 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
                   ] || postData.affiliation
                 }
                 variant="primary"
+=======
+                label='소속'
+                value={postData.affiliation}
+                variant='primary'
+>>>>>>> develop
               />
             </FormColumn>
           )}
           <FormColumn>
             <ReadInput
+<<<<<<< HEAD
               label="직무"
               value={postData.position
                 .map((pos) => Position[pos as keyof typeof Position] || pos)
                 .join(", ")}
               variant="primary"
+=======
+              label='직무'
+              value={postData.position.join(", ")}
+              variant='primary'
+>>>>>>> develop
             />
           </FormColumn>
 
           {postData.available_time && (
             <FormColumn>
               <ReadInput
+<<<<<<< HEAD
                 label="참여 가능 시간(주)"
                 value={
                   AvailableTime[
@@ -142,12 +190,18 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
                   ] || postData.available_time
                 }
                 variant="primary"
+=======
+                label='참여 가능 시간(주)'
+                value={postData.available_time}
+                variant='primary'
+>>>>>>> develop
               />
             </FormColumn>
           )}
         </Row>
       </Section>
       <ButtonWrapper>
+<<<<<<< HEAD
         {currentUserEmail && (
           <Button
             buttonType="fill"
@@ -156,15 +210,23 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
             onClick={handleInquiry} // /chats 페이지로 이동
           />
         )}
+=======
         <Button
-          buttonType="outline"
-          buttonSize="medium"
-          label="공유하기"
+          buttonType='fill'
+          buttonSize='medium'
+          label='문의하기'
+          onClick={handle1on1Chat} // /chats 페이지로 이동
+        />
+>>>>>>> develop
+        <Button
+          buttonType='outline'
+          buttonSize='medium'
+          label='공유하기'
           onClick={handleShare} // 현재 페이지 URL 복사 및 알림
         />
       </ButtonWrapper>
       <Section>
-        <ReadTitle text="소개 내용" iconSrc={handIcon} />
+        <ReadTitle text='소개 내용' iconSrc={handIcon} />
         <Content>{stripHtmlTags(postData.content)}</Content>{" "}
       </Section>
 
@@ -172,19 +234,33 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
       {postData.user_profile.email === currentUserEmail && (
         <ButtonWrapper>
           <Button
-            buttonType="fill"
-            buttonSize="medium"
-            label="수정"
+            buttonType='fill'
+            buttonSize='medium'
+            label='수정'
             onClick={onEdit}
           />
           <Button
-            buttonType="fill"
-            buttonSize="medium"
-            label="삭제"
+            buttonType='outline'
+            buttonSize='medium'
+            label='삭제'
             onClick={handleDelete} // 삭제 시 알림 표시
           />
         </ButtonWrapper>
       )}
+      {/* 로그인 안하고 1:1문의 클릭시 로그인 모달 띄움 */}
+      {isModalOpen &&
+        (isLoginView ? (
+          <LoginModal
+            onClose={handleCloseModal}
+            onToggleView={toggleModalView} // 모달 전환 함수 전달
+            onLoginSuccess={handleLoginSuccess} // 로그인 성공 시 처리 함수 전달
+          />
+        ) : (
+          <RegisterModal
+            onClose={handleCloseModal}
+            onToggleView={toggleModalView} // 모달 전환 함수 전달
+          />
+        ))}
     </PostFormContainer>
   );
 };
