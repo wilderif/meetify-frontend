@@ -26,7 +26,7 @@ import { getProfileImagePath } from "../../../utils/getProfileImagePath";
  */
 const MyInfoPage = () => {
   const loginEmail = useAuthStore((state) => state.email);
-  const setIsLogin = useAuthStore((state) => state.setIsLogin);
+  // const setIsLogin = useAuthStore((state) => state.setIsLogin);
   const profileImageIndex = useAuthStore((state) => state.profileImageIndex);
   const [userInformation, setUserInformation] = useState({
     inputNickname: "",

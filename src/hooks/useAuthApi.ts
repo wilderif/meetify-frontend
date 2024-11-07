@@ -108,6 +108,7 @@ const useAuthApi = (): UseAuthApiReturn => {
   const deleteUser = async (email: string) => {
     try {
       const response = await axios.delete(`${VITE_API_URL}/auth/${email}`);
+      localStorage.removeItem("token");
       console.log("회원탈퇴 성공:", response.data);
     } catch (error) {
       console.error("회원탈퇴 실패:", error);
