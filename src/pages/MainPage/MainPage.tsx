@@ -34,8 +34,6 @@ const MainPage = () => {
     isLoading,
   } = useMainPage();
 
-  if (!postList) return <LoadingSpinner />;
-
   return (
     <>
       {isLoading && <LoadingSpinner />}
