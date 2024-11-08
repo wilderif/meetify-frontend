@@ -10,7 +10,7 @@
 
 ## 백앤드 레포지토리
 
-[meetify-team-backend](https://github.com/prgrms-fe-devcourse/NFE1-1-3-5team_Meetify-BE)
+[meetify-backend](https://github.com/prgrms-fe-devcourse/NFE1-1-3-5team_Meetify-BE)
 
 ## 팀원 소개
 
@@ -87,6 +87,8 @@ Meetify는 프로젝트나 스터디를 함께할 팀원을 찾고, 자신의 �
 - Zoom, Slack
 
 ## 주요 구현 사항
+
+각 화면별 이미지 추가 예정
 
 ### 1. 로그인 및 회원가입
 
