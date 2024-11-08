@@ -38,7 +38,7 @@ Meetify는 프로젝트나 스터디를 함께할 팀원을 찾고, 자신의 �
   - 프로젝트 주최자의 팀원 모집
   - 지원자의 역제안 서비스를 통한 효율적인 매칭
 
-## 주요 기능
+<!-- ## 주요 기능
 
 ### 1. 게시글 관리
 
@@ -57,34 +57,7 @@ Meetify는 프로젝트나 스터디를 함께할 팀원을 찾고, 자신의 �
 - 관심 게시글 즐겨찾기
 - 게시글 공유
 - 작성 게시글 관리
-- 맞춤형 프로필 설정
-
-## 기술 스택
-
-### Frontend
-
-- 코어: TypeScript, React
-- 스타일: Styled-components
-- 아이콘: React Icons
-- 컴포넌트: Storybook
-- 상태 관리: Zustand
-- 라우팅: React Router
-- 알림: React-toastify
-- 채팅: Socket.io-client
-
-### Backend
-
-- 코어: TypeScript, Node.js, Express
-- 데이터베이스: MongoDB, Prisma
-- 인증: JWT
-- 채팅: Socket.io
-
-### Version Control & Collaboration
-
-- Git, Github
-- Postman
-- Notion, Figma
-- Zoom, Slack
+- 맞춤형 프로필 설정 -->
 
 ## 주요 구현 사항
 
@@ -121,6 +94,33 @@ Meetify는 프로젝트나 스터디를 함께할 팀원을 찾고, 자신의 �
 ### 5. 사용자 프로필 관리
 
 - 기술 스택, 직무, 자기소개 등 사용자 정보 등록 및 수정
+
+## 기술 스택
+
+### Frontend
+
+- 코어: TypeScript, React
+- 스타일: Styled-components
+- 아이콘: React Icons
+- 컴포넌트: Storybook
+- 상태 관리: Zustand
+- 라우팅: React Router
+- 알림: React-toastify
+- 채팅: Socket.io-client
+
+### Backend
+
+- 코어: TypeScript, Node.js, Express
+- 데이터베이스: MongoDB, Prisma
+- 인증: JWT
+- 채팅: Socket.io
+
+### Version Control & Collaboration
+
+- Git, Github
+- Postman
+- Notion, Figma
+- Zoom, Slack
 
 ## Database Schema
 
