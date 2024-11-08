@@ -171,14 +171,12 @@ const MeetDetail: React.FC<MeetDetailProps> = ({
         </Row>
       </Section>
       <ButtonWrapper>
-        {currentUserEmail && (
-          <Button
-            buttonType="fill"
-            buttonSize="medium"
-            label="문의하기"
-            onClick={handle1on1Chat} // /chats 페이지로 이동
-          />
-        )}
+        <Button
+          buttonType="fill"
+          buttonSize="medium"
+          label="문의하기"
+          onClick={handle1on1Chat} // /chats 페이지로 이동
+        />
         <Button
           buttonType="outline"
           buttonSize="medium"
