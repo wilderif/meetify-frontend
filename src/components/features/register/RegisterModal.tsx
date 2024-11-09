@@ -16,8 +16,7 @@ import { useValidation } from "../../../hooks/useValidation";
 // import useAuthStore from "../../../store/useAuthStore";
 import useAuthApi from "../../../hooks/useAuthApi";
 import useLoadingStore from "../../../store/useLoadingStore";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 interface RegisterModalProps {
   onClose: () => void;
@@ -79,7 +78,7 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
   };
 
   return (
-    <Overlay onClick={onClose}>
+    <Overlay>
       <StyledRegisterModal onClick={(e) => e.stopPropagation()}>
         <CloseButton onClick={onClose} />
         <Title>Meetify</Title>
@@ -146,7 +145,6 @@ const RegisterModal = ({ onClose, onToggleView }: RegisterModalProps) => {
             </LoginText>
           </ButtonContainer>
         </form>
-        <ToastContainer />
       </StyledRegisterModal>
     </Overlay>
   );
