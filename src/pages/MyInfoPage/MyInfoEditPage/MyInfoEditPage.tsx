@@ -158,18 +158,22 @@ const MyInfoEditPage = () => {
   const handleNicknameChange = () => {
     return (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
+      const toastId = "nicknameToast";
       if (value.length <= 8) {
         handleInputChange("inputNickname")(e);
       }
       if (value.length === 9) {
-        toast.warning("닉네임은 8자 이하로 입력해주세요.", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
+        if (!toast.isActive(toastId)) {
+          toast.warning("닉네임은 8자 이하로 입력해주세요.", {
+            toastId,
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+        }
       }
     };
   };
