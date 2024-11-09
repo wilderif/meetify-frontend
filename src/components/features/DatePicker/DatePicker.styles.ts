@@ -19,7 +19,7 @@ export const Label = styled.p`
 export const StyledDatePicker = styled(MuiDatePicker)`
   .MuiInputBase-root {
     min-height: auto;
-    width: 600px;
+    width: 570px;
     border-radius: 10px;
     padding: 0 3px;
     font-size: var(--font-size-body-medium);

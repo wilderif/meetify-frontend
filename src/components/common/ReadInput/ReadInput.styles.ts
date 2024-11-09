@@ -19,7 +19,7 @@ export const Label = styled.label`
 
 export const StyledInput = styled.input<StyledInputProps>`
   min-height: 50px;
-  width: 600px;
+  width: 570px;
   border-radius: 10px;
   padding: 12px;
   margin-bottom: 10px;
