@@ -15,7 +15,7 @@ export const Label = styled.p`
 export const StyledSelect = styled.div<{ $variant: "default" | "rounded" }>`
   .react--select__control {
     min-height: auto;
-    width: 600px;
+    width: 570px;
     color: var(--primary-color-org);
     border-radius: 10px;
     padding: 0 3px;

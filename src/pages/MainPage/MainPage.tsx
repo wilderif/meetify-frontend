@@ -34,7 +34,18 @@ const MainPage = () => {
     isLoading,
   } = useMainPage();
 
-  if (!postList) return <LoadingSpinner />;
+  const InterestsOptionsWithAll = [
+    { value: "", label: "- 다중 선택 가능 -", isDisabled: true },
+    ...InterestsOptions,
+  ];
+  const PositionOptionsWithAll = [
+    { value: "ALL", label: "전체" },
+    ...PositionOptions,
+  ];
+  const ParticipationMethodOptionsWithAll = [
+    { value: "ALL", label: "전체" },
+    ...ParticipationMethodOptions,
+  ];
 
   return (
     <>
@@ -46,7 +57,7 @@ const MainPage = () => {
           <CustomSelect
             label={"기술스택"}
             placeholder={"기술스택"}
-            options={InterestsOptions}
+            options={InterestsOptionsWithAll}
             onChange={(option) => handleSelectChange(option, "interests")}
             variant={"rounded"}
             isMulti={true}
@@ -54,14 +65,14 @@ const MainPage = () => {
           <CustomSelect
             label={"포지션"}
             placeholder={"포지션"}
-            options={PositionOptions}
+            options={PositionOptionsWithAll}
             onChange={(option) => handleSelectChange(option, "position")}
             variant={"rounded"}
           />
           <CustomSelect
             label={"진행방식"}
             placeholder={"진행방식"}
-            options={ParticipationMethodOptions}
+            options={ParticipationMethodOptionsWithAll}
             onChange={(option) =>
               handleSelectChange(option, "participationMethod")
             }

@@ -20,6 +20,7 @@ export const HeaderContainer = styled.header`
 
 export const LogoContainer = styled.div`
   user-select: none;
+  cursor: pointer;
 `;
 
 export const NavContainer = styled.nav`
