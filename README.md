@@ -38,30 +38,7 @@ Meetify는 프로젝트나 스터디를 함께할 팀원을 찾고, 자신의 �
   - 프로젝트 주최자의 팀원 모집
   - 지원자의 역제안 서비스를 통한 효율적인 매칭
 
-<!-- ## 주요 기능
-
-### 1. 게시글 관리
-
-- 프로젝트/스터디/Meet(매칭 요청) 게시글 CRUD
-- 상세한 모집 조건 설정 (기술 스택, 진행 기간, 모집 포지션 등)
-- 게시글 검색 및 카테고리 필터링
-
-### 2. 실시간 커뮤니케이션
-
-- 게시글 작성자와 1:1 채팅
-- 실시간 채팅 알림 기능
-- 채팅방 관리
-
-### 3. 사용자 편의 기능
-
-- 관심 게시글 즐겨찾기
-- 게시글 공유
-- 작성 게시글 관리
-- 맞춤형 프로필 설정 -->
-
 ## 주요 구현 사항
-
-각 화면별 이미지 추가 예정
 
 ### 1. 로그인 및 회원가입
 
@@ -70,11 +47,32 @@ Meetify는 프로젝트나 스터디를 함께할 팀원을 찾고, 자신의 �
 - 토스트 메시지를 통한 피드백 제공
 - 로그인 상태 유지 기능
 
+<details>
+    <summary>로그인 미리보기</summary>
+    <img src="./public/project_overview/1_1.gif" alt="login" width="700">
+    
+</details>
+
+<details>
+    <summary>회원가입 미리보기</summary>
+    <img src="./public/project_overview/1_2.gif" alt="signup" width="700">
+</details>
+
 ### 2. 게시글 CRUD
 
 - 프로젝트, 스터디, Meet(매칭요청) 별 차별화된 폼 구현
 - 모집 인원, 기간, 기술 스택 등 상세 정보 입력
 - 텍스트 에디터 지원
+
+<details>
+    <summary>게시글 작성 미리보기</summary>
+    <img src="./public/project_overview/2_1.gif" alt="post_create" width="700">
+</details>
+
+<details>
+    <summary>게시글 수정 및 삭제 미리보기</summary>
+    <img src="./public/project_overview/2_2.gif" alt="post_detail" width="700">
+</details>
 
 ### 3. 검색 및 필터링
 
@@ -85,42 +83,106 @@ Meetify는 프로젝트나 스터디를 함께할 팀원을 찾고, 자신의 �
 - 관심글 즐겨찾기 기능
 - 관심글, 작성글 관리
 
+<details>
+    <summary>메인 검색 미리보기</summary>
+    <img src="./public/project_overview/3_1.gif" alt="search" width="700">
+</details>
+
+<details>
+    <summary>관심글 관리 미리보기</summary>
+    <img src="./public/project_overview/3_2.gif" alt="my_post" width="700">
+</details>
+
+<details>
+    <summary>작성글 관리 미리보기</summary>
+    <img src="./public/project_overview/3_3.gif" alt="bookmark" width="700">
+</details>
+
 ### 4. 실시간 채팅 시스템
 
 - Socket.io를 활용한 실시간 양방향 통신
 - 읽지 않은 메시지 관리 및 알림
 - 채팅방 목록 관리 및 최근 메시지 표시
 
+<details>
+    <summary>실시간 채팅 미리보기</summary>
+    <img src="./public/project_overview/4_1.gif" alt="chat" width="700">
+</details>
+
 ### 5. 사용자 프로필 관리
 
 - 기술 스택, 직무, 자기소개 등 사용자 정보 등록 및 수정
 
+<details>
+    <summary>사용자 프로필 관리 미리보기</summary>
+    <img src="./public/project_overview/5_1.gif" alt="profile_update" width="700">
+</details>
+
 ## 기술 스택
 
-### Frontend
+### 🚀 Front-end
 
-- 코어: TypeScript, React
-- 스타일: Styled-components
-- 아이콘: React Icons
-- 컴포넌트: Storybook
-- 상태 관리: Zustand
-- 라우팅: React Router
-- 알림: React-toastify
-- 채팅: Socket.io-client
+### ✔️ 코어
 
-### Backend
+<img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white"/>
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black">
 
-- 코어: TypeScript, Node.js, Express
-- 데이터베이스: MongoDB, Prisma
-- 인증: JWT
-- 채팅: Socket.io
+### ✔️ 스타일
 
-### Version Control & Collaboration
+<img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"/>
 
-- Git, Github
-- Postman
-- Notion, Figma
-- Zoom, Slack
+### ✔️ 아이콘
+
+<img src="https://img.shields.io/badge/React Icons-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+
+### ✔️ 컴포넌트
+
+<img src="https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=Storybook&logoColor=white"/>
+
+### ✔️ 상태 관리
+
+<img src="https://img.shields.io/badge/zustand-orange?style=for-the-badge&logo=zustand&logoColor=white">
+
+### ✔️ 라우팅
+
+<img src="https://img.shields.io/badge/React Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white">
+
+### ✔️ 채팅
+
+<img src="https://img.shields.io/badge/socket.io-010101?style=for-the-badge&logo=socketdotio&logoColor=white">
+
+### 🛠️ Back-end
+
+### ✔️ 코어
+
+<img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white"/>
+<img src="https://img.shields.io/badge/node.js-5FA04E?style=for-the-badge&logo=nodedotjs&logoColor=white">
+<img src="https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white">
+
+### ✔️ 데이터베이스
+
+<img src="https://img.shields.io/badge/mongodb-47A248?style=for-the-badge&logo=mongodb&logoColor=white">
+<img src="https://img.shields.io/badge/prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white">
+
+### ✔️ 인증
+
+<img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white">
+
+### ✔️ 채팅
+
+<img src="https://img.shields.io/badge/socket.io-010101?style=for-the-badge&logo=socketdotio&logoColor=white">
+
+### 🔧 Version Control & Collaboration
+
+<img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"/>
+<img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=github&logoColor=white"/>
+</br>
+<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"/>
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"/>
+<img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"/>
+</br>
+<img src="https://img.shields.io/badge/Zoom-2D8CFF?style=for-the-badge&logo=zoom&logoColor=white"/>
+<img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white"/>
 
 ## Database Schema
 
@@ -227,6 +289,11 @@ erDiagram
    ```bash
    npm run dev
    ```
+
+## 테스트 계정
+
+- 이메일: `meetify@naver.com`
+- 비밀번호: `qwaszx12!@`
 
 ## 회고
 
