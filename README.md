@@ -61,8 +61,6 @@ Meetify는 프로젝트나 스터디를 함께할 팀원을 찾고, 자신의 �
 
 ## 주요 구현 사항
 
-각 화면별 이미지 추가 예정
-
 ### 1. 로그인 및 회원가입
 
 - 모달 형태의 로그인/회원가입 UI
@@ -70,11 +68,32 @@ Meetify는 프로젝트나 스터디를 함께할 팀원을 찾고, 자신의 �
 - 토스트 메시지를 통한 피드백 제공
 - 로그인 상태 유지 기능
 
+<details>
+    <summary>로그인 미리보기</summary>
+    <img src="./public/project_overview/1_1.gif" alt="login" width="700">
+    
+</details>
+
+<details>
+    <summary>회원가입 미리보기</summary>
+    <img src="./public/project_overview/1_2.gif" alt="signup" width="700">
+</details>
+
 ### 2. 게시글 CRUD
 
 - 프로젝트, 스터디, Meet(매칭요청) 별 차별화된 폼 구현
 - 모집 인원, 기간, 기술 스택 등 상세 정보 입력
 - 텍스트 에디터 지원
+
+<details>
+    <summary>게시글 작성 미리보기</summary>
+    <img src="./public/project_overview/2_1.gif" alt="post_create" width="700">
+</details>
+
+<details>
+    <summary>게시글 수정 및 삭제 미리보기</summary>
+    <img src="./public/project_overview/2_2.gif" alt="post_detail" width="700">
+</details>
 
 ### 3. 검색 및 필터링
 
@@ -85,15 +104,40 @@ Meetify는 프로젝트나 스터디를 함께할 팀원을 찾고, 자신의 �
 - 관심글 즐겨찾기 기능
 - 관심글, 작성글 관리
 
+<details>
+    <summary>메인 검색 미리보기</summary>
+    <img src="./public/project_overview/3_1.gif" alt="search" width="700">
+</details>
+
+<details>
+    <summary>관심글 관리 미리보기</summary>
+    <img src="./public/project_overview/3_2.gif" alt="my_post" width="700">
+</details>
+
+<details>
+    <summary>작성글 관리 미리보기</summary>
+    <img src="./public/project_overview/3_3.gif" alt="bookmark" width="700">
+</details>
+
 ### 4. 실시간 채팅 시스템
 
 - Socket.io를 활용한 실시간 양방향 통신
 - 읽지 않은 메시지 관리 및 알림
 - 채팅방 목록 관리 및 최근 메시지 표시
 
+<details>
+    <summary>실시간 채팅 미리보기</summary>
+    <img src="./public/project_overview/4_1.gif" alt="chat" width="700">
+</details>
+
 ### 5. 사용자 프로필 관리
 
 - 기술 스택, 직무, 자기소개 등 사용자 정보 등록 및 수정
+
+<details>
+    <summary>사용자 프로필 관리 미리보기</summary>
+    <img src="./public/project_overview/5_1.gif" alt="profile_update" width="700">
+</details>
 
 ## 기술 스택
 
