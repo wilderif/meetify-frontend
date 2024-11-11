@@ -272,6 +272,11 @@ erDiagram
    npm run dev
    ```
 
+## 테스트 계정
+
+- 이메일: `meetify@naver.com`
+- 비밀번호: `qwaszx12!@`
+
 ## 회고
 
 <details>
