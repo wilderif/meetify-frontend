@@ -10,7 +10,7 @@
 
 ## 백앤드 레포지토리
 
-[meetify-backend](https://github.com/prgrms-fe-devcourse/NFE1-1-3-5team_Meetify-BE)
+[meetify-backend](https://github.com/wilderif/meetify-backend)
 
 ## 팀원 소개
 
@@ -120,61 +120,30 @@ Meetify는 프로젝트나 스터디를 함께할 팀원을 찾고, 자신의 �
 
 ## 기술 스택
 
-### 🚀 Front-end
+### Frontend
 
-### ✔️ 코어
+- 코어: TypeScript, React
+- 스타일: Styled-components
+- 아이콘: React Icons
+- 컴포넌트: Storybook
+- 상태 관리: Zustand
+- 라우팅: React Router
+- 알림: React-toastify
+- 채팅: Socket.io-client
 
-<img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white"/><img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black">
+### Backend
 
-### ✔️ 스타일
+- 코어: TypeScript, Node.js, Express
+- 데이터베이스: MongoDB, Prisma
+- 인증: JWT
+- 채팅: Socket.io
 
-<img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"/>
+### Version Control & Collaboration
 
-### ✔️ 아이콘
-
-<img src="https://img.shields.io/badge/React Icons-61DAFB?style=for-the-badge&logo=react&logoColor=black">
-
-### ✔️ 컴포넌트
-
-<img src="https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=Storybook&logoColor=white"/>
-
-### ✔️ 상태 관리
-
-<img src="https://img.shields.io/badge/zustand-orange?style=for-the-badge&logo=zustand&logoColor=white">
-
-### ✔️ 라우팅
-
-<img src="https://img.shields.io/badge/React Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white">
-
-### ✔️ 채팅
-
-<img src="https://img.shields.io/badge/socket.io-010101?style=for-the-badge&logo=socketdotio&logoColor=white">
-
-### 🛠️ Back-end
-
-### ✔️ 코어
-
-<img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white"/><img src="https://img.shields.io/badge/node.js-5FA04E?style=for-the-badge&logo=nodedotjs&logoColor=white"><img src="https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white">
-
-### ✔️ 데이터베이스
-
-<img src="https://img.shields.io/badge/mongodb-47A248?style=for-the-badge&logo=mongodb&logoColor=white"><img src="https://img.shields.io/badge/prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white">
-
-### ✔️ 인증
-
-<img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white">
-
-### ✔️ 채팅
-
-<img src="https://img.shields.io/badge/socket.io-010101?style=for-the-badge&logo=socketdotio&logoColor=white">
-
-### 🔧 Version Control & Collaboration
-
-<img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"/><img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=github&logoColor=white"/>
-
-<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"/><img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"/><img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"/>
-
-<img src="https://img.shields.io/badge/Zoom-2D8CFF?style=for-the-badge&logo=zoom&logoColor=white"/><img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white"/>
+- Git, Github
+- Postman
+- Notion, Figma
+- Zoom, Slack
 
 ## Database Schema
 
